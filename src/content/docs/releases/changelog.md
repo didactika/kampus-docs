@@ -11,6 +11,7 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 
 ### Changed
 
+- Foundation, port, adapter and server crates follow the layout of DEC-087 too: only entry files at the top of `src/`, every concern in a folder with its `mod.rs` (for example `kampus-db`: `connection/`, `schema/`, `upgrade/`, `lint/`; `kampus-server`: `commands/`, `config/`, `http/`, `wiring/`), checked by `tools/repo-check`. Public paths are unchanged, except `kampus_server::run` (now `commands`) and the server's generated registries (now in `wiring/`).
 - Every module crate follows one layout (DEC-087): `src/module.rs` exposes the `MODULE` descriptor, and the schema, permissions, model, services, ports, helpers and jobs each live in their folder. The server installs and synchronises modules only from their descriptors, listed in a registry `tools/repo-check --fix` writes from the module crates and from `crates/server/modules.toml`; CI rejects files outside the layout. Paths moved accordingly (for example `kampus_identity::service::sign_in`, `kampus_access::permissions`).
 - Crate folders drop the project prefix (`crates/common`, `crates/db`, `crates/server`…), and adapters become sub-plugins of their port in `crates/<port>/adapters/<name>`, registered by URL scheme in a registry `tools/repo-check --fix` writes; external adapters are declared in `crates/server/adapters.toml` (DEC-086).
 - The server opens the file storage and the cache from its configuration, through the adapters of the build, and its readiness checks both.
