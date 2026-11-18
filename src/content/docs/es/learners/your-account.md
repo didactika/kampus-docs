@@ -1,6 +1,6 @@
 ---
 title: Tu cuenta
-description: Registrarte, elegir tu contraseña, iniciar sesión, las sesiones y cambiar tu contraseña.
+description: Registrarte, elegir tu contraseña, iniciar sesión, los segundos factores, las sesiones, recuperar el acceso y cambiar tu contraseña.
 sidebar:
   order: 1
 ---
@@ -28,3 +28,18 @@ Cada navegador o aplicación con la que inicias sesión tiene su propia sesión.
 ## Cambiar tu contraseña
 
 Para cambiar tu contraseña necesitas la actual y, si iniciaste sesión hace más de 15 minutos, confirmarla primero. Al cambiarla terminan todas tus sesiones y tokens de API, en todos tus dispositivos, y recibes un correo que te lo avisa.
+
+## Segundos factores
+
+Un segundo factor protege tu cuenta aunque alguien conozca tu contraseña. Puedes añadir:
+
+- una **aplicación de autenticación**: escanea el código QR con la aplicación y escribe el código de seis cifras que muestra;
+- **códigos por correo**: al iniciar sesión, Kampus envía a tu correo un código de ocho cifras, válido 10 minutos.
+
+Al añadir tu primer factor recibes diez **códigos de recuperación**. Solo se muestran una vez: guárdalos en un lugar seguro. Cada uno sirve una sola vez en lugar de tu segundo factor, por ejemplo si pierdes el móvil. Puedes crear un juego nuevo cuando quieras, que sustituye al anterior.
+
+Cuando tienes un segundo factor, cada inicio de sesión lo pide. Si tu campus o uno de tus roles exige un segundo factor y aún no tienes ninguno, el inicio de sesión te pide configurar primero una aplicación de autenticación. Añadir o quitar un factor pide tu contraseña de nuevo si iniciaste sesión hace más de 15 minutos, y cada vez recibes un correo.
+
+## Recuperar el acceso
+
+Si olvidas tu contraseña, pide un enlace de recuperación con tu correo; dura 30 minutos. Si tu cuenta tiene un segundo factor, debes dar un código de tu aplicación o un código de recuperación antes de elegir la contraseña nueva; un código por correo no vale, porque el enlace ya llegó por correo. Recuperar el acceso termina todas tus sesiones y tokens de API, y vuelves a iniciar sesión con la contraseña nueva. Puedes pedir como máximo tres enlaces por hora.
