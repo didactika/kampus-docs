@@ -41,6 +41,20 @@ Cuando se ejecuta el borrado, se eliminan los datos personales de la cuenta: cor
 
 Una cuenta de servicio es para una integración, no para una persona. No tiene contraseña ni puede iniciar sesión: actúa solo con tokens de API y solo tiene los roles que le asignes. Se crea con `identity.account.invite`; sus tokens se crean y revocan con `identity.token.manage_any`.
 
+## Proveedores de identidad
+
+Con `identity.provider.manage` conectas un proveedor OpenID Connect (por ejemplo, el inicio de sesión único de tu organización) al campus: su URL de emisor, y el identificador y el secreto de cliente que te dio el proveedor. El secreto se guarda cifrado. Después, las personas eligen el proveedor en la página de inicio de sesión.
+
+La cuenta de una persona en el proveedor se vincula una vez a su cuenta de Kampus, mediante el identificador que el propio proveedor le da, y desde entonces se usa ese vínculo. Cómo se crea el primer vínculo lo decide la **política de vinculación**:
+
+| Política | Primer inicio de sesión con el proveedor |
+| --- | --- |
+| Solo identificador | No se vincula nada al iniciar sesión: solo valen los vínculos creados antes |
+| Correo verificado | Vincula con la cuenta activa del mismo correo, solo si el proveedor indica que el correo está verificado |
+| Confirmar | La persona lo confirma iniciando sesión con su contraseña de Kampus; entonces se crea el vínculo |
+
+Kampus nunca vincula una cuenta solo porque coincida un correo sin verificar. Iniciar sesión con un proveedor pide el segundo factor como cualquier otro inicio de sesión, y las cuentas suspendidas tampoco pueden entrar con un proveedor.
+
 ## Permisos de identidad
 
 | Permiso | Qué permite | Roles por defecto |

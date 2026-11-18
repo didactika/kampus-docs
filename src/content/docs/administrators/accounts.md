@@ -41,6 +41,20 @@ When the deletion runs, the account's personal data is erased: email, username, 
 
 A service account is for an integration, not a person. It has no password and cannot sign in: it acts only with API tokens, and holds only the roles you give it. Create one with `identity.account.invite`; create and revoke its tokens with `identity.token.manage_any`.
 
+## Identity providers
+
+With `identity.provider.manage` you connect an OpenID Connect provider (your organisation's single sign-on, for example) to the campus: its issuer URL, and the client id and secret the provider gave you. The secret is stored encrypted. People then choose the provider on the sign-in page.
+
+A person's account at the provider is linked to their Kampus account once, by the provider's own identifier for it, and from then on that link is used. How the first link is made is the **linking policy**:
+
+| Policy | First sign-in through the provider |
+| --- | --- |
+| Subject only | Nothing is linked at sign-in: only links made before work |
+| Verified email | Links to the active account with the same email, only when the provider says the email is verified |
+| Confirm | The person confirms by signing in with their Kampus password; then the link is made |
+
+Kampus never links to an account just because the email matches an unverified one. Signing in through a provider asks for the second factor like any other sign-in, and suspended accounts cannot sign in through a provider either.
+
 ## Identity permissions
 
 | Permission | What it allows | Default roles |
