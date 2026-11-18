@@ -19,6 +19,9 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 
 ### Added
 
+- `kampus-storage`: the file storage port (keys, hash-verified writes, ranges, copies, presigned reads as a capability) with its conformance suite, and `kampus-storage-opendal`, which stores on the local disk or in any S3-compatible bucket.
+- `kampus-cache`: the cache port (entries with a time to live, counters with a window, locks with a lease) with its conformance suite and the two-level `Layered` cache, and its adapters `kampus-cache-moka` (in-process) and `kampus-cache-redis` (Redis or Valkey).
+- Docker Compose: an S3-compatible store (SeaweedFS, localhost:58333, buckets `kampus` and `kampus-test`) and Valkey (localhost:56379); CI runs the conformance suites against both.
 - `kampus-common`: the error model with problem-details kinds, typed UUIDv7 identifiers, UTC instants with an injectable clock, cursor pagination and request identifiers.
 - `kampus-db`: the installation prefix, ordered and checksummed upgrade steps per module, and the upgrade runner that brings any supported release to the current one in one run, serialised across replicas, refusing a database newer than the code or with changed steps.
 - `kampus-server`: configuration from a file and `KAMPUS_*` variables validated per role, the commands `serve`, `upgrade` and `check`, liveness and readiness endpoints, request identifiers, problem details, JSON logs and graceful shutdown.
