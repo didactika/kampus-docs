@@ -10,6 +10,7 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- Second factors and access recovery in the account guide for learners, and requiring a second factor for a role in the roles guide for administrators.
 - Accounts guide for administrators (statuses, invitations, suspension, deletion with its grace period, service accounts, identity permissions and the default policy), the account guide for learners, and the API tokens guide for integrators.
 - Roles and permissions guide for administrators: the default roles, the access permissions, how a check is decided, allowances, safety rules and "view as".
 - The development server and the content layer watch files by polling, so new and edited pages show up without a restart under Docker on Windows.

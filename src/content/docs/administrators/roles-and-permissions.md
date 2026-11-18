@@ -61,6 +61,10 @@ A role may only give, override or view as the roles it is **allowed** to. For ex
 - Suspended accounts lose every permission until they are restored.
 - Every change to a role, grant or override is recorded with who made it and when.
 
+## Requiring a second factor
+
+With `access.role.manage` you can make a role require a second factor. Everyone who holds that role must then give one at every sign-in, and people without a factor set up an authenticator app at their next sign-in. They cannot remove their last factor while they hold the role. The campus can also require a second factor from everyone.
+
 ## View as
 
 With `access.view_as` you can see a course, section or activity exactly as another role sees it, for example as a learner. While viewing as a role you can only read, and only inside that scope. Starting and ending a "view as" session is recorded.

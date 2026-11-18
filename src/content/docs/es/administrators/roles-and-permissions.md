@@ -61,6 +61,10 @@ Un rol solo puede dar, anular o "ver como" los roles que tiene **permitidos**. P
 - Las cuentas suspendidas pierden todos sus permisos hasta que se restauran.
 - Cada cambio de un rol, una asignación o una anulación queda registrado con quién lo hizo y cuándo.
 
+## Exigir un segundo factor
+
+Con `access.role.manage` puedes hacer que un rol exija un segundo factor. Quien tenga ese rol debe darlo en cada inicio de sesión, y quien no tenga ningún factor configura una aplicación de autenticación en su siguiente inicio de sesión. No puede quitar su último factor mientras tenga el rol. El campus también puede exigir un segundo factor a todo el mundo.
+
 ## Ver como
 
 Con `access.view_as` puedes ver un curso, una sección o una actividad tal y como lo ve otro rol, por ejemplo como estudiante. Mientras ves como otro rol solo puedes leer, y solo dentro de ese ámbito. El inicio y el fin de cada sesión de "ver como" quedan registrados.

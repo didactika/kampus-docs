@@ -1,6 +1,6 @@
 ---
 title: Your account
-description: Signing up, choosing a password, signing in, sessions and changing your password.
+description: Signing up, choosing a password, signing in, second factors, sessions, recovering access and changing your password.
 sidebar:
   order: 1
 ---
@@ -28,3 +28,18 @@ Each browser or app you sign in with has its own session. A session ends after 8
 ## Changing your password
 
 Changing your password needs your current one, and, when you signed in more than 15 minutes ago, confirming your password first. Changing it ends every session and API token you had, on every device, and you receive an email about it.
+
+## Second factors
+
+A second factor protects your account even if someone learns your password. You can add:
+
+- an **authenticator app**: scan the QR code with the app and type the six-digit code it shows;
+- **codes by email**: at sign-in, Kampus sends an eight-digit code to your email, valid for 10 minutes.
+
+When you add your first factor you receive ten **recovery codes**. They are shown only once: keep them somewhere safe. Each one works once, in place of your second factor, for example if you lose your phone. You can create a new set at any time, which replaces the old one.
+
+Once you have a second factor, every sign-in asks for it. If your campus or one of your roles requires a second factor and you have none yet, the sign-in asks you to set up an authenticator app first. Adding or removing a factor needs your password again when you signed in more than 15 minutes ago, and you receive an email each time.
+
+## Recovering access
+
+If you forget your password, ask for a recovery link with your email; it lasts 30 minutes. When your account has a second factor, you must give a code from your app or a recovery code before choosing a new password; a code by email does not count, since the link already came by email. Recovering access ends every session and API token you had, and you sign in again with the new password. You can ask for three links an hour at most.
