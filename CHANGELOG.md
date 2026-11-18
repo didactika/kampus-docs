@@ -10,6 +10,7 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- Adapters as sub-plugins of their port, how to add one (also from outside the repository), and the storage and cache variables for operators.
 - Database schema guide for platform developers: the neutral schema, the linter, upgrades, error classes and capabilities.
 - Infrastructure ports for platform developers: storage and cache, their adapters and conformance suites, and the services Compose starts for them.
 - Running Kampus with Docker Compose, the commands of `kampus-server`, the new configuration variables, the file header and the licence.
