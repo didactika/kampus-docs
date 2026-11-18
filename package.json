@@ -4,7 +4,7 @@
   "private": true,
   "type": "module",
   "description": "The documentation of Kampus for every role, versioned with each release.",
-  "license": "UNLICENSED",
+  "license": "AGPL-3.0-or-later",
   "engines": {
     "node": ">=24"
   },
@@ -12,7 +12,8 @@
     "sync": "node tools/sync-spec.mjs",
     "dev": "node tools/sync-spec.mjs && astro dev --host 0.0.0.0",
     "build": "node tools/sync-spec.mjs && astro build",
-    "preview": "astro preview --host 0.0.0.0"
+    "preview": "astro preview --host 0.0.0.0",
+    "headers": "node tools/check-headers.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "0.42.10",

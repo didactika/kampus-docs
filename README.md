@@ -28,4 +28,8 @@ Pages reload when you edit them. Every 30 seconds `tools/sync-spec.mjs` reads th
 
 ## Contributing
 
-Every source file starts with the Kampus file header; pages are Markdown or MDX with front matter. Each change adds its entry to `CHANGELOG.md`.
+Every source file starts with the Kampus file header (`node tools/check-headers.mjs --fix --author "Your Name <you@example.org>"` writes it); pages are Markdown or MDX with front matter. Each change adds its entry to `CHANGELOG.md`.
+
+## Licence
+
+GNU Affero General Public License, version 3 or later. Copyright (c) 2026 Didactika. See [LICENSE](LICENSE).

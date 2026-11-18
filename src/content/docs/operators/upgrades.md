@@ -13,7 +13,7 @@ You never upgrade release by release. Every module keeps all its upgrade steps, 
 2. Run the new image with `kampus-server upgrade`. It applies every pending step of every module in order, then the data upgrade jobs.
 3. Start the new image in its roles.
 
-The server refuses to start when its code is older than the database, or when an upgrade step it knows was changed, so a wrong image never touches your data.
+The server refuses to start when its code is older than the database, or when an upgrade step it knows was changed, so a wrong image never touches your data. Several instances started at the same time upgrade one after the other, and a database that holds other Kampus installations (other prefixes) needs `--new-installation` before a new one is created next to them.
 
 ## Zero downtime
 
