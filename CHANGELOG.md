@@ -10,6 +10,7 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- Identity providers and their linking policies for administrators, and signing in with your organisation for learners.
 - Second factors and access recovery in the account guide for learners, and requiring a second factor for a role in the roles guide for administrators.
 - Accounts guide for administrators (statuses, invitations, suspension, deletion with its grace period, service accounts, identity permissions and the default policy), the account guide for learners, and the API tokens guide for integrators.
 - Roles and permissions guide for administrators: the default roles, the access permissions, how a check is decided, allowances, safety rules and "view as".

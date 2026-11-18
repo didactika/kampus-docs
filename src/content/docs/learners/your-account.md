@@ -21,6 +21,10 @@ Your campus sets the rules; by default a password has at least 12 characters and
 
 Sign in with your username or your email and your password. When the answer is "sign-in failed", Kampus does not say whether the account exists or the password was wrong, on purpose. After a few failed tries you have to wait a little before trying again, and after many failed tries sign-in locks for a while.
 
+## Signing in with your organisation
+
+When your campus connects a provider, such as your organisation's single sign-on, you can choose it on the sign-in page. The first time, your campus may ask you to confirm by signing in with your Kampus password; you then receive an email saying the provider was linked. Your second factor is still asked.
+
 ## Sessions
 
 Each browser or app you sign in with has its own session. A session ends after 8 hours without use, after 7 days at the latest, or when you sign out. You can see your open sessions and end the ones you do not recognise.

@@ -21,6 +21,10 @@ Tu campus fija las reglas; por defecto una contraseña tiene al menos 12 caracte
 
 Inicia sesión con tu nombre de usuario o tu correo y tu contraseña. Cuando la respuesta es "inicio de sesión fallido", Kampus no dice si la cuenta existe o si la contraseña era incorrecta, a propósito. Tras unos pocos intentos fallidos tienes que esperar un poco antes de volver a intentarlo, y tras muchos el inicio de sesión se bloquea un rato.
 
+## Iniciar sesión con tu organización
+
+Si tu campus conecta un proveedor, como el inicio de sesión único de tu organización, puedes elegirlo en la página de inicio de sesión. La primera vez, tu campus puede pedirte que lo confirmes iniciando sesión con tu contraseña de Kampus; después recibes un correo que avisa de que se vinculó el proveedor. El segundo factor se sigue pidiendo.
+
 ## Sesiones
 
 Cada navegador o aplicación con la que inicias sesión tiene su propia sesión. Una sesión termina tras 8 horas sin uso, a los 7 días como máximo, o cuando cierras sesión. Puedes ver tus sesiones abiertas y cerrar las que no reconozcas.
