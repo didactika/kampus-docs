@@ -22,6 +22,7 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 
 ### Added
 
+- `kampus-access` (`crates/access`): the scope tree with nested sections and its closure table, principals, roles made from versioned templates with their allowances, manual and module-owned grants, overrides, permission checks that explain themselves, "view as", the history of every change, and the default roles of a campus; one test per business rule (RN-001 to RN-021). The server synchronises the declared permissions and templates at start-up.
 - The neutral schema of `kampus-db`: modules declare tables, portable types, keys, foreign keys, checks and indexes, and the port writes quoted, prefixed PostgreSQL and indexes every foreign key; upgrade steps are lists of these changes, and SQL outside it needs a reason.
 - The schema linter (`kampus_db::lint`), run on every build over every module, and the conformance suite of the database port: every type, reference behaviour, check, error class and `SKIP LOCKED`.
 - `kampus_db::classify`, which maps database failures to the error model, and the capabilities of the database port.
