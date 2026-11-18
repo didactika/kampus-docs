@@ -17,6 +17,8 @@ Activity, widget, authentication, enrolment, report, question type, course forma
 
 A `kampus-plugin.toml` manifest with its identity and SDK range, the capabilities it needs (with a reason shown to administrators), its contributions (permissions, settings, events, jobs, routes, UI modules, help topics, messages), the schema of its own tables, and its privacy handler.
 
+A plugin declares the same kinds of contribution as a module of the core, organised the same way: see the [module layout](/platform-developers/module-layout/). Extensions compiled into the server as Rust crates follow that layout and are registered from `crates/server/modules.toml`.
+
 ## Lifecycle
 
 Upload a signed package, grant its capabilities, let the host apply its migrations, enable it. Upgrades that ask for more capabilities wait for a new grant while the old version keeps running; disabling keeps its data; removal runs its privacy handler first.
