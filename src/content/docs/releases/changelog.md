@@ -19,6 +19,9 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 
 ### Added
 
+- The neutral schema of `kampus-db`: modules declare tables, portable types, keys, foreign keys, checks and indexes, and the port writes quoted, prefixed PostgreSQL and indexes every foreign key; upgrade steps are lists of these changes, and SQL outside it needs a reason.
+- The schema linter (`kampus_db::lint`), run on every build over every module, and the conformance suite of the database port: every type, reference behaviour, check, error class and `SKIP LOCKED`.
+- `kampus_db::classify`, which maps database failures to the error model, and the capabilities of the database port.
 - `kampus-storage`: the file storage port (keys, hash-verified writes, ranges, copies, presigned reads as a capability) with its conformance suite, and `kampus-storage-opendal`, which stores on the local disk or in any S3-compatible bucket.
 - `kampus-cache`: the cache port (entries with a time to live, counters with a window, locks with a lease) with its conformance suite and the two-level `Layered` cache, and its adapters `kampus-cache-moka` (in-process) and `kampus-cache-redis` (Redis or Valkey).
 - Docker Compose: an S3-compatible store (SeaweedFS, localhost:58333, buckets `kampus` and `kampus-test`) and Valkey (localhost:56379); CI runs the conformance suites against both.
