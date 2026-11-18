@@ -7,27 +7,55 @@ sidebar:
 
 ## The file header
 
-Every source and configuration file outside the specification starts with the Kampus header, in the comment syntax of its type. In Rust:
+Every source and configuration file outside the specification starts with the same Kampus header, in the comment syntax of its type: the KAMPUS banner, the notice of the GNU Affero General Public License, and the fields `@package` (the crate or component), `@copyright`, `@author` (name and address of who created the file), `@license` and `@since` (the version that added it). In Rust:
 
 ```rust
-// This file is part of Kampus - Knowledge Academic Modular Platform for Universal Study.
+// ------------------------------------------------------------------------------
 //
-// Copyright (c) 2026 Didactika. All rights reserved.
-// Proprietary and confidential: see the LICENSE file at the root of the repository.
-// SPDX-License-Identifier: LicenseRef-Didactika-Proprietary
+//     _  __    _    __  __ ____  _   _ ____
+//    | |/ /   / \  |  \/  |  _ \| | | / ___|
+//    | ' /   / _ \ | |\/| | |_) | | | \___ \
+//    | . \  / ___ \| |  | |  __/| |_| |___) |
+//    |_|\_\/_/   \_\_|  |_|_|    \___/|____/
 //
-// @package   kampus-common
-// @author    Your Name
+//    Knowledge Academic Modular Platform for Universal Study
+//
+// ------------------------------------------------------------------------------
+//
+// This file is part of Kampus - https://github.com/didactika/kampus
+//
+// Kampus is free software: you can redistribute it and/or modify it under the terms of the
+// GNU Affero General Public License as published by the Free Software Foundation, either
+// version 3 of the License, or (at your option) any later version.
+//
+// Kampus is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without
+// even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// GNU Affero General Public License for more details.
+//
+// You should have received a copy of the GNU Affero General Public License along with Kampus.
+// If not, see <https://www.gnu.org/licenses/>.
+//
+// @package   kampus-courses
+// @copyright 2026 Didactika
+// @author    Hector Arrechea <hectorlazaroarrechea@gmail.com>
+// @license   https://www.gnu.org/licenses/agpl-3.0.html AGPL-3.0-or-later
 // @since     0.1.0
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// ------------------------------------------------------------------------------
 
 //! What this module is for.
 ```
 
-`@package` is the crate or component, `@author` who created the file and `@since` the version that added it. TOML, YAML, shell and Dockerfiles use `#`, CSS `/* */`, Svelte and HTML `<!-- -->`, SQL `--`. Files that cannot hold comments (JSON, lock files, images) are exempt. The repository check adds missing headers:
+TOML, YAML, shell and Dockerfiles use `#`, CSS `/* */`, Svelte and HTML `<!-- -->`, SQL `--`, and Astro components put it inside their front matter. Files that cannot hold comments (JSON, lock files, images) are exempt. The repository check adds missing headers and rewrites outdated ones, keeping their `@since`:
 
 ```bash
-docker compose -f tools/docs-check/compose.yaml run --rm repo --fix --author "Your Name"
+docker compose -f tools/docs-check/compose.yaml run --rm repo --fix --author "Your Name <you@example.org>"
 ```
+
+## Licence
+
+Kampus is free software under the **GNU Affero General Public License, version 3 or later** (`AGPL-3.0-or-later`). Whoever distributes Kampus or a part of it, or offers it to users over a network, must give them the complete source under the same licence. Dependencies must be compatible: permissive licences, MPL-2.0, LGPL, GPL-3.0 and AGPL-3.0; `cargo deny` refuses the rest.
 
 ## Documentation comments
 
