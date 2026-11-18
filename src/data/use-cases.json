@@ -62,7 +62,7 @@
       "actors": [
         "Visitor"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-007",
@@ -72,7 +72,7 @@
       "actors": [
         "Visitor"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-008",
@@ -92,7 +92,7 @@
       "actors": [
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-010",
