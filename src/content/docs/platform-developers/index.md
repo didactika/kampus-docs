@@ -14,4 +14,5 @@ The specification (requirements, domain and data models, API fragments, use case
 | [Getting started](/platform-developers/getting-started/) | The development environment in Docker and the commands of every quality gate |
 | [Conventions](/platform-developers/conventions/) | File headers, documentation comments, branches, commits and pull requests |
 | [Versions and changelog](/platform-developers/versions/) | The platform version, the changelog entry of every pull request, releases and support branches |
-| [Architecture](/platform-developers/architecture/) | The modules, their levels and the rules the build enforces |
+| [Architecture](/platform-developers/architecture/) | The modules, their levels, the rules the build enforces and the infrastructure ports |
+| [Database schema](/platform-developers/database/) | How a module declares its tables, upgrades them and handles database errors |
