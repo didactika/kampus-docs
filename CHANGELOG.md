@@ -10,6 +10,7 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- Database schema guide for platform developers: the neutral schema, the linter, upgrades, error classes and capabilities.
 - Infrastructure ports for platform developers: storage and cache, their adapters and conformance suites, and the services Compose starts for them.
 - Running Kampus with Docker Compose, the commands of `kampus-server`, the new configuration variables, the file header and the licence.
 - The documentation site, with the look of Didactika's documentation, in English and Spanish, served with Docker at http://localhost:8096.
