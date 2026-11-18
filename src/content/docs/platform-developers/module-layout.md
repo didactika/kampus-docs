@@ -56,6 +56,30 @@ crates/<module>/
 
 Every crate also states what it is in `[package.metadata.kampus] kind`: `foundation`, `port`, `adapter`, `module` or `server`.
 
+## Every other crate
+
+Foundation, port, adapter and server crates follow the same principle: `src/` holds only its entry files, and everything else lives in a folder named after its concern, each with a `mod.rs`. Folder names are snake case. Public paths do not depend on folders: `lib.rs` re-exports what callers use.
+
+| Kind | At the top of `src/` | Required folders | Also at the crate root |
+| --- | --- | --- | --- |
+| `foundation` | `lib.rs` | — | — |
+| `port` | `lib.rs` | `port/` (the trait and its types), `registry/` (`Adapter` and `open`), `conformance/` (the suite every adapter passes) | `adapters/` |
+| `adapter` | `lib.rs` with `ADAPTER` | `store/` (the implementation) | — |
+| `server` | `lib.rs`, `main.rs` | `commands/`, `config/`, `http/`, `wiring/` (the generated registries and the composition) | `adapters.toml`, `modules.toml` |
+| `module` | `lib.rs`, `module.rs` | `db/`, `permissions/`, and the folders above | `web/`, `lang/`, `assets/` |
+
+The crates of the repository today:
+
+| Crate | Folders of `src/` |
+| --- | --- |
+| `kampus-common` | `adapter/` (settings of adapters), `clock/` (instants and clocks), `error/` (the error model), `id/` (typed identifiers), `page/` (pagination), `request/` (request context) |
+| `kampus-db` | `connection/` (pool, prefix, error classes), `schema/` (the neutral schema), `upgrade/` (steps and the runner), `lint/` (the schema linter) |
+| `kampus-module` | `descriptor/` (`Module`), `permission/` (the vocabulary of declarations) |
+| `kampus-storage`, `kampus-cache` | `port/`, `registry/`, `conformance/`; the cache adds `layered/` |
+| `kampus-server` | `commands/` (serve, upgrade, check), `config/`, `http/`, `wiring/` |
+
+`tools/repo-check` rejects a file at the top of `src/` that is not an entry file, a folder without `mod.rs`, a missing required folder, and a crate without its kind.
+
 ## Adding a module
 
 1. Add its row to the module table of the architecture: its level decides which modules it may depend on.
