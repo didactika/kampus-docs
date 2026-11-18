@@ -10,7 +10,7 @@
         "Manager",
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-002",
@@ -21,7 +21,7 @@
         "Manager",
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-003",
@@ -31,7 +31,7 @@
       "actors": [
         "System"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-004",
@@ -41,7 +41,7 @@
       "actors": [
         "Campus administrator"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-005",
@@ -52,7 +52,7 @@
         "Teacher",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-006",

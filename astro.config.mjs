@@ -60,6 +60,9 @@ const audience = (label, es, directory) => ({
 export default defineConfig({
   site: 'http://localhost:8096',
   devToolbar: { enabled: false },
+  vite: {
+    server: { watch: { usePolling: process.env.KAMPUS_DOCS_POLL === '1', interval: 1000 } },
+  },
   integrations: [
     starlight({
       title: { en: 'Kampus Docs', es: 'Kampus Docs' },
