@@ -14,7 +14,7 @@ docker compose logs -f site
 docker compose down
 ```
 
-Pages reload when you edit them; the server polls for changes (`KAMPUS_DOCS_POLL`), so this also works with Docker on Windows. Every 30 seconds `tools/sync-spec.mjs` reads the Kampus repository (`KAMPUS_REPO_DIR`, by default `../kampus`) and refreshes the use cases each guide lists, with their status, and the changelog.
+Pages reload when you edit them; the server polls for changes (`KAMPUS_DOCS_POLL` and `CHOKIDAR_USEPOLLING`), so this also works with Docker on Windows. Every 30 seconds `tools/sync-spec.mjs` reads the Kampus repository (`KAMPUS_REPO_DIR`, by default `../kampus`) and refreshes the use cases each guide lists, with their status, and the changelog.
 
 ## Layout
 
