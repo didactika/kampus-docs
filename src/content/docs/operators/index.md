@@ -20,7 +20,7 @@ Kampus 0.1.0 has no released image yet. You can already build and run it with Do
 | `kampus-server upgrade --new-installation` | The same, when the database already holds other Kampus installations with other prefixes |
 | `kampus-server check` | Reports whether the database matches the build, without changing anything; exits with an error when it does not |
 
-Every role answers `/health/live` (the process runs) and `/health/ready` (the database answers and matches the build) on `KAMPUS_HTTP_ADDRESS`.
+Every role answers `/health/live` (the process runs) and `/health/ready` (the database answers and matches the build, and the file storage and the cache answer) on `KAMPUS_HTTP_ADDRESS`. The scheme of each URL chooses the adapter among those of the build.
 
 ## Infrastructure
 
@@ -47,7 +47,8 @@ A file (`kampus.toml`) plus environment variables, which take precedence. Each r
 | `KAMPUS_DATABASE_PREFIX` | all | no (`kmp_`) | Prefix of every database name, set once at installation |
 | `KAMPUS_DATABASE_POOL_SIZE` | all | no | Connections per process |
 | `KAMPUS_STORAGE_URL` | server, worker | yes | `file:///path` or `s3://bucket/prefix` |
-| `KAMPUS_CACHE_URL` | server, worker | no | Redis or Valkey; without it, one instance only |
+| `KAMPUS_STORAGE_S3_ENDPOINT`, `_REGION`, `_ACCESS_KEY_ID`, `_SECRET_ACCESS_KEY` | server, worker | with `s3://` | Endpoint (omit for AWS), region (`us-east-1` by default) and credentials |
+| `KAMPUS_CACHE_URL` | server, worker | no | `redis://`, `rediss://` or `valkey://`; without it the cache is in-process and only one instance may run |
 | `KAMPUS_SESSIONS_URL` | server | no | Sessions outside the database |
 | `KAMPUS_QUEUE_URL` | all | no | Task queue outside the database |
 | `KAMPUS_SEARCH_URL` | server, worker | no | Search engine outside the database |
