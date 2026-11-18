@@ -1,0 +1,32 @@
+# This file is part of Kampus - Knowledge Academic Modular Platform for Universal Study.
+#
+# Copyright (c) 2026 Didactika. All rights reserved.
+# Proprietary and confidential: see the LICENSE file at the root of the repository.
+# SPDX-License-Identifier: LicenseRef-Didactika-Proprietary
+#
+# @package   kampus-docs
+# @author    hector-ae21
+# @since     0.1.0
+
+name: kampus-docs
+
+services:
+  site:
+    image: node:24-slim
+    working_dir: /app
+    ports:
+      - "8096:4321"
+    environment:
+      ASTRO_TELEMETRY_DISABLED: "1"
+      KAMPUS_REPO: /kampus
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+      - ${KAMPUS_REPO_DIR:-../kampus}:/kampus:ro
+    command: >-
+      sh -c "npm ci --no-audit --no-fund
+      && (while true; do node tools/sync-spec.mjs > /dev/null; sleep 30; done &)
+      && npx astro dev --host 0.0.0.0 --port 4321"
+
+volumes:
+  node_modules:

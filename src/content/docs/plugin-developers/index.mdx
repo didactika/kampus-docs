@@ -1,0 +1,28 @@
+---
+title: Plugin developers
+description: Plugins as WebAssembly components with a declared manifest and granted capabilities.
+sidebar:
+  order: 0
+---
+
+import UseCaseList from '../../../components/UseCaseList.astro';
+
+A Kampus plugin is a **WebAssembly component** that implements the world of its plugin type and calls Kampus only through the host interfaces it declares and an administrator grants. It runs sandboxed, with limits on CPU, memory and time per call, so a faulty plugin fails alone.
+
+## Plugin types
+
+Activity, widget, authentication, enrolment, report, question type, course format, theme and local plugins. Each type has its own world of exports (what the plugin implements) and extension points (where it plugs in).
+
+## What a plugin declares
+
+A `kampus-plugin.toml` manifest with its identity and SDK range, the capabilities it needs (with a reason shown to administrators), its contributions (permissions, settings, events, jobs, routes, UI modules, help topics, messages), the schema of its own tables, and its privacy handler.
+
+## Lifecycle
+
+Upload a signed package, grant its capabilities, let the host apply its migrations, enable it. Upgrades that ask for more capabilities wait for a new grant while the old version keeps running; disabling keeps its data; removal runs its privacy handler first.
+
+## Tooling
+
+`kampus plugin new <type>` scaffolds a plugin, `kampus plugin test` runs it against a host test harness, and `kampus plugin pack` builds, signs and packages it. The SDK follows semantic versioning: a plugin built for 1.x runs on every 1.y host.
+
+<UseCaseList actors={['Plugin developer']} />

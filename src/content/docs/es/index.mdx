@@ -1,0 +1,38 @@
+---
+title: Documentación de Kampus
+description: Guías para quien usa, opera, extiende o construye Kampus.
+template: splash
+hero:
+  tagline: Guías para quien usa, opera, extiende o construye Kampus, la plataforma de aprendizaje modular de Didactika.
+  image:
+    file: ../../../assets/kampus-docs-logo.svg
+  actions:
+    - text: Estudio
+      link: /es/learners/
+      icon: right-arrow
+    - text: Enseño
+      link: /es/teachers/
+      variant: secondary
+    - text: Construyo Kampus
+      link: /es/platform-developers/
+      variant: minimal
+---
+
+import { CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+:::note[Kampus 0.1.0 está en desarrollo]
+Esta documentación crece con el código. Cada guía dice qué ofrece Kampus a su público y qué está ya disponible; el [registro de cambios](/es/releases/changelog/) recoge cada cambio.
+:::
+
+## ¿Para quién es?
+
+<CardGrid>
+  <LinkCard title="Estudiantes" href="/es/learners/" description="Cursos, actividades, calificaciones, progreso, mensajes y tu calendario." />
+  <LinkCard title="Profesores" href="/es/teachers/" description="Construye cursos y secciones, añade actividades, califica y sigue el progreso." />
+  <LinkCard title="Administradores" href="/es/administrators/" description="Categorías, roles, ajustes, personalización, plugins, privacidad e idiomas." />
+  <LinkCard title="Operadores" href="/es/operators/" description="Instala, configura, actualiza, respalda y supervisa Kampus." />
+  <LinkCard title="Integradores" href="/es/integrators/" description="La API HTTP, clientes de API, OAuth y webhooks." />
+  <LinkCard title="Desarrolladores de plugins" href="/es/plugin-developers/" description="Plugins como componentes WebAssembly, su SDK y su ciclo de vida." />
+  <LinkCard title="Desarrolladores de la plataforma" href="/es/platform-developers/" description="El workspace, las convenciones, los controles de calidad y la arquitectura." />
+  <LinkCard title="Versiones" href="/es/releases/changelog/" description="Qué cambia cada versión y cómo actualizar." />
+</CardGrid>

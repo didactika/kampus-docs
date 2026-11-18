@@ -1,0 +1,55 @@
+---
+title: Kampus documentation
+description: Guides for everyone who uses, runs, extends or builds Kampus.
+template: splash
+hero:
+  tagline: Guides for everyone who uses, runs, extends or builds Kampus, the modular learning platform of Didactika.
+  image:
+    file: ../../assets/kampus-docs-logo.svg
+  actions:
+    - text: I learn
+      link: /learners/
+      icon: right-arrow
+    - text: I teach
+      link: /teachers/
+      variant: secondary
+    - text: I build Kampus
+      link: /platform-developers/
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+
+:::note[Kampus 0.1.0 is in development]
+This documentation grows with the code. Each guide says what Kampus offers its audience and what is already available; the [changelog](/releases/changelog/) lists every change.
+:::
+
+## Who is it for?
+
+<CardGrid>
+  <LinkCard title="Learners" href="/learners/" description="Courses, activities, grades, progress, messages and your calendar." />
+  <LinkCard title="Teachers" href="/teachers/" description="Build courses and sections, add activities, grade and follow progress." />
+  <LinkCard title="Administrators" href="/administrators/" description="Categories, roles, settings, customisation, plugins, privacy and languages." />
+  <LinkCard title="Operators" href="/operators/" description="Install, configure, upgrade, back up and monitor Kampus." />
+  <LinkCard title="Integrators" href="/integrators/" description="The HTTP API, API clients, OAuth and webhooks." />
+  <LinkCard title="Plugin developers" href="/plugin-developers/" description="Plugins as WebAssembly components, their SDK and their lifecycle." />
+  <LinkCard title="Platform developers" href="/platform-developers/" description="The workspace, the conventions, the quality gates and the architecture." />
+  <LinkCard title="Releases" href="/releases/changelog/" description="What each version changes, and how to upgrade." />
+</CardGrid>
+
+## What makes Kampus different
+
+<CardGrid>
+  <Card title="Everything by scope" icon="setting">
+    Settings, terms, custom fields, layouts and themes change per campus, category, course or section.
+  </Card>
+  <Card title="Safe plugins" icon="puzzle">
+    Plugins run sandboxed and get only what an administrator grants them.
+  </Card>
+  <Card title="Upgrades in one step" icon="rocket">
+    Any supported release upgrades straight to the latest one.
+  </Card>
+  <Card title="Explainable records" icon="document">
+    Every grade has its history, and hidden grades stay hidden everywhere.
+  </Card>
+</CardGrid>

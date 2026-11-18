@@ -1,0 +1,25 @@
+---
+// This file is part of Kampus - Knowledge Academic Modular Platform for Universal Study.
+//
+// Copyright (c) 2026 Didactika. All rights reserved.
+// Proprietary and confidential: see the LICENSE file at the root of the repository.
+// SPDX-License-Identifier: LicenseRef-Didactika-Proprietary
+//
+// @package   kampus-docs
+// @author    hector-ae21
+// @since     0.1.0
+
+/**
+ * The site title of the header: the Kampus Docs logo with the wordmark and the documented version.
+ */
+import logo from '../assets/kampus-docs-logo.svg';
+import data from '../data/use-cases.json';
+
+/** Link to the home page in the language of the page. */
+const home = Astro.currentLocale === 'es' ? '/es/' : '/';
+---
+
+<a class="k-wordmark" href={home}>
+  <img src={logo.src} alt="" width="34" height="34" />
+  <span><b>Kampus</b><small>Docs · {data.version}</small></span>
+</a>

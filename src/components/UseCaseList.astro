@@ -1,0 +1,56 @@
+---
+// This file is part of Kampus - Knowledge Academic Modular Platform for Universal Study.
+//
+// Copyright (c) 2026 Didactika. All rights reserved.
+// Proprietary and confidential: see the LICENSE file at the root of the repository.
+// SPDX-License-Identifier: LicenseRef-Didactika-Proprietary
+//
+// @package   kampus-docs
+// @author    hector-ae21
+// @since     0.1.0
+
+/**
+ * Lists the use cases of the Kampus specification for some actors, with their status: designed, or
+ * available since a version. The data comes from `tools/sync-spec.mjs`.
+ */
+import data from '../data/use-cases.json';
+
+/** The actors whose use cases are listed, as the specification names them. */
+interface Props {
+  actors: string[];
+}
+
+const { actors } = Astro.props;
+const es = Astro.currentLocale === 'es';
+const useCases = data.useCases.filter((uc) => uc.actors.some((actor) => actors.includes(actor)));
+
+/**
+ * Text of the status of a use case.
+ *
+ * @param availableSince Version that made it available, or null.
+ * @returns The label in the language of the page.
+ */
+const label = (availableSince: string | null) =>
+  availableSince ? `${es ? 'Disponible desde' : 'Available since'} ${availableSince}` : es ? 'Diseñado' : 'Designed';
+---
+
+<ul class="k-uc-list">
+  {
+    useCases.map((uc) => (
+      <li>
+        <span>
+          <b>{uc.title}</b>
+          <small>{uc.goal}</small>
+        </span>
+        <span class={`k-status ${uc.availableSince ? 'k-status-available' : 'k-status-designed'}`}>{label(uc.availableSince)}</span>
+      </li>
+    ))
+  }
+</ul>
+<p>
+  <small>
+    {es
+      ? `${useCases.length} casos de uso de la especificación de Kampus ${data.version}.`
+      : `${useCases.length} use cases from the specification of Kampus ${data.version}.`}
+  </small>
+</p>

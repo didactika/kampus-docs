@@ -1,0 +1,28 @@
+---
+title: Integrators
+description: How external systems integrate with Kampus.
+sidebar:
+  order: 0
+---
+
+import UseCaseList from '../../../components/UseCaseList.astro';
+
+External systems use the **HTTP API** described with OpenAPI 3.1. The API document is generated from the routes the modules declare, so it always matches the running version.
+
+## Conventions
+
+| Topic | Rule |
+| --- | --- |
+| Versions | In the path (`/api/v1`); a deprecated route answers with `Deprecation` and `Sunset` headers and keeps working until its sunset within the major version |
+| Authentication | API clients: service accounts with scoped tokens, or OAuth 2 applications (authorisation code with PKCE) acting for a person |
+| Authorisation | A token reaches a route only with the route's scope **and** its account's permission in the target scope |
+| Concurrency | Reads return an `ETag`; changes send `If-Match` and get `412` when someone changed the resource first |
+| Repeated requests | Creations accept an `Idempotency-Key`, so retrying never creates twice |
+| Lists | Cursor pagination (`limit`, `after`), filters and sort as query parameters |
+| Errors | Problem details (`application/problem+json`) with a stable code and the fields at fault |
+| Rate limits | `429` with `Retry-After` |
+| Webhooks | Signed with an HMAC of the body, a timestamp and the event id; delivered at least once, in order per object |
+
+## What you can do
+
+<UseCaseList actors={['Integrator']} />

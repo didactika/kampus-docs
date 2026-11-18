@@ -1,0 +1,622 @@
+{
+  "version": "0.1.0",
+  "useCases": [
+    {
+      "id": "UC-001",
+      "name": "grantRole",
+      "title": "Grant a role in a scope",
+      "goal": "Give a person a role in a scope, for a period or without end, so that its permissions apply there and below",
+      "actors": [
+        "Manager",
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-002",
+      "name": "overridePermission",
+      "title": "Override permissions in a scope",
+      "goal": "Change what a role may do in one scope and its descendants, for example in one section only",
+      "actors": [
+        "Manager",
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-003",
+      "name": "checkPermission",
+      "title": "Check a permission, with its explanation",
+      "goal": "Decide whether an actor may do something in a scope, and explain why",
+      "actors": [
+        "System"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-004",
+      "name": "defineRole",
+      "title": "Define a role from a template",
+      "goal": "Create or adapt the roles of a campus, and bring them back to their template when needed",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-005",
+      "name": "viewAsRole",
+      "title": "View a scope as another role",
+      "goal": "See a course, section or activity exactly as a learner, assistant or reviewer sees it",
+      "actors": [
+        "Teacher",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-006",
+      "name": "signUp",
+      "title": "Sign up and confirm an account",
+      "goal": "Create an account and prove the email belongs to the person",
+      "actors": [
+        "Visitor"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-007",
+      "name": "signIn",
+      "title": "Sign in, or recover access",
+      "goal": "Start a session through one secure pipeline, whatever the method",
+      "actors": [
+        "Visitor"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-008",
+      "name": "setUpSecondFactor",
+      "title": "Set up a second factor",
+      "goal": "Protect the account with a passkey, an authenticator app or email codes, and keep recovery codes",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-009",
+      "name": "manageAccountLifecycle",
+      "title": "Manage the lifecycle of accounts",
+      "goal": "Invite, suspend, reactivate and delete accounts, one by one or in bulk",
+      "actors": [
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-010",
+      "name": "editProfile",
+      "title": "Edit a profile",
+      "goal": "Keep names, picture, language, time zone and custom fields up to date",
+      "actors": [
+        "Authenticated user",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-011",
+      "name": "manageCategories",
+      "title": "Manage course categories",
+      "goal": "Organise the catalogue: create, rename, move, reorder, hide and delete categories",
+      "actors": [
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-012",
+      "name": "createCourse",
+      "title": "Create and configure a course",
+      "goal": "Create a course from a template, and set its names, dates, visibility, layout and owners",
+      "actors": [
+        "Course creator",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-013",
+      "name": "organiseSections",
+      "title": "Organise the sections of a course",
+      "goal": "Add, nest, move, reorder, hide, schedule and delete sections without breaking links or permissions",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-014",
+      "name": "manageGroups",
+      "title": "Manage groups and group sets",
+      "goal": "Create groups (for the course or for one section), group sets and memberships, and choose the group mode",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-015",
+      "name": "chooseCourseLayout",
+      "title": "Choose a course layout",
+      "goal": "Present the course with a layout plugin (topics, weekly, single activity, social…) and its settings",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-016",
+      "name": "enrolPeople",
+      "title": "Enrol people in a course",
+      "goal": "Bring one or many people into a course with a role and a period",
+      "actors": [
+        "Teacher",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-017",
+      "name": "selfEnrol",
+      "title": "Enrol oneself in a course",
+      "goal": "Join a course, with a key, an approval or a payment when the course asks for one",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-018",
+      "name": "manageEnrolment",
+      "title": "Manage an enrolment",
+      "goal": "Suspend, reactivate, extend or remove a person's participation",
+      "actors": [
+        "Teacher",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-019",
+      "name": "linkEnrolmentSource",
+      "title": "Link a system group or a course",
+      "goal": "Keep a course's participants in sync with a system group or another course",
+      "actors": [
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-020",
+      "name": "expireEnrolments",
+      "title": "Expire enrolments",
+      "goal": "Apply each instance's expiry rule when enrolments reach their end, and record what was done",
+      "actors": [
+        "System"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-021",
+      "name": "addActivity",
+      "title": "Add an activity or material",
+      "goal": "Place a new activity or material of a type in a section, with its settings",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-022",
+      "name": "restrictAccess",
+      "title": "Restrict access to an activity or section",
+      "goal": "Open an activity or a section only when dates, grades, progress, groups or profile fields allow it",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-023",
+      "name": "grantException",
+      "title": "Grant an exception",
+      "goal": "Give a person or a group other dates, attempts or time on any activity",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-024",
+      "name": "copyActivity",
+      "title": "Copy or move an activity",
+      "goal": "Reuse an activity in another place or course, or move it",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-025",
+      "name": "deleteActivity",
+      "title": "Delete and restore an activity",
+      "goal": "Remove an activity safely, with the option to restore it",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-026",
+      "name": "receiveGrade",
+      "title": "Receive a grade from an activity",
+      "goal": "Store a grade and update the totals that depend on it",
+      "actors": [
+        "System"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-027",
+      "name": "configureRecords",
+      "title": "Configure the academic records of a course",
+      "goal": "Organise records in categories, choose aggregation, weights, scales and formulas",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-028",
+      "name": "overrideGrade",
+      "title": "Override or lock a grade",
+      "goal": "Set a grade by hand, or freeze grades, with history",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-029",
+      "name": "viewGrades",
+      "title": "See grades",
+      "goal": "See grades and feedback exactly as permitted",
+      "actors": [
+        "Student",
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-030",
+      "name": "trackActivityProgress",
+      "title": "Track activity progress",
+      "goal": "Keep each person's state on each course module up to date",
+      "actors": [
+        "System"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-031",
+      "name": "configureCourseProgress",
+      "title": "Configure course progress",
+      "goal": "Decide what completing the course means, and which courses come first",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-032",
+      "name": "setProgressException",
+      "title": "Set a progress exception",
+      "goal": "Decide a person's state on a course module, with a reason",
+      "actors": [
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-033",
+      "name": "uploadFile",
+      "title": "Upload a file",
+      "goal": "Attach a file to something they may change, within the limits of its area",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-034",
+      "name": "downloadFile",
+      "title": "Open or download a file",
+      "goal": "Open a file attached to something they may read",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-035",
+      "name": "retryDeliveries",
+      "title": "Review and retry failed event deliveries",
+      "goal": "See which listeners failed and retry them once the cause is fixed",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-036",
+      "name": "reviewAuditLog",
+      "title": "Review the audit log",
+      "goal": "Find who did what, when and where, within what they may see",
+      "actors": [
+        "Teacher",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-037",
+      "name": "setNotificationPreferences",
+      "title": "Choose how to be notified",
+      "goal": "Choose the channels and digests for each kind of notification",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-038",
+      "name": "sendMessage",
+      "title": "Send a message",
+      "goal": "Talk with another person or a group",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-039",
+      "name": "viewCalendar",
+      "title": "See the calendar",
+      "goal": "See campus, course, group, personal entries and activity dates in a period",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-040",
+      "name": "subscribeCalendar",
+      "title": "Subscribe to or export a calendar",
+      "goal": "Bring an external calendar in, or take one's own calendar to another application",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-041",
+      "name": "changeSetting",
+      "title": "Change a setting",
+      "goal": "Set, remove or lock a value of a setting in a scope",
+      "actors": [
+        "Campus administrator",
+        "Manager",
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-042",
+      "name": "monitorTasks",
+      "title": "Monitor background tasks",
+      "goal": "See what runs in the background, fix failures and adjust schedules",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-043",
+      "name": "exportMyData",
+      "title": "Export my personal data",
+      "goal": "Receive a copy of all personal data the campus keeps about them",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-044",
+      "name": "processDeletionRequest",
+      "title": "Process a deletion request",
+      "goal": "Erase a person's personal data, keeping what the law or the records require",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-045",
+      "name": "chooseLanguage",
+      "title": "Choose a language",
+      "goal": "Use the campus in their language, with dates and numbers formatted for it",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-046",
+      "name": "manageLanguagePacks",
+      "title": "Install language packs and customise messages",
+      "goal": "Offer a language and adjust its wording for the campus or a scope",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-047",
+      "name": "registerApiClient",
+      "title": "Register an API client",
+      "goal": "Let an external system or application use the API with the least privilege it needs",
+      "actors": [
+        "Integrator",
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-048",
+      "name": "subscribeWebhook",
+      "title": "Subscribe a webhook",
+      "goal": "Have Kampus push the events an external system needs",
+      "actors": [
+        "Integrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-049",
+      "name": "installPlugin",
+      "title": "Install a plugin",
+      "goal": "Add an extension to the campus, knowing exactly what it may do",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-050",
+      "name": "managePlugin",
+      "title": "Upgrade, disable or remove a plugin",
+      "goal": "Keep extensions up to date, pause them or take them out without breaking the campus",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-051",
+      "name": "buildPlugin",
+      "title": "Build and package a plugin",
+      "goal": "Write a plugin of a type, test it against the host and publish a signed package",
+      "actors": [
+        "Plugin developer"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-052",
+      "name": "renameTerms",
+      "title": "Rename terms",
+      "goal": "Use the organisation's own words (for example \"programme\" for course) in every language",
+      "actors": [
+        "Campus administrator",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-053",
+      "name": "defineCustomField",
+      "title": "Define a custom field",
+      "goal": "Collect and show extra typed data on people, courses, sections, activities or enrolments",
+      "actors": [
+        "Campus administrator",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-054",
+      "name": "arrangeLayout",
+      "title": "Arrange a page and its menus",
+      "goal": "Place widgets in the regions of a page and edit its menus",
+      "actors": [
+        "Campus administrator",
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-055",
+      "name": "editTheme",
+      "title": "Edit the theme",
+      "goal": "Brand the campus, a tenant or a course without code",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-056",
+      "name": "createRule",
+      "title": "Create a rule",
+      "goal": "Automate a routine (for example enrol in the next course on completion) without code",
+      "actors": [
+        "Campus administrator",
+        "Teacher"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-057",
+      "name": "switchFeature",
+      "title": "Switch a feature or module on or off",
+      "goal": "Roll a feature or a module out to a campus, tenant or course, or turn it off",
+      "actors": [
+        "Campus administrator",
+        "Manager"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-058",
+      "name": "shareCustomisation",
+      "title": "Export and import customisations",
+      "goal": "Reuse a configuration in another campus or scope",
+      "actors": [
+        "Campus administrator"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-059",
+      "name": "openHelp",
+      "title": "Open help for the current screen",
+      "goal": "Understand the screen and the task at hand without leaving it",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    },
+    {
+      "id": "UC-060",
+      "name": "takeGuidedTour",
+      "title": "Take a guided tour or follow the onboarding checklist",
+      "goal": "Learn the main tasks of their role step by step",
+      "actors": [
+        "Authenticated user"
+      ],
+      "availableSince": null
+    }
+  ]
+}
