@@ -47,3 +47,7 @@ You add people by hand. Parts of Kampus, such as enrolment, can also add people 
 Your campus may call courses, sections or categories by other names, and you can rename them in your own course too, per language: a course can call its sections "weeks". A word your campus locks stays as it is. If groups are turned off where your course is, you cannot create groups, and the existing ones stay.
 
 Your campus may also give courses custom fields, such as credits or a level. Fill them in for your course with `customise.field.edit`, which teachers hold; each value must fit its field (a number, a date, one of its choices…), and clearing it leaves the field empty. Private fields are shown only to people who may see them.
+
+## The page of your course
+
+You can arrange the page of your course: which widgets go at the top, in the main column and at the side, such as the outline of its sections, its summary and dates, or a text of your own like your office hours. If your campus or category locked the layout, it stays as they set it. The colours and fonts come from the theme of your campus.

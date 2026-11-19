@@ -1,6 +1,6 @@
 ---
 title: Customisation
-description: The words your campus uses, features you turn off, and custom fields on courses, set per scope.
+description: The words your campus uses, features you turn off, custom fields on courses, page layouts, menus and the theme, set per scope.
 sidebar:
   order: 4
 ---
@@ -47,6 +47,36 @@ With `customise.field.manage` in a campus or a category you add fields that ever
 
 A field is **public**, seen by whoever sees the course, or **private**, seen only with `customise.field.view`. Teachers fill the fields of their courses with `customise.field.edit`. When a category defines a field with the same code as one of the campus, its own applies to its courses. Deleting a field deletes its values.
 
+## Page layouts
+
+Each kind of page has regions, and you choose which widgets go in each one, in order, with `customise.layout.manage`. The page of a course has the regions top, main and side:
+
+| Widget | Shows | Settings |
+| --- | --- | --- |
+| `courses.outline` | The sections of the course the reader sees | Collapsed or not |
+| `courses.summary` | The summary and dates of the course | None |
+| `customise.text` | A heading and a text, on any page | Heading, text |
+
+A widget can be shown only to people with a given permission. The layout of the nearest scope applies as a whole: arrange the course page for a whole category, and teachers, who hold `customise.layout.manage` in their courses, can rearrange theirs unless you lock it. If a part of Kampus that offered a widget is removed, the widget simply stops showing; the page still opens.
+
+## Menus
+
+The main navigation (`customise.main`) and the links at the foot of every page (`customise.footer`) are menus you set with `customise.menu.manage`. Each item has a label, a path of the site (such as `/courses`) or a web address, and optionally the permission that shows it; items can hold items, three levels deep, up to 100 in all. People see only the items they may see, and a hidden item hides the ones under it.
+
+## Theme
+
+The theme sets the colours, the font, the sizes and the motion of the site with `customise.theme.manage`. A scope sets only the tokens it wants to change; the others come from above, and a locked theme keeps the scopes below from changing anything.
+
+| Tokens | What they are |
+| --- | --- |
+| `primary`, `secondary`, `surface`, `background`, `danger`, each with its `on_` colour | A colour (`#rrggbb`) and the colour of text on it |
+| `link` | The colour of links |
+| `font_family` | The fonts, such as `Inter, sans-serif` |
+| `font_size`, `spacing`, `radius` | Sizes in pixels |
+| `motion` | `full`, or `reduced` for less animation |
+
+Kampus refuses a theme whose text would be hard to read: every text colour keeps a contrast of at least 4.5 to 1 on its background, as WCAG 2.2 AA asks.
+
 ## Customisation permissions
 
 | Permission | What it allows | Default roles |
@@ -56,3 +86,6 @@ A field is **public**, seen by whoever sees the course, or **private**, seen onl
 | `customise.field.manage` | Add and delete custom fields | Administrators, Manager |
 | `customise.field.view` | See private custom fields | Administrators, Manager, Teacher, Non-editing teacher |
 | `customise.field.edit` | Fill the custom fields of a course | Administrators, Manager, Teacher |
+| `customise.layout.manage` | Arrange the widgets of pages | Administrators, Manager, Teacher |
+| `customise.menu.manage` | Set the menus | Administrators, Manager |
+| `customise.theme.manage` | Set the theme | Administrators, Manager |
