@@ -1,6 +1,6 @@
 ---
 title: Personalización
-description: Las palabras que usa tu campus, las funciones que desactivas, los campos personalizados de los cursos, la disposición de las páginas, los menús, el tema y las reglas, por ámbito.
+description: Las palabras que usa tu campus, las funciones que desactivas, los campos personalizados de los cursos, la disposición de las páginas, los menús, el tema y las reglas, por ámbito y copiados con paquetes.
 sidebar:
   order: 4
 ---
@@ -91,6 +91,14 @@ Las reglas nunca ejecutan código propio: solo las acciones que ofrecen las part
 
 Cada vez que una regla reacciona, Kampus lo registra: con éxito, fallida con el motivo, u omitida cuando sus condiciones no se cumplían. Una acción fallida no se reintenta, y las anteriores quedan hechas. Una regla no puede reaccionar a lo que hacen sus propias acciones, y las cadenas de reglas se detienen tras cinco pasos. Desactiva una regla para conservarla sin que se ejecute.
 
+## Paquetes
+
+Un paquete copia personalización de un ámbito a otro, o a otro campus. Con `customise.package.manage` exportas lo que un ámbito fija por sí mismo, de los tipos que elijas: términos, funciones, campos (sin sus valores), disposiciones, menús, el tema y las reglas. Lo que el ámbito toma de arriba no se exporta.
+
+Importar va en dos pasos. Primero Kampus lee el paquete y comprueba cada elemento contra el ámbito de destino: que las partes de Kampus de ahí lo declaran, que nada de arriba lo bloquea y que tienes el permiso de cada tipo. Muestra las diferencias, lo que añade y lo que cambia, con el valor anterior. Nada cambia hasta que lo aplicas; entonces se escribe todo a la vez, o nada, y el historial lo muestra como un solo cambio. Un paquete se aplica una vez.
+
+Una importación añade y cambia, nunca quita. Un campo conserva su tipo: un campo del mismo código con otro tipo se rechaza. Las reglas se emparejan por nombre, y pasas a ser su propietario. Un parámetro de regla que nombra un registro, como un grupo, sigue nombrando ese registro: revisa las reglas después de importarlas en otro curso.
+
 ## Permisos de personalización
 
 | Permiso | Qué permite | Roles por defecto |
@@ -104,3 +112,4 @@ Cada vez que una regla reacciona, Kampus lo registra: con éxito, fallida con el
 | `customise.menu.manage` | Fijar los menús | Administradores, Gestor |
 | `customise.theme.manage` | Fijar el tema | Administradores, Gestor |
 | `customise.rule.manage` | Escribir, cambiar y quitar reglas | Administradores, Gestor |
+| `customise.package.manage` | Exportar la personalización de un ámbito e importar paquetes | Administradores, Gestor |
