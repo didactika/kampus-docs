@@ -109,7 +109,9 @@ async fn update_my_profile(
 }
 ```
 
-The server serves every module's routes under `/api/v1`, after two layers:
+The server serves the routes of each module under `/api/v1/<module>`, the name of the module: the route above is `/api/v1/users/me/profile`. A module writes its paths without that prefix, so two modules, or one written later, never collide whatever routes they add; a path does not repeat the name of its module either. Links a module builds to its own routes use its name from `src/module.rs`.
+
+Before any handler the server runs two layers:
 
 | Layer | What the handler finds |
 | --- | --- |
