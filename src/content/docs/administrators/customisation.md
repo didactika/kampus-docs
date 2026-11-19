@@ -1,6 +1,6 @@
 ---
 title: Customisation
-description: The words your campus uses, features you turn off, custom fields on courses, page layouts, menus, the theme and rules, set per scope.
+description: The words your campus uses, features you turn off, custom fields on courses, page layouts, menus, the theme and rules, set per scope and copied with packages.
 sidebar:
   order: 4
 ---
@@ -91,6 +91,14 @@ Rules never run code of their own: only the actions the parts of Kampus offer. Y
 
 Each time a rule reacts, Kampus records it: succeeded, failed with the reason, or skipped when its conditions did not hold. A failed action is not tried again, and the actions before it stay done. A rule cannot react to what its own actions do, and chains of rules stop after five steps. Turn a rule off to keep it without it running.
 
+## Packages
+
+A package copies customisation from one scope to another, or to another campus. With `customise.package.manage` you export what a scope sets itself, of the kinds you choose: terms, flags, fields (without their values), layouts, menus, the theme and rules. What the scope takes from above is not exported.
+
+Importing goes in two steps. First Kampus reads the package and checks every item against the scope it goes into: that the parts of Kampus there declare it, that nothing above locks it, and that you hold the permission of each kind. It shows the differences, what it adds and what it changes, with the value before. Nothing changes until you apply it; then everything is written at once, or nothing is, and the history shows it as one change. A package is applied once.
+
+An import adds and changes, it never removes. A field keeps its type: a field of the same code with another type is refused. Rules are matched by name, and you become their owner. A rule parameter that names a record, such as a group, keeps naming that record: check rules after importing them into another course.
+
 ## Customisation permissions
 
 | Permission | What it allows | Default roles |
@@ -104,3 +112,4 @@ Each time a rule reacts, Kampus records it: succeeded, failed with the reason, o
 | `customise.menu.manage` | Set the menus | Administrators, Manager |
 | `customise.theme.manage` | Set the theme | Administrators, Manager |
 | `customise.rule.manage` | Write, change and remove rules | Administrators, Manager |
+| `customise.package.manage` | Export the customisation of a scope and import packages | Administrators, Manager |
