@@ -15,12 +15,13 @@ Kampus 0.1.0 has no released image yet. You can already build and run it with Do
 
 | Command | What it does |
 | --- | --- |
-| `kampus-server serve` | The default: serves the role of `KAMPUS_ROLE` until it receives a stop signal, then finishes the requests in flight |
+| `kampus-server install` | Writes the configuration file, asking for what is missing, and creates the installation with its first campus and administrator; an installed database is left as it is |
+| `kampus-server serve` | The default: serves the role of `KAMPUS_SERVER_ROLE` until it receives a stop signal, then finishes the requests in flight |
 | `kampus-server upgrade` | Applies every pending upgrade step, from whichever release the installation is on, and creates the installation if it does not exist |
 | `kampus-server upgrade --new-installation` | The same, when the database already holds other Kampus installations with other prefixes |
 | `kampus-server check` | Reports whether the database matches the build, without changing anything; exits with an error when it does not |
 
-Every role answers `/health/live` (the process runs) and `/health/ready` (the database answers and matches the build, and the file storage and the cache answer) on `KAMPUS_HTTP_ADDRESS`. The scheme of each URL chooses the adapter among those of the build.
+Every role answers `/health/live` (the process runs) and `/health/ready` (the database answers and matches the build, and the file storage and the cache answer) on `KAMPUS_SERVER_HTTP_ADDRESS`. The scheme of each URL chooses the adapter among those of the build.
 
 ## Infrastructure
 
@@ -32,30 +33,41 @@ Every role answers `/health/live` (the process runs) and `/health/ready` (the da
 | Sessions, task queue, search | The database | Redis or Valkey, NATS, Meilisearch or OpenSearch |
 | Mail | SMTP | Provider APIs |
 
-## Configuration
+## Installing
 
-A file (`kampus.toml`) plus environment variables, which take precedence. Each role checks at start-up only the variables it uses and refuses to start when one is missing or invalid, listing every problem at once.
+`kampus-server install` sets an installation up in one go:
 
-| Variable | Used by | Required | Description |
-| --- | --- | --- | --- |
-| `KAMPUS_ROLE` | all | no (`all`) | `server`, `worker`, `scheduler` or `all` |
-| `KAMPUS_PUBLIC_URL` | server, worker | yes | Public address of the campus |
-| `KAMPUS_HTTP_ADDRESS` | all | no (`0.0.0.0:8080`) | Address of the HTTP listener |
-| `KAMPUS_CONFIG_FILE` | all | no (`kampus.toml`) | The configuration file; its keys are the variable names without `KAMPUS_`, in lower case |
-| `KAMPUS_UPGRADE_ON_START` | all | no (`false`) | Apply pending upgrade steps at start instead of with `kampus-server upgrade` |
-| `KAMPUS_DATABASE_URL` | all | yes | Database connection |
-| `KAMPUS_DATABASE_PREFIX` | all | no (`kmp_`) | Prefix of every database name, set once at installation |
-| `KAMPUS_DATABASE_POOL_SIZE` | all | no | Connections per process |
-| `KAMPUS_STORAGE_URL` | server, worker | yes | `file:///path` or `s3://bucket/prefix` |
-| `KAMPUS_STORAGE_S3_ENDPOINT`, `_REGION`, `_ACCESS_KEY_ID`, `_SECRET_ACCESS_KEY` | server, worker | with `s3://` | Endpoint (omit for AWS), region (`us-east-1` by default) and credentials |
-| `KAMPUS_CACHE_URL` | server, worker | no | `redis://`, `rediss://` or `valkey://`; without it the cache is in-process and only one instance may run |
-| `KAMPUS_SESSIONS_URL` | server | no | Sessions outside the database |
-| `KAMPUS_QUEUE_URL` | all | no | Task queue outside the database |
-| `KAMPUS_SEARCH_URL` | server, worker | no | Search engine outside the database |
-| `KAMPUS_SECRET_KEY` | all | yes | Encrypts stored secrets, signs cookies and cursors |
-| `KAMPUS_MAIL_URL` | worker | yes | `smtp://` or a provider |
-| `KAMPUS_LOG_LEVEL` | all | no (`info`) | Log level |
-| `KAMPUS_LOG_FORMAT` | all | no (`json`) | `json` lines or `text` |
-| `OTEL_EXPORTER_OTLP_ENDPOINT` | all | no | OpenTelemetry collector |
+1. It reads `config.toml` (or the file `KAMPUS_CONFIG_FILE` names) and the environment, and asks only for what is still missing: the site's address, the database, the schema prefix, the file storage, the cache and how campuses are served. Without a terminal, or with `--non-interactive`, it asks nothing and lists every missing value at once.
+2. It generates the secret key when there is none, and writes the file, readable only by its owner. Values given by variables stay in the variables.
+3. When the database already holds the installation, it changes nothing in it and says whether `kampus-server upgrade` is due: a filled `config.toml` pointing at an installed database is all a new server needs.
+4. Otherwise it creates the installation, the first campus with its roles, and the campus administrator: email, username and password are asked, or read from `KAMPUS_ADMIN_EMAIL`, `KAMPUS_ADMIN_USERNAME` and `KAMPUS_ADMIN_PASSWORD`, which only the installer reads.
+
+```sh
+docker compose run --rm -it server install
+```
+
+## The configuration file
+
+`config.toml` has one table per section; [`config.example.toml`](https://github.com/didactika/kampus/blob/release/0.1.0/config.example.toml) at the root of the repository shows them all. Every key has its environment variable, `KAMPUS_<SECTION>_<KEY>`, which takes precedence over the file. Each role checks at start-up only what it reads and refuses to start when a value is missing or invalid, listing every problem at once. The file holds secrets: keep it out of version control and readable only by Kampus.
+
+| Key | Variable | Used by | Default | Description |
+| --- | --- | --- | --- | --- |
+| `site.url` | `KAMPUS_SITE_URL` | server | required | The public address of the site, used in links and mail |
+| `server.role` | `KAMPUS_SERVER_ROLE` | all | `all` | `server`, `worker`, `scheduler` or `all` |
+| `server.http_address` | `KAMPUS_SERVER_HTTP_ADDRESS` | all | `0.0.0.0:8080` | The address of the HTTP listener |
+| `server.upgrade_on_start` | `KAMPUS_SERVER_UPGRADE_ON_START` | all | `false` | Apply pending upgrades when the process starts |
+| `database.url` | `KAMPUS_DATABASE_URL` | all | required | The PostgreSQL connection |
+| `database.prefix` | `KAMPUS_DATABASE_PREFIX` | all | `kmp_` | The prefix of every schema, set once at installation |
+| `database.pool_size` | `KAMPUS_DATABASE_POOL_SIZE` | all | `10` | Connections per process |
+| `storage.url` | `KAMPUS_STORAGE_URL` | server, worker | required | `file:///path` or `s3://bucket/prefix` |
+| `storage.s3_endpoint`, `s3_region`, `s3_access_key_id`, `s3_secret_access_key` | `KAMPUS_STORAGE_S3_…` | server, worker | with `s3://` | The S3-compatible store: endpoint (omit for AWS), region and credentials |
+| `cache.url` | `KAMPUS_CACHE_URL` | server, worker | in-process | `redis://`, `rediss://` or `valkey://`; without it only one instance may run |
+| `security.secret_key` | `KAMPUS_SECURITY_SECRET_KEY` | server, worker | required | 32 bytes in base64 that seal stored secrets; generated by the installer, never changed afterwards |
+| `tenancy.mode` | `KAMPUS_TENANCY_MODE` | all | `single` | `single`: one campus at the site's address; `multi`: a campus per domain |
+| `tenancy.base_domain` | `KAMPUS_TENANCY_BASE_DOMAIN` | all | with `multi` | The domain under which each campus has its own (`a.campuses.example.org`) |
+| `log.level` | `KAMPUS_LOG_LEVEL` | all | `info` | `error`, `warn`, `info`, `debug` or `trace` |
+| `log.format` | `KAMPUS_LOG_FORMAT` | all | `json` | `json` lines for collectors, or `text` |
+
+`KAMPUS_CONFIG_FILE` names another file; the container image reads `/etc/kampus/config.toml`. Mail, sessions, the task queue and search get their sections with the modules that use them.
 
 Next: [upgrades](/operators/upgrades/).
