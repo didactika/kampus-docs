@@ -2,7 +2,7 @@
 title: API tokens
 description: Scoped, expiring tokens for integrations, and service accounts.
 sidebar:
-  order: 1
+  order: 2
 ---
 
 Available since 0.1.0.

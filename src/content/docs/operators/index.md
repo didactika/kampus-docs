@@ -41,7 +41,7 @@ Every component can add its own commands: `kampus-server <component> --help` lis
 
 1. It reads `config.toml` (or the file `KAMPUS_CONFIG_FILE` names) and the environment, and asks only for what is still missing: the site's address, the database, the schema prefix, the file storage, the cache and how campuses are served. Without a terminal, or with `--non-interactive`, it asks nothing and lists every missing value at once.
 2. It generates the secret key when there is none, and writes the file, readable only by its owner. Values given by variables stay in the variables.
-3. When the database already holds the installation, it changes nothing in it and says whether `kampus-server upgrade` is due: a filled `config.toml` pointing at an installed database is all a new server needs.
+3. When the database already holds the installation, it changes nothing in it and says whether `kampus-server upgrade` is due: a filled `config.toml` pointing at an installed database is all a new server needs. An installation that has no campus yet, such as one an upgrade or the first start created, gets its first campus and administrator as in the next step.
 4. Otherwise it creates the installation, the first campus with its roles, and the campus administrator: email, username and password are asked, or read from `KAMPUS_ADMIN_EMAIL`, `KAMPUS_ADMIN_USERNAME` and `KAMPUS_ADMIN_PASSWORD`, which only the installer reads.
 
 ```sh
@@ -71,5 +71,7 @@ docker compose run --rm -it server install
 | `log.format` | `KAMPUS_LOG_FORMAT` | all | `json` | `json` lines for collectors, or `text` |
 
 `KAMPUS_CONFIG_FILE` names another file; the container image reads `/etc/kampus/config.toml`. Mail, sessions, the task queue and search get their sections with the modules that use them.
+
+In 0.1.0 the API serves one campus: with `tenancy.mode = "multi"` every route answers that the address has no campus until campuses get their domains. Mail is not delivered yet either: invitations, confirmation and recovery links and codes by email are logged as due, without their links, until the module that sends mail arrives. The development `compose.yaml` sets a first administrator for `install` (`admin`, with the password in `KAMPUS_ADMIN_PASSWORD`).
 
 Next: [upgrades](/operators/upgrades/).
