@@ -91,3 +91,13 @@ A profile update replaces every field: send the ones you keep too.
 | `GET`, `POST /courses/{id}/group-sets`; `PUT`, `DELETE /group-sets/{id}/groups/{group}` | Group sets and their groups | `courses.groups.manage` |
 
 Places among siblings are `{"at": "first"}`, `{"at": "last"}`, `{"at": "after", "sibling": "<id>"}` or `{"at": "before", "sibling": "<id>"}`; a visibility is `{"mode": "shown"}`, `{"mode": "hidden"}` or `{"mode": "scheduled", "from": "...", "until": "..."}`. A hidden category, course or section answers `404` to whoever may not see it.
+
+Enrolment:
+
+| Route | What it does | Permission |
+| --- | --- | --- |
+| `GET`, `POST /courses/{id}/enrolment-instances`; `GET`, `PUT`, `DELETE /enrolment-instances/{id}` | Enrolment methods of a course: `method` `manual`, `self` (with `key`) or `system_group` (with `source`) and the `role` they give | `enrol.instance.manage`, and being able to grant the role |
+| `POST /enrolment-instances/{id}/enrolments` | `accounts` to enrol, with `starts_at` and `ends_at`; a report per person | `enrol.enrolment.manage` |
+| `GET /courses/{id}/participants?active=true` | The enrolments of a course | `enrol.enrolment.read` |
+| `GET`, `PUT`, `DELETE /enrolments/{id}` | An enrolment: `status`, period and reason; removing it | `enrol.enrolment.manage` |
+| `POST /enrolment-instances/{id}/sync` | Bring a system group method in step with its group | `enrol.instance.manage` |
