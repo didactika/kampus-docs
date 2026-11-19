@@ -64,31 +64,33 @@ A profile update replaces every field: send the ones you keep too.
 
 ## Routes of 0.1.0
 
+Every route below is relative to `/api/v1`, and starts with the name of the part of Kampus that serves it.
+
 | Route | What it does | Permission |
 | --- | --- | --- |
-| `GET /me` | The account of the token or the session | signed in |
-| `GET /accounts/{id}` | An account, with its version | `identity.account.read` |
-| `POST /campuses/{id}/accounts` | Invite a person by email | `identity.account.invite` |
-| `POST /campuses/{id}/service-accounts` | Create a service account | `identity.account.invite` |
-| `POST /accounts/{id}/transitions` | `to`: `suspended`, `active`, `deletion_scheduled` or `deletion_cancelled`, with a `reason`; needs `If-Match` | `identity.account.suspend` or `identity.account.delete` |
-| `POST /accounts/{id}/tokens` | Create a token for another account | `identity.token.manage_any` |
-| `DELETE /tokens/{id}` | Revoke the token of any account | `identity.token.manage_any` |
-| `GET`, `PUT /accounts/{id}/profile` | Read and replace a profile | `identity.account.read`, `users.profile.update_any` |
-| `GET`, `POST /campuses/{id}/identity-providers` | List and add identity providers | `identity.provider.manage` to add |
-| `POST /scopes/{id}/system-groups` | Create a system group, by hand or with a `rule` | `users.system_group.manage` |
-| `GET /system-groups/{id}/members` | Members, each with its origin | `users.system_group.manage` |
-| `PUT`, `DELETE /system-groups/{id}/members/{account}` | Add or remove a member by hand | `users.system_group.manage` |
-| `POST /system-groups/{id}/apply-rule` | Apply the rule of a group | `users.system_group.manage` |
-| `GET`, `POST /campuses/{id}/categories` | Categories under a parent (`?parent=`), and creating one | `courses.category.manage` to create |
-| `GET`, `PUT`, `DELETE /categories/{id}`; `POST /categories/{id}/move` | Read, replace, delete an empty category, move it | `courses.category.manage` |
-| `GET`, `POST /categories/{id}/courses` | Courses of a category, and creating one | `courses.course.create` to create |
-| `GET`, `PUT /courses/{id}`; `POST /courses/{id}/move` | A course with its owners; replacing it; moving it | `courses.course.update` |
-| `PUT /courses/{id}/state` | `to`: `draft`, `published`, `archived` or `deletion_scheduled`; needs `If-Match` | `courses.course.update`, `.archive` or `.delete` |
-| `GET`, `POST /courses/{id}/sections`; `GET`, `PUT`, `DELETE /sections/{id}` | The sections of a course, depth first, and their changes | `courses.section.manage` to change |
-| `POST /sections/{id}/move`, `POST /sections/{id}/restore` | Move a section with its subtree; restore a deleted one | `courses.section.manage` |
-| `GET`, `POST /courses/{id}/groups`; `GET`, `PUT`, `DELETE /groups/{id}` | Groups the caller sees, and their changes | `courses.groups.manage` to change |
-| `GET`, `POST /groups/{id}/members`; `DELETE /groups/{id}/members/{account}` | Members by origin; adding and removing by hand | `courses.groups.manage` to change |
-| `GET`, `POST /courses/{id}/group-sets`; `PUT`, `DELETE /group-sets/{id}/groups/{group}` | Group sets and their groups | `courses.groups.manage` |
+| `GET /identity/me` | The account of the token or the session | signed in |
+| `GET /identity/accounts/{id}` | An account, with its version | `identity.account.read` |
+| `POST /identity/campuses/{id}/accounts` | Invite a person by email | `identity.account.invite` |
+| `POST /identity/campuses/{id}/service-accounts` | Create a service account | `identity.account.invite` |
+| `POST /identity/accounts/{id}/transitions` | `to`: `suspended`, `active`, `deletion_scheduled` or `deletion_cancelled`, with a `reason`; needs `If-Match` | `identity.account.suspend` or `identity.account.delete` |
+| `POST /identity/accounts/{id}/tokens` | Create a token for another account | `identity.token.manage_any` |
+| `DELETE /identity/tokens/{id}` | Revoke the token of any account | `identity.token.manage_any` |
+| `GET`, `PUT /users/accounts/{id}/profile` | Read and replace a profile | `identity.account.read`, `users.profile.update_any` |
+| `GET`, `POST /identity/campuses/{id}/identity-providers` | List and add identity providers | `identity.provider.manage` to add |
+| `POST /users/scopes/{id}/system-groups` | Create a system group, by hand or with a `rule` | `users.system_group.manage` |
+| `GET /users/system-groups/{id}/members` | Members, each with its origin | `users.system_group.manage` |
+| `PUT`, `DELETE /users/system-groups/{id}/members/{account}` | Add or remove a member by hand | `users.system_group.manage` |
+| `POST /users/system-groups/{id}/apply-rule` | Apply the rule of a group | `users.system_group.manage` |
+| `GET`, `POST /courses/campuses/{id}/categories` | Categories under a parent (`?parent=`), and creating one | `courses.category.manage` to create |
+| `GET`, `PUT`, `DELETE /courses/categories/{id}`; `POST /courses/categories/{id}/move` | Read, replace, delete an empty category, move it | `courses.category.manage` |
+| `GET`, `POST /courses/categories/{id}/courses` | Courses of a category, and creating one | `courses.course.create` to create |
+| `GET`, `PUT /courses/courses/{id}`; `POST /courses/courses/{id}/move` | A course with its owners; replacing it; moving it | `courses.course.update` |
+| `PUT /courses/courses/{id}/state` | `to`: `draft`, `published`, `archived` or `deletion_scheduled`; needs `If-Match` | `courses.course.update`, `.archive` or `.delete` |
+| `GET`, `POST /courses/courses/{id}/sections`; `GET`, `PUT`, `DELETE /courses/sections/{id}` | The sections of a course, depth first, and their changes | `courses.section.manage` to change |
+| `POST /courses/sections/{id}/move`, `POST /courses/sections/{id}/restore` | Move a section with its subtree; restore a deleted one | `courses.section.manage` |
+| `GET`, `POST /courses/courses/{id}/groups`; `GET`, `PUT`, `DELETE /courses/groups/{id}` | Groups the caller sees, and their changes | `courses.groups.manage` to change |
+| `GET`, `POST /courses/groups/{id}/members`; `DELETE /courses/groups/{id}/members/{account}` | Members by origin; adding and removing by hand | `courses.groups.manage` to change |
+| `GET`, `POST /courses/courses/{id}/group-sets`; `PUT`, `DELETE /courses/group-sets/{id}/groups/{group}` | Group sets and their groups | `courses.groups.manage` |
 
 Places among siblings are `{"at": "first"}`, `{"at": "last"}`, `{"at": "after", "sibling": "<id>"}` or `{"at": "before", "sibling": "<id>"}`; a visibility is `{"mode": "shown"}`, `{"mode": "hidden"}` or `{"mode": "scheduled", "from": "...", "until": "..."}`. A hidden category, course or section answers `404` to whoever may not see it.
 
@@ -96,8 +98,24 @@ Enrolment:
 
 | Route | What it does | Permission |
 | --- | --- | --- |
-| `GET`, `POST /courses/{id}/enrolment-instances`; `GET`, `PUT`, `DELETE /enrolment-instances/{id}` | Enrolment methods of a course: `method` `manual`, `self` (with `key`) or `system_group` (with `source`) and the `role` they give | `enrol.instance.manage`, and being able to grant the role |
-| `POST /enrolment-instances/{id}/enrolments` | `accounts` to enrol, with `starts_at` and `ends_at`; a report per person | `enrol.enrolment.manage` |
-| `GET /courses/{id}/participants?active=true` | The enrolments of a course | `enrol.enrolment.read` |
-| `GET`, `PUT`, `DELETE /enrolments/{id}` | An enrolment: `status`, period and reason; removing it | `enrol.enrolment.manage` |
-| `POST /enrolment-instances/{id}/sync` | Bring a system group method in step with its group | `enrol.instance.manage` |
+| `GET`, `POST /enrol/courses/{id}/enrolment-instances`; `GET`, `PUT`, `DELETE /enrol/enrolment-instances/{id}` | Enrolment methods of a course: `method` `manual`, `self` (with `key`) or `system_group` (with `source`) and the `role` they give | `enrol.instance.manage`, and being able to grant the role |
+| `POST /enrol/enrolment-instances/{id}/enrolments` | `accounts` to enrol, with `starts_at` and `ends_at`; a report per person | `enrol.enrolment.manage` |
+| `GET /enrol/courses/{id}/participants?active=true` | The enrolments of a course | `enrol.enrolment.read` |
+| `GET`, `PUT`, `DELETE /enrol/enrolments/{id}` | An enrolment: `status`, period and reason; removing it | `enrol.enrolment.manage` |
+| `POST /enrol/enrolment-instances/{id}/sync` | Bring a system group method in step with its group | `enrol.instance.manage` |
+
+## External references
+
+Other systems name records in their own way: the number a student information system gives a person, the code of a course in an ERP, the `idnumber` of another platform. Kampus keeps those identifiers as **external references**: a system (a code you choose, such as `sis`) and the identifier it uses. Each record has at most one identifier per system, and in a campus an identifier of a system names one record of each kind. They are never the `code` people read, and deleting the record deletes them.
+
+| Route | What it does | Permission |
+| --- | --- | --- |
+| `GET /courses/{kind}/{id}/references` | The identifiers systems give a category, course, section, group or group set (`{kind}`: `categories`, `courses`, `sections`, `groups`, `group-sets`) | The one that manages the record, such as `courses.course.update` |
+| `PUT`, `DELETE /courses/{kind}/{id}/references/{system}` | Give the record the identifier of a system (`{"external_id": "PHY-2026"}`), replacing the one it had; remove it | The same |
+| `GET /courses/campuses/{id}/{kind}/by-reference/{system}/{external_id}` | The record a system knows by that identifier: `{"kind", "id"}` | The same |
+| `PUT /courses/campuses/{id}/categories/by-reference/{system}/{external_id}` | Update the category with that identifier, or create it last under `parent` with it: `201` when created, `200` when updated | `courses.category.manage` |
+| `PUT /courses/categories/{id}/courses/by-reference/{system}/{external_id}` | Update the course with that identifier in the campus, or create it last in the category; a course found in another category stays there | `courses.course.create` and `courses.course.update` |
+| `GET /identity/accounts/{id}/references`; `PUT`, `DELETE /identity/accounts/{id}/references/{system}` | The identifiers of an account, and setting or removing one | `identity.account.read`; `identity.account.invite` to change |
+| `GET /identity/campuses/{id}/accounts/by-reference/{system}/{external_id}` | The account a system knows by that identifier | `identity.account.read` |
+
+A system is lowercase letters, digits, `_`, `-` and `.`, starting with a letter; an identifier has at most 255 characters on one line. Giving an identifier another record of the kind already has in the campus answers `409` with `references.taken`. When you create a category or a course by its identifier, the identifier is set in the same step, so a sync that stops halfway never leaves the record without it.
