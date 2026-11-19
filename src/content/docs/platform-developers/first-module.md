@@ -187,7 +187,7 @@ Errors are `kampus_common::Error` with a stable code (`bookmarks.<what>`); `kamp
 `src/http/mod.rs` builds the module's router from the services the server composed:
 
 ```rust
-pub fn routes(context: &HttpContext) -> Router {
+pub fn routes(context: &ServiceContext) -> Router {
     let shared = Shared { bookmarks: context.service::<Bookmarks>().ok() };
     Router::new()
         .route("/me/bookmarks", post(add))
@@ -226,6 +226,8 @@ pub const MODULE: Module = Module {
     plugin_types: &[],
     commands: &[],
     preferences: &[],
+    jobs: &[],
+    schedules: &[],
     routes: Some(crate::http::routes),
 };
 ```
@@ -236,11 +238,11 @@ pub const MODULE: Module = Module {
 docker compose -f tools/docs-check/compose.yaml run --rm repo --fix --author "Your Name <you@example.org>" --files new-files.txt
 ```
 
-The repository check, with `--fix`, writes the module into the server's registry and its dependencies, and the header into every new file listed. Then build the service in `crates/server/src/wiring/services.rs` and add it to the `HttpContext`, next to the others:
+The repository check, with `--fix`, writes the module into the server's registry and its dependencies, and the header into every new file listed. Then build the service in `crates/server/src/wiring/services.rs` and add it to the `ServiceContext`, next to the others:
 
 ```rust
 let bookmarks = Bookmarks::new(parts.db.clone(), access.clone());
-let context = HttpContext::default()
+let context = ServiceContext::default()
     // ...
     .with(bookmarks);
 ```

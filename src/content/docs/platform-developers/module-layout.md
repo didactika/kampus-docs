@@ -26,6 +26,8 @@ pub const MODULE: Module = Module {
     plugin_types: &[],
     commands: crate::commands::COMMANDS,
     preferences: crate::settings::PREFERENCES,
+    jobs: crate::jobs::JOBS,
+    schedules: crate::jobs::SCHEDULES,
     routes: Some(crate::http::routes),
 };
 ```
@@ -65,16 +67,16 @@ Every crate also states what it is in `[package.metadata.kampus] kind`: `foundat
 
 ## Routes
 
-A module serves HTTP through `routes` in its descriptor: a function that builds its `axum::Router` from the `HttpContext`, the services the server built once for the process. A handler reads the services it needs by type and never builds one.
+A module serves HTTP through `routes` in its descriptor: a function that builds its `axum::Router` from the `ServiceContext`, the services the server built once for the process. A handler reads the services it needs by type and never builds one.
 
 ```rust
 use axum::extract::State;
 use axum::routing::get;
 use axum::{Extension, Json, Router};
 use kampus_identity::http::Caller;
-use kampus_module::http::{ApiResult, Body, HttpContext, if_match, with_etag};
+use kampus_module::http::{ApiResult, Body, ServiceContext, if_match, with_etag};
 
-pub fn routes(context: &HttpContext) -> Router {
+pub fn routes(context: &ServiceContext) -> Router {
     let shared = Shared { users: context.service::<Users>().ok() };
     Router::new()
         .route("/me/profile", get(my_profile).put(update_my_profile))
@@ -123,6 +125,50 @@ What every module's routes share lives in `kampus_module::http`:
 | `with_etag(response, version)` | Answers a resource with its version as `ETag` |
 
 The routes live in `src/http/`: `mod.rs` with `routes` and what the handlers share, and one file per area (`auth.rs`, `me.rs`, `accounts.rs`). Test them through the server, in `crates/server/tests/integration/`, as a client sees them: the test installs a site, builds its router and sends requests to it.
+
+## Background jobs
+
+Work that does not belong in a request, or that recurs, is a **job** in the queue of `kampus-tasks`. A module declares its kinds of job and their schedules in `src/jobs/mod.rs` and exposes them through `jobs` and `schedules` in its descriptor:
+
+```rust
+pub const JOBS: &[JobDeclaration] = &[JobDeclaration {
+    code: "enrol.run_expiry",
+    summary: "Apply the expiry rule to the enrolments whose end has passed",
+    max_attempts: 5,
+    backoff_seconds: 60,
+    timeout_seconds: 1800,
+    concurrency: Some("all"),
+    run: run_expiry,
+}];
+
+pub const SCHEDULES: &[ScheduleDeclaration] = &[ScheduleDeclaration {
+    job: "enrol.run_expiry",
+    cron: "5 * * * *",
+    time_zone: "UTC",
+}];
+
+fn run_expiry(run: JobRun<'_>) -> JobFuture<'_> {
+    Box::pin(async move {
+        run.services.service::<Enrol>()?.run_expiry().await?;
+        Ok(())
+    })
+}
+```
+
+| Field | Meaning |
+| --- | --- |
+| `code` | `<module>.<name>`, unique in the build |
+| `max_attempts` | Runs before the job is failed, with its last error kept and logged |
+| `backoff_seconds` | The wait before the first retry; it doubles at each one |
+| `timeout_seconds` | How long one run may take; a run past it is stopped and counts as a failed attempt. The worker's lease lasts as long, so a job whose worker stops is taken again |
+| `concurrency` | A payload field: jobs of the type with the same value run one at a time (`Some("course")`); a field absent from the payload, such as `"all"`, keeps the whole type one at a time |
+| `run` | The handler; it gets the job's id, its payload and the [`ServiceContext`](#routes) |
+
+A handler may run again after a failure or a stopped worker, so it does what is left and nothing twice. Payloads hold identifiers, never copies of personal data. A long job reports its progress with `Tasks::report_progress` and stops at its next step when `Tasks::cancelled` says so.
+
+To enqueue a job from a change, use `Tasks::enqueue_in` inside the change's transaction: the job exists only if the change commits.
+
+The server synchronises job types and schedules at start-up; a schedule keeps the rule an operator set. The `worker` and `all` roles run jobs; the `scheduler` and `all` roles fire schedules, once per instant across every node. Operators see and steer them with `kampus-server tasks`.
 
 ## Commands of a component
 
