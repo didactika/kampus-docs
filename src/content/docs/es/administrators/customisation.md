@@ -1,6 +1,6 @@
 ---
 title: Personalización
-description: Las palabras que usa tu campus, las funciones que desactivas, los campos personalizados de los cursos, la disposición de las páginas, los menús y el tema, por ámbito.
+description: Las palabras que usa tu campus, las funciones que desactivas, los campos personalizados de los cursos, la disposición de las páginas, los menús, el tema y las reglas, por ámbito.
 sidebar:
   order: 4
 ---
@@ -77,6 +77,20 @@ El tema fija los colores, la fuente, los tamaños y el movimiento del sitio con 
 
 Kampus rechaza un tema cuyo texto costaría leer: cada color de texto mantiene un contraste de al menos 4,5 a 1 sobre su fondo, como pide WCAG 2.2 AA.
 
+## Reglas
+
+Una regla hace algo por sí sola cuando pasa algo: «cuando alguien se inscribe en un curso de esta categoría, añádelo al grupo Recién llegados». Con `customise.rule.manage` escribes reglas en un ámbito, y reaccionan a lo que pasa ahí y debajo. Cada regla tiene:
+
+| Parte | Qué es |
+| --- | --- |
+| Disparador | Lo que pasa, como `enrol.enrolment_created` |
+| Condiciones | Opcionales: comparaciones sobre lo que dice el evento (igual, distinto, uno de, presente), combinadas con todas, alguna y no |
+| Acciones | Lo que hace, en orden, con sus parámetros, como `courses.add_to_group` con el grupo |
+
+Las reglas nunca ejecutan código propio: solo las acciones que ofrecen las partes de Kampus. Solo puedes escribir una regla cuyas acciones podrías hacer tú, y sigue actuando como tú: si pierdes un permiso que necesita una acción, esa acción falla. Cambiar una regla te hace su propietario.
+
+Cada vez que una regla reacciona, Kampus lo registra: con éxito, fallida con el motivo, u omitida cuando sus condiciones no se cumplían. Una acción fallida no se reintenta, y las anteriores quedan hechas. Una regla no puede reaccionar a lo que hacen sus propias acciones, y las cadenas de reglas se detienen tras cinco pasos. Desactiva una regla para conservarla sin que se ejecute.
+
 ## Permisos de personalización
 
 | Permiso | Qué permite | Roles por defecto |
@@ -89,3 +103,4 @@ Kampus rechaza un tema cuyo texto costaría leer: cada color de texto mantiene u
 | `customise.layout.manage` | Disponer los widgets de las páginas | Administradores, Gestor, Profesor |
 | `customise.menu.manage` | Fijar los menús | Administradores, Gestor |
 | `customise.theme.manage` | Fijar el tema | Administradores, Gestor |
+| `customise.rule.manage` | Escribir, cambiar y quitar reglas | Administradores, Gestor |

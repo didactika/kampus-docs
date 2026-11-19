@@ -1,6 +1,6 @@
 ---
 title: Customisation
-description: The words your campus uses, features you turn off, custom fields on courses, page layouts, menus and the theme, set per scope.
+description: The words your campus uses, features you turn off, custom fields on courses, page layouts, menus, the theme and rules, set per scope.
 sidebar:
   order: 4
 ---
@@ -77,6 +77,20 @@ The theme sets the colours, the font, the sizes and the motion of the site with 
 
 Kampus refuses a theme whose text would be hard to read: every text colour keeps a contrast of at least 4.5 to 1 on its background, as WCAG 2.2 AA asks.
 
+## Rules
+
+A rule does something on its own when something happens: "when someone enrols in a course of this category, add them to the Newcomers group". With `customise.rule.manage` you write rules in a scope, and they react to what happens there and below. Each rule has:
+
+| Part | What it is |
+| --- | --- |
+| Trigger | What happens, such as `enrol.enrolment_created` |
+| Conditions | Optional: comparisons on what the event says (equal, not equal, one of, present), combined with all, any and not |
+| Actions | What it does, in order, with their parameters, such as `courses.add_to_group` with the group |
+
+Rules never run code of their own: only the actions the parts of Kampus offer. You can only write a rule whose actions you could do yourself, and it keeps acting as you: if you lose a permission an action needs, that action fails. Changing a rule makes you its owner.
+
+Each time a rule reacts, Kampus records it: succeeded, failed with the reason, or skipped when its conditions did not hold. A failed action is not tried again, and the actions before it stay done. A rule cannot react to what its own actions do, and chains of rules stop after five steps. Turn a rule off to keep it without it running.
+
 ## Customisation permissions
 
 | Permission | What it allows | Default roles |
@@ -89,3 +103,4 @@ Kampus refuses a theme whose text would be hard to read: every text colour keeps
 | `customise.layout.manage` | Arrange the widgets of pages | Administrators, Manager, Teacher |
 | `customise.menu.manage` | Set the menus | Administrators, Manager |
 | `customise.theme.manage` | Set the theme | Administrators, Manager |
+| `customise.rule.manage` | Write, change and remove rules | Administrators, Manager |

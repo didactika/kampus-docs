@@ -33,6 +33,7 @@ pub const MODULE: Module = Module {
     page_kinds: &[],
     widgets: &[],
     menu_kinds: &[],
+    rule_actions: &[],
     events: crate::events::EVENTS,
     listeners: crate::observers::LISTENERS,
     jobs: crate::jobs::JOBS,
@@ -172,6 +173,7 @@ Events::new(self.db.clone()).publish_in(&mut tx, event).await?;
 | In order per object | Events about one `object` reach a listener in the order they happened; a delivery that keeps failing holds the next ones of that object until it is dead |
 | Retries and dead letters | A failing delivery is retried with a wait that doubles, eight times, then it is dead and an operator replays it |
 | Chains | A listener that publishes passes the event it handles as `cause`; a chain stops after ten events |
+| Every event | A listener of `events.any` receives the events of every type; nothing publishes `events.any` itself |
 | Audit | An `audited` type writes an append-only entry of the audit log in the same transaction, with its `summary` |
 
 Payloads hold identifiers, not copies of personal data; the fields that do hold it are listed in `personal_fields` for the privacy handlers. The `worker` and `all` roles run the deliveries; operators see and replay them with `kampus-server events`.
@@ -205,7 +207,7 @@ A module never reads a setting it does not declare, and never keeps its own tabl
 
 ## Customisation
 
-What a campus changes without code beyond settings, a module offers in `src/settings/customise.rs` and exposes through `terms`, `flags`, `field_kinds`, `page_kinds`, `widgets` and `menu_kinds` in its descriptor; `kampus-customise` keeps it per scope and resolves it like settings, from the nearest scope up to the platform, sections included, unless a scope above **locks** its value. Every answer says where it came from (declared, or the scope that set it), every change is recorded with before and after and publishes `customise.changed`.
+What a campus changes without code beyond settings, a module offers in `src/settings/customise.rs` and exposes through `terms`, `flags`, `field_kinds`, `page_kinds`, `widgets`, `menu_kinds` and `rule_actions` in its descriptor; `kampus-customise` keeps it per scope and resolves it like settings, from the nearest scope up to the platform, sections included, unless a scope above **locks** its value. Every answer says where it came from (declared, or the scope that set it), every change is recorded with before and after and publishes `customise.changed`.
 
 ```rust
 pub const TERMS: &[TermDeclaration] = &[TermDeclaration {
@@ -234,6 +236,7 @@ pub const FIELD_KINDS: &[FieldKindDeclaration] = &[FieldKindDeclaration {
 | A **page kind**, with its regions | Arranges widgets in its regions (`customise.layout.manage`, which teachers hold in their courses), each with its settings and, optionally, the permission that shows it; the layout of the nearest scope applies whole | Shows the placements of `Customise::layout(actor, page_kind, scope)`, or its own arrangement when the origin is declared; a widget no module declares any more is left out, never breaks the page |
 | A **widget**, with the page kinds it fits and its typed settings (`WidgetSetting` with a `ValueKind`) | Places it; a setting it does not declare, or of another kind, is refused, and the defaults fill what is left out | Renders it from its settings |
 | A **kind of menu** | Sets its items (`customise.menu.manage`): a label, a path or web address, a permission, at most 3 levels | Shows `Customise::menu(actor, kind, scope)`: only the items the reader may see |
+| A **rule action**, with typed parameters (`RuleParameter`), the payload fields it reads (`needs`), the permission its rule owner needs and the events it may publish | Writes rules (`customise.rule.manage`): when an event of a declared type happens in the scope or below and the conditions on its declared fields hold, the actions run in order | Runs the action from `RuleActionRun` (event, parameters with defaults, owner, services), does nothing twice, and publishes with the event as `cause` |
 
 Customisation never owns an entity of another module: the values of custom fields belong to their entity through the owning module's link table, so there is no polymorphic owner, and deleting the entity, the field or the value takes the link with it.
 

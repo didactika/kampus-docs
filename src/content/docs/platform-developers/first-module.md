@@ -233,6 +233,7 @@ pub const MODULE: Module = Module {
     page_kinds: &[],
     widgets: &[],
     menu_kinds: &[],
+    rule_actions: &[],
     events: &[],
     listeners: &[],
     jobs: &[],
