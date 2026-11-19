@@ -79,3 +79,15 @@ A profile update replaces every field: send the ones you keep too.
 | `GET /system-groups/{id}/members` | Members, each with its origin | `users.system_group.manage` |
 | `PUT`, `DELETE /system-groups/{id}/members/{account}` | Add or remove a member by hand | `users.system_group.manage` |
 | `POST /system-groups/{id}/apply-rule` | Apply the rule of a group | `users.system_group.manage` |
+| `GET`, `POST /campuses/{id}/categories` | Categories under a parent (`?parent=`), and creating one | `courses.category.manage` to create |
+| `GET`, `PUT`, `DELETE /categories/{id}`; `POST /categories/{id}/move` | Read, replace, delete an empty category, move it | `courses.category.manage` |
+| `GET`, `POST /categories/{id}/courses` | Courses of a category, and creating one | `courses.course.create` to create |
+| `GET`, `PUT /courses/{id}`; `POST /courses/{id}/move` | A course with its owners; replacing it; moving it | `courses.course.update` |
+| `PUT /courses/{id}/state` | `to`: `draft`, `published`, `archived` or `deletion_scheduled`; needs `If-Match` | `courses.course.update`, `.archive` or `.delete` |
+| `GET`, `POST /courses/{id}/sections`; `GET`, `PUT`, `DELETE /sections/{id}` | The sections of a course, depth first, and their changes | `courses.section.manage` to change |
+| `POST /sections/{id}/move`, `POST /sections/{id}/restore` | Move a section with its subtree; restore a deleted one | `courses.section.manage` |
+| `GET`, `POST /courses/{id}/groups`; `GET`, `PUT`, `DELETE /groups/{id}` | Groups the caller sees, and their changes | `courses.groups.manage` to change |
+| `GET`, `POST /groups/{id}/members`; `DELETE /groups/{id}/members/{account}` | Members by origin; adding and removing by hand | `courses.groups.manage` to change |
+| `GET`, `POST /courses/{id}/group-sets`; `PUT`, `DELETE /group-sets/{id}/groups/{group}` | Group sets and their groups | `courses.groups.manage` |
+
+Places among siblings are `{"at": "first"}`, `{"at": "last"}`, `{"at": "after", "sibling": "<id>"}` or `{"at": "before", "sibling": "<id>"}`; a visibility is `{"mode": "shown"}`, `{"mode": "hidden"}` or `{"mode": "scheduled", "from": "...", "until": "..."}`. A hidden category, course or section answers `404` to whoever may not see it.

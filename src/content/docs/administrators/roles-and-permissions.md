@@ -27,6 +27,8 @@ Every new campus gets these roles, each made from a template of the same name. Y
 
 Visitors who are not signed in read with the **Guest** role of the campus.
 
+When a new part of Kampus is installed on a running site, the roles that already exist get its permissions with the values their template gives them; the values you changed stay as they are.
+
 ## The access permissions
 
 | Permission | What it allows | Lowest scope |

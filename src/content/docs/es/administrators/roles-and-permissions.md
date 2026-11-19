@@ -27,6 +27,8 @@ Cada campus nuevo recibe estos roles, cada uno creado a partir de la plantilla d
 
 Los visitantes sin sesión leen con el rol **Invitado** del campus.
 
+Cuando se instala una parte nueva de Kampus en un sitio en marcha, los roles que ya existen reciben sus permisos con los valores que les da su plantilla; los valores que cambiaste se quedan como están.
+
 ## Los permisos de acceso
 
 | Permiso | Qué permite | Ámbito más bajo |
