@@ -18,11 +18,7 @@ pub const NAME: &str = "identity";
 
 pub const MODULE: Module = Module {
     name: NAME,
-    manifest: kampus_common::manifest! {
-        maturity: Maturity::Alpha,
-        kampus: Some(">=0.1.0, <0.2.0"),
-        requires: &[Requirement { component: "access", version: ">=0.1.0, <0.2.0" }],
-    },
+    manifest: kampus_common::manifest!(),
     summary: "Accounts, credentials, sign-in, second factors, sessions and API tokens",
     steps: crate::db::STEPS,
     permissions: crate::permissions::PERMISSIONS,
@@ -55,12 +51,32 @@ crates/<module>/
     privacy/        its export and erase handlers
   web/              its part of the web client
   lang/             its messages
-  tests/            integration tests, one per business rule or use case
+  tests/            unit/, integration/, conformance/ and support/ (see Tests)
+  version.toml      its version, maturity, supported releases and requirements
 ```
 
 `src/lib.rs` and `src/module.rs` are the only files at the top of `src/`. A folder exists only when the module has something for it. The repository check fails when anything else appears, when the descriptor or a required declaration is missing, or when the server's registry is out of date.
 
 Every crate also states what it is in `[package.metadata.kampus] kind`: `foundation`, `port`, `adapter`, `module` or `server`.
+
+## Tests
+
+Tests never live in the code: no `#[cfg(test)]` in `src/`. Each crate keeps them in `tests/`, in one folder per kind; each folder is one test binary whose `main.rs` declares one file per topic:
+
+```text
+tests/
+  unit/          pure checks, without databases or services
+    main.rs      mod keys; mod schema; …
+    schema.rs
+  integration/   against PostgreSQL and the services of Docker Compose
+    main.rs
+    rules.rs     one test per behaviour
+  conformance/   adapters: the conformance suite of their port
+    main.rs
+  support/       helpers shared by the folders above, included with #[path]
+```
+
+Tests go through the public API of the crate, as any caller would. `tools/repo-check` rejects a `#[cfg(test)]` in `src/`, a file directly in `tests/`, any other folder, and a folder without its `main.rs`.
 
 ## Every other crate
 
@@ -100,26 +116,35 @@ Plugins and adapters carry their type as prefix, so their names never collide wi
 
 `tools/repo-check` checks that every package matches its folder. The server checks names, versions, supported releases and requirements before it installs, upgrades or starts, and refuses with the list of problems.
 
-## The manifest
+## The version file
 
-Every component describes itself with `kampus_common::manifest!`. Package name, version, summary (the package description) and licence come from `Cargo.toml`, and the icon from `assets/icon.svg` when the file exists, so none of them is written twice:
+Every component has a `version.toml` next to its `Cargo.toml`, in the same form as the platform's `version.toml` at the root. The descriptor reads it with `kampus_common::manifest!()`, so no version data is written in code:
 
-```rust
-manifest: kampus_common::manifest! {
-    maturity: Maturity::Beta,
-    kampus: Some(">=0.1.0, <0.3.0"),
-    requires: &[Requirement { component: "access", version: ">=0.1.0" }],
-},
+```toml
+[component]
+version = "1.2.0"
+maturity = "beta"
+kampus = ">=0.1.0, <0.3.0"
+date = "2026-11-19"
+
+[requires]
+access = ">=0.1.0"
 ```
 
-| Field | Default | Meaning |
-| --- | --- | --- |
-| `maturity` | `Stable` | `Alpha`, `Beta`, `ReleaseCandidate` or `Stable` |
-| `kampus` | `None`: any release | The Kampus releases it works with, as a Cargo version requirement |
-| `requires` | none | Other components it needs, with the versions it works with |
-| `icon` | `assets/icon.svg`, or a generic icon | Give `icon: Some(include_str!("../other/path.svg"))` only to use another file |
+```rust
+manifest: kampus_common::manifest!(),
+```
 
-Every field is optional: a component without them builds and runs, and `kampus-server components` shows what it lacks. Versions follow semantic versioning: core components share the Kampus version (`version.workspace = true`); external ones have their own.
+| Key | Default | Meaning |
+| --- | --- | --- |
+| `component.version` | required | The version, semantic; equal to the package version |
+| `component.maturity` | `stable` | `alpha`, `beta`, `rc` or `stable` |
+| `component.kampus` | any release | The Kampus releases it works with, as a Cargo version requirement |
+| `component.date` | none | The date of its release, `YYYY-MM-DD` |
+| `component.icon` | `assets/icon.svg` when it exists, otherwise a generic icon | Another path, relative to the crate, only when the icon lives elsewhere |
+| `[requires]` | none | Other components it needs, each with the versions it works with |
+
+Name, summary and licence come from `Cargo.toml`. Everything but the version is optional: a component without it builds and runs, and `kampus-server components` shows what it lacks. A version that differs from the package, an unknown maturity, a malformed date or an icon that does not exist stops the build with the file and the key. Core components share the Kampus version (`version.workspace = true`); external ones have their own.
 
 ## Versions and the registry
 
