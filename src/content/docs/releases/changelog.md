@@ -11,6 +11,7 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 
 ### Changed
 
+- Code no longer cites the specification: comments, documentation comments and test names describe behaviour in plain words, and `tools/repo-check` rejects identifiers of rules, requirements, use cases, decisions or tasks in code. The explanation of a permission check gives a reason (`allowed`, `no_allow`, `forbidden`, `guest_limit`, `frozen_scope`, `inactive_account`, `view_as_limit`, `unknown_permission`) instead of a rule identifier, and the schema linter reports SQL without a reason as `L-09`.
 - Foundation, port, adapter and server crates follow the layout of DEC-087 too: only entry files at the top of `src/`, every concern in a folder with its `mod.rs` (for example `kampus-db`: `connection/`, `schema/`, `upgrade/`, `lint/`; `kampus-server`: `commands/`, `config/`, `http/`, `wiring/`), checked by `tools/repo-check`. Public paths are unchanged, except `kampus_server::run` (now `commands`) and the server's generated registries (now in `wiring/`).
 - Every module crate follows one layout (DEC-087): `src/module.rs` exposes the `MODULE` descriptor, and the schema, permissions, model, services, ports, helpers and jobs each live in their folder. The server installs and synchronises modules only from their descriptors, listed in a registry `tools/repo-check --fix` writes from the module crates and from `crates/server/modules.toml`; CI rejects files outside the layout. Paths moved accordingly (for example `kampus_identity::service::sign_in`, `kampus_access::permissions`).
 - Crate folders drop the project prefix (`crates/common`, `crates/db`, `crates/server`…), and adapters become sub-plugins of their port in `crates/<port>/adapters/<name>`, registered by URL scheme in a registry `tools/repo-check --fix` writes; external adapters are declared in `crates/server/adapters.toml` (DEC-086).
@@ -19,11 +20,17 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 
 ### Upgrade
 
+- The first start, or `kampus-server upgrade`, adds the registry of components (`db` step 2) and records every component of the build; from then on every upgrade, downgrade and uninstall is in `kampus-server history`.
 - `KAMPUS_STORAGE_URL` is now required for the `server`, `worker` and `all` roles (`file:///path` or `s3://bucket/prefix` with `KAMPUS_STORAGE_S3_ENDPOINT`, `_REGION`, `_ACCESS_KEY_ID`, `_SECRET_ACCESS_KEY`); `KAMPUS_CACHE_URL` turns on the shared cache.
 - New configuration variables: `KAMPUS_HTTP_ADDRESS`, `KAMPUS_CONFIG_FILE`, `KAMPUS_UPGRADE_ON_START`, `KAMPUS_LOG_FORMAT`. A new installation is created by `kampus-server upgrade`, or at start with `KAMPUS_UPGRADE_ON_START=true`.
 
 ### Added
 
+- Components with versions (DEC-088): every module, plugin and adapter has a manifest (`kampus_common::manifest!`) built from its `Cargo.toml` and `assets/icon.svg`, with optional maturity, supported Kampus releases and requirements; names follow packages and folders (`kampus-cache-redis` is `cache_redis` in `crates/cache/adapters/redis`); the server checks them all before it installs, upgrades or starts.
+- The registry of an installation: the installed version of every component and the ordered history of runs, failed ones included; new versions need an upgrade, and newer or missing components stop the start.
+- Data actions in upgrade steps, run once in the step's transaction, and the way back: steps may say how to undo themselves, the SQL is kept when they are applied, and `kampus-server downgrade --yes` undoes newer steps or names the ones it cannot.
+- `kampus-server components`, `history`, `downgrade` and `uninstall`; the command line moved to `kampus_server::commands::cli`.
+- `kampus-macros`, and Lucide icons for the components of the repository (`THIRD_PARTY.md`).
 - `kampus-module` (`crates/module`): the module contract, with the `Module` descriptor and the vocabulary of declarations (scope kinds, values, risks, permissions, role templates).
 - Every crate states its kind (`foundation`, `port`, `adapter`, `module`, `server`) in `[package.metadata.kampus]`.
 - OpenID Connect providers in `kampus-identity` (RN-028): authorization code flow with PKCE and nonce, the state sealed in the client instead of stored, ID tokens verified against the provider keys; identities link by issuer and subject, by a verified email only when the campus allows it, or after the owner confirms; the sign-in then runs the same pipeline as a password, second factor included.
@@ -47,5 +54,5 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 - Rust workspace (edition 2024, toolchain 1.100.0) with shared lints that require documentation on every item, and the first crate, `kampus-common`.
 - Quality gates in CI: formatting, Clippy with warnings as errors, tests against PostgreSQL 17, `cargo deny` with the licence policy of DEC-085, `cargo audit`, and `tools/repo-check` for file headers, version and changelog, and the dependency rules of the crates.
 - Local development with Docker Compose: PostgreSQL 17 and a Rust toolbox image with the same tools as CI.
-- The specification of version 0.1.0: requirements, domain models, data models, API fragments, use cases, decisions DEC-001 to DEC-087 and highlights.
+- The specification of version 0.1.0: requirements, domain models, data models, API fragments, use cases, decisions DEC-001 to DEC-088 and highlights.
 - The handbook for every role lives in the private repository `didactika/kampus-docs`, served locally at http://localhost:8096 (DEC-084).
