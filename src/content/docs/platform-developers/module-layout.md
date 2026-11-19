@@ -26,10 +26,11 @@ pub const MODULE: Module = Module {
     plugin_types: &[],
     commands: crate::commands::COMMANDS,
     preferences: crate::settings::PREFERENCES,
+    routes: Some(crate::http::routes),
 };
 ```
 
-At start-up the server applies the pending upgrade steps of every module, synchronises their permissions, and merges the values each module gives to every role template. Events, observers, jobs, settings, routes, privacy handlers, web modules and help topics join the descriptor as the core modules that run them arrive.
+At start-up the server applies the pending upgrade steps of every module, synchronises their permissions, and merges the values each module gives to every role template. The server serves its [routes](#routes) too. Events, observers, jobs, settings, privacy handlers, web modules and help topics join the descriptor as the core modules that run them arrive.
 
 ## The folders
 
@@ -61,6 +62,67 @@ crates/<module>/
 `src/lib.rs` and `src/module.rs` are the only files at the top of `src/`. A folder exists only when the module has something for it. The repository check fails when anything else appears, when the descriptor or a required declaration is missing, or when the server's registry is out of date.
 
 Every crate also states what it is in `[package.metadata.kampus] kind`: `foundation`, `port`, `adapter`, `module` or `server`.
+
+## Routes
+
+A module serves HTTP through `routes` in its descriptor: a function that builds its `axum::Router` from the `HttpContext`, the services the server built once for the process. A handler reads the services it needs by type and never builds one.
+
+```rust
+use axum::extract::State;
+use axum::routing::get;
+use axum::{Extension, Json, Router};
+use kampus_identity::http::Caller;
+use kampus_module::http::{ApiResult, Body, HttpContext, if_match, with_etag};
+
+pub fn routes(context: &HttpContext) -> Router {
+    let shared = Shared { users: context.service::<Users>().ok() };
+    Router::new()
+        .route("/me/profile", get(my_profile).put(update_my_profile))
+        .with_state(shared)
+}
+
+async fn update_my_profile(
+    State(shared): State<Shared>,
+    Extension(caller): Extension<Caller>,
+    headers: axum::http::HeaderMap,
+    Body(fields): Body<ProfileFields>,
+) -> ApiResult<axum::response::Response> {
+    let account = caller.account()?;
+    let profile = shared
+        .users()?
+        .update_profile(&caller.actor, account, fields, Some(if_match(&headers)?))
+        .await?;
+    let version = profile.version;
+    Ok(with_etag(Json(profile), version))
+}
+```
+
+The server serves every module's routes under `/api/v1`, after two layers:
+
+| Layer | What the handler finds |
+| --- | --- |
+| Campus, from the server | `CurrentCampus`: the campus the request is for |
+| Authentication, from identity | `Caller`: the actor, the session or API token, the campus, and where the request comes from |
+
+`Caller` gives what each kind of route needs:
+
+- `session()` for routes that manage credentials: passwords, sessions, second factors and tokens, which an API token never manages;
+- `account()` for the person signed in;
+- `acting(identity, permission, scope)` before an operation that needs a permission, which also keeps an API token within the permissions it carries. The service still checks the permission itself.
+
+A browser authenticates with the `kampus_session` cookie, and every request that changes something with it carries the `X-Kampus` header; integrations send `Authorization: Bearer kmp_...`. A handler does not deal with either.
+
+What every module's routes share lives in `kampus_module::http`:
+
+| Item | Use |
+| --- | --- |
+| `ApiResult<T>` | Return a `kampus_common::Error` with `?`: it is answered as problem details with the request id |
+| `Body<T>` | A JSON body; one that does not parse is a `validation` problem (`module.body_invalid`) |
+| `id::<T>(segment)` | An identifier from the path; one that does not parse is `not_found`, like an unknown one |
+| `if_match(headers)` | The version an update was made on; every update sends it, or gets `412` (`module.if_match_required`) |
+| `with_etag(response, version)` | Answers a resource with its version as `ETag` |
+
+The routes live in `src/http/`: `mod.rs` with `routes` and what the handlers share, and one file per area (`auth.rs`, `me.rs`, `accounts.rs`). Test them through the server, in `crates/server/tests/integration/`, as a client sees them: the test installs a site, builds its router and sends requests to it.
 
 ## Commands of a component
 

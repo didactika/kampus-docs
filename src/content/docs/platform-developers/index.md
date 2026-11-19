@@ -12,6 +12,8 @@ The specification (requirements, domain and data models, API fragments, use case
 | Guide | What it covers |
 | --- | --- |
 | [Getting started](/platform-developers/getting-started/) | The development environment in Docker and the commands of every quality gate |
+| [Your first module](/platform-developers/first-module/) | A module built end to end: crate, version file, schema, permissions, service, routes, descriptor, tests and checks |
+| [Module layout](/platform-developers/module-layout/) | The reference of every piece of a module and of every other crate: descriptor, folders, routes, commands, versions, install actions, going back |
 | [Conventions](/platform-developers/conventions/) | File headers, documentation comments, branches, commits and pull requests |
 | [Versions and changelog](/platform-developers/versions/) | The platform version, the changelog entry of every pull request, releases and support branches |
 | [Architecture](/platform-developers/architecture/) | The modules, their levels, the rules the build enforces and the infrastructure ports |
