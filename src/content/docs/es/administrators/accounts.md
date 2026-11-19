@@ -55,6 +55,18 @@ La cuenta de una persona en el proveedor se vincula una vez a su cuenta de Kampu
 
 Kampus nunca vincula una cuenta solo porque coincida un correo sin verificar. Iniciar sesión con un proveedor pide el segundo factor como cualquier otro inicio de sesión, y las cuentas suspendidas tampoco pueden entrar con un proveedor.
 
+## Grupos de sistema
+
+Un grupo de sistema reúne a personas del campus o de una categoría, para matriculaciones e informes. Con `users.system_group.manage` creas uno con un código y un nombre, y sus miembros llegan por tres vías:
+
+| Origen | Cómo |
+| --- | --- |
+| A mano | Tú añades y quitas personas |
+| Por regla | El grupo compara un campo del perfil (nombre, apellidos, idioma, zona horaria) con un valor; aplicar la regla añade a quien coincide y quita a quien ya no |
+| Por sincronización | Otra parte de Kampus, o una integración, mantiene la lista |
+
+Cada origen quita solo lo que añadió: quitar a alguien que añadiste a mano lo deja en el grupo si la regla también lo incluye, y aplicar la regla nunca quita a quien añadiste tú.
+
 ## Permisos de identidad
 
 | Permiso | Qué permite | Roles por defecto |
@@ -66,6 +78,9 @@ Kampus nunca vincula una cuenta solo porque coincida un correo sin verificar. In
 | `identity.provider.manage` | Configurar proveedores de identidad | Administradores |
 | `identity.token.manage_own` | Crear y revocar los propios tokens de API | Administradores, Gestor, Usuario autenticado |
 | `identity.token.manage_any` | Crear y revocar los tokens de cualquier cuenta | Administradores |
+| `users.profile.update_own` | Editar el propio perfil y preferencias | Todos |
+| `users.profile.update_any` | Editar el perfil y las preferencias de cualquiera | Administradores, Gestor |
+| `users.system_group.manage` | Crear grupos de sistema y gestionar sus miembros | Administradores, Gestor |
 
 Toda persona activa tiene el rol **Usuario autenticado** en su campus.
 

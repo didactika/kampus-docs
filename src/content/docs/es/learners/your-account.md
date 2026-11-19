@@ -25,6 +25,16 @@ Inicia sesión con tu nombre de usuario o tu correo y tu contraseña. Cuando la 
 
 Si tu campus conecta un proveedor, como el inicio de sesión único de tu organización, puedes elegirlo en la página de inicio de sesión. La primera vez, tu campus puede pedirte que lo confirmes iniciando sesión con tu contraseña de Kampus; después recibes un correo que avisa de que se vinculó el proveedor. El segundo factor se sigue pidiendo.
 
+## Tu perfil
+
+Tu perfil guarda tu nombre y apellidos, cómo se te muestra, tu idioma y tu zona horaria. Lo cambias tú; los administradores de tu campus también pueden cambiarlo. Si alguien lo cambió mientras lo editabas, Kampus te pide recargar en lugar de sobrescribir su cambio.
+
+Tus preferencias, como cada cuánto recibes resúmenes, pertenecen a las partes de Kampus que las ofrecen; cada una tiene un valor por defecto hasta que eliges.
+
+## Cambiar tu correo
+
+Cambiar tu correo pide tu contraseña de nuevo si iniciaste sesión hace más de 15 minutos. Kampus envía un enlace a la dirección nueva y avisa a la actual; la nueva solo se usa cuando abres el enlace. Si inicias sesión con tu correo, desde entonces lo haces con el nuevo.
+
 ## Sesiones
 
 Cada navegador o aplicación con la que inicias sesión tiene su propia sesión. Una sesión termina tras 8 horas sin uso, a los 7 días como máximo, o cuando cierras sesión. Puedes ver tus sesiones abiertas y cerrar las que no reconozcas.

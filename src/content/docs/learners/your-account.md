@@ -25,6 +25,16 @@ Sign in with your username or your email and your password. When the answer is "
 
 When your campus connects a provider, such as your organisation's single sign-on, you can choose it on the sign-in page. The first time, your campus may ask you to confirm by signing in with your Kampus password; you then receive an email saying the provider was linked. Your second factor is still asked.
 
+## Your profile
+
+Your profile holds your given and family names, how you are shown, your language and your time zone. You change it yourself; administrators of your campus can change it too. If someone changed it while you were editing, Kampus asks you to reload instead of overwriting their change.
+
+Your preferences, such as how often you receive summaries, belong to the parts of Kampus that offer them; each one has a default until you choose.
+
+## Changing your email
+
+Changing your email needs your password again when you signed in more than 15 minutes ago. Kampus sends a link to the new address and tells the current one; the new address is used only once you open the link. If you sign in with your email, you sign in with the new one from then on.
+
 ## Sessions
 
 Each browser or app you sign in with has its own session. A session ends after 8 hours without use, after 7 days at the latest, or when you sign out. You can see your open sessions and end the ones you do not recognise.
