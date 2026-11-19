@@ -41,3 +41,9 @@ A group shown to each member only, or to nobody, cannot be used to work in group
 You add people by hand. Parts of Kampus, such as enrolment, can also add people to a group; removing someone by hand never removes what they added, and they never remove who you added.
 
 **Group sets** gather groups of the course, for example the lab groups; a group can be in several sets, and once in each.
+
+## Words and custom fields
+
+Your campus may call courses, sections or categories by other names, and you can rename them in your own course too, per language: a course can call its sections "weeks". A word your campus locks stays as it is. If groups are turned off where your course is, you cannot create groups, and the existing ones stay.
+
+Your campus may also give courses custom fields, such as credits or a level. Fill them in for your course with `customise.field.edit`, which teachers hold; each value must fit its field (a number, a date, one of its choices…), and clearing it leaves the field empty. Private fields are shown only to people who may see them.
