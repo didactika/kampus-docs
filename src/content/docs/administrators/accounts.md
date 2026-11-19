@@ -81,6 +81,7 @@ Each origin removes only the memberships it added: removing someone you added by
 | `users.profile.update_own` | Edit one's own profile and preferences | Everyone |
 | `users.profile.update_any` | Edit anyone's profile and preferences | Administrators, Manager |
 | `users.system_group.manage` | Create system groups and manage their members | Administrators, Manager |
+| `identity.policy.manage` | Change the identity policy of the platform or a campus | Administrators |
 
 Every active person holds the **Authenticated user** role in their campus.
 
@@ -97,3 +98,5 @@ Every active person holds the **Authenticated user** role in their campus.
 | API tokens | 90 days by default, one year at most |
 | Deletion grace period | 14 days |
 | Failed sign-ins | After 3, each new try waits longer; after 10, sign-in locks for 15 minutes |
+
+Each row is a setting (`identity.self_sign_up`, `identity.password_min_length`, `identity.confirmation_hours`, `identity.invitation_days`, `identity.session_idle_hours`, `identity.session_lifetime_days`, `identity.step_up_minutes`, `identity.token_default_days`, `identity.token_max_days`, `identity.deletion_grace_days`, `identity.throttle_slow_after`, `identity.throttle_lock_after`, `identity.throttle_lock_minutes` and others) that you change for the whole platform or for one campus with `identity.policy.manage`, which administrators hold. A value set for the platform and locked holds for every campus.

@@ -52,6 +52,8 @@ Quien tiene `courses.hidden.view` ve el contenido oculto, marcado como oculto. L
 | `courses.groups.manage` | Crear grupos y conjuntos de grupos y gestionar sus miembros | Administradores, Gestor, Profesor |
 | `courses.groups.access_all` | Ver y trabajar con todos los grupos | Administradores, Gestor, Profesor, Profesor sin edición |
 
+El modo de grupo de un curso, una sección o una actividad es el ajuste `courses.group_mode` (`none`, `separate` o `visible`), que fija quien tiene `courses.groups.manage` ahí; una sección toma el modo de su curso salvo que fije el suyo.
+
 ## Permisos de matriculación
 
 | Permiso | Qué permite | Roles por defecto |

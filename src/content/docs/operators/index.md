@@ -69,6 +69,25 @@ Parts of Kampus tell each other what changed through **events**, delivered by th
 | `kampus-server events listener <module> <name> off\|on` | Turns a listener off, for example while you fix what it depends on; its deliveries wait and run when you turn it on |
 | `kampus-server events audit` | The latest entries of the audit log |
 
+## Settings
+
+What each part of Kampus lets you configure is a **setting**, set for the platform, a campus, a category, a course or a section, as each setting allows. A scope below takes the value of the nearest scope above that sets it, unless that scope **locks** it. Every change is recorded with the value before and after.
+
+| Command | What it does |
+| --- | --- |
+| `kampus-server settings list` | Every setting with its default and the scopes where it may be set |
+| `kampus-server settings get <key> <scope\|platform>` | The value in a scope and where it comes from |
+| `kampus-server settings set <key> <scope\|platform> <value> [locked]` | Sets a value, written as JSON: `true`, `12`, `"text"`; `locked` keeps the scopes below from changing it |
+| `kampus-server settings unset <key> <scope\|platform>` | Removes the value, so it comes from above again |
+| `kampus-server settings history <key> <scope\|platform>` | The changes of a setting in a scope |
+
+For example, to let visitors sign up on every campus and require longer passwords on one:
+
+```sh
+kampus-server settings set identity.self_sign_up platform true
+kampus-server settings set identity.password_min_length <campus> 16
+```
+
 ## Infrastructure
 
 | Piece | First release | Later |

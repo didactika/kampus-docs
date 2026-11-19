@@ -81,6 +81,7 @@ Cada origen quita solo lo que añadió: quitar a alguien que añadiste a mano lo
 | `users.profile.update_own` | Editar el propio perfil y preferencias | Todos |
 | `users.profile.update_any` | Editar el perfil y las preferencias de cualquiera | Administradores, Gestor |
 | `users.system_group.manage` | Crear grupos de sistema y gestionar sus miembros | Administradores, Gestor |
+| `identity.policy.manage` | Cambiar la política de identidad de la plataforma o de un campus | Administradores |
 
 Toda persona activa tiene el rol **Usuario autenticado** en su campus.
 
@@ -97,3 +98,5 @@ Toda persona activa tiene el rol **Usuario autenticado** en su campus.
 | Tokens de API | 90 días por defecto, un año como máximo |
 | Periodo de gracia del borrado | 14 días |
 | Inicios de sesión fallidos | Tras 3, cada nuevo intento espera más; tras 10, el inicio de sesión se bloquea 15 minutos |
+
+Cada fila es un ajuste (`identity.self_sign_up`, `identity.password_min_length`, `identity.confirmation_hours`, `identity.invitation_days`, `identity.session_idle_hours`, `identity.session_lifetime_days`, `identity.step_up_minutes`, `identity.token_default_days`, `identity.token_max_days`, `identity.deletion_grace_days`, `identity.throttle_slow_after`, `identity.throttle_lock_after`, `identity.throttle_lock_minutes` y otros) que cambias para toda la plataforma o para un campus con `identity.policy.manage`, que tienen los administradores. Un valor fijado para la plataforma y bloqueado vale para todos los campus.
