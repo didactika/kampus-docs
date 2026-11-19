@@ -26,6 +26,7 @@ All notable changes to Kampus are recorded here, following [Keep a Changelog](ht
 
 ### Added
 
+- `version.toml` at the root describes the platform release (name, version, maturity, date, `upgrade_from`); the core reads it when it is built, registers the platform as the component `kampus`, and refuses installations older than `upgrade_from`.
 - Components with versions (DEC-088): every module, plugin and adapter has a manifest (`kampus_common::manifest!`) built from its `Cargo.toml` and `assets/icon.svg`, with optional maturity, supported Kampus releases and requirements; names follow packages and folders (`kampus-cache-redis` is `cache_redis` in `crates/cache/adapters/redis`); the server checks them all before it installs, upgrades or starts.
 - The registry of an installation: the installed version of every component and the ordered history of runs, failed ones included; new versions need an upgrade, and newer or missing components stop the start.
 - Data actions in upgrade steps, run once in the step's transaction, and the way back: steps may say how to undo themselves, the SQL is kept when they are applied, and `kampus-server downgrade --yes` undoes newer steps or names the ones it cannot.

@@ -28,6 +28,8 @@ Every module, plugin and adapter of the build is a component with its own versio
 | `kampus-server downgrade --yes` | Run with an older build: undoes the newer steps and takes the components back; refused, naming the steps, when one cannot be undone |
 | `kampus-server uninstall <component> --yes` | Removes a component you took out of the build, with its data, unless another component requires it |
 
+The platform itself is the component `kampus`; its release comes from `version.toml`, and an installation older than its `upgrade_from` must first be upgraded to that release.
+
 Kampus refuses to start when a component is installed in a newer version than the build, when a component is installed but missing from the build, or when the components of the build do not fit together (names, supported releases, requirements); the message lists every problem.
 
 ## Zero downtime
