@@ -7,20 +7,20 @@ sidebar:
 
 Available since 0.1.0.
 
-Every route is under `/api/v1` of the site's address, for example `https://campus.example.org/api/v1/me`. Bodies are JSON.
+Every route is under `/api/v1/<module>` of the site's address: the name of the part of Kampus that serves it comes first, for example `https://campus.example.org/api/v1/identity/me` or `/api/v1/courses/courses/{id}`. Bodies are JSON.
 
 ## Authenticating
 
 An integration sends an [API token](../api-tokens/) in the `Authorization` header:
 
 ```sh
-curl https://campus.example.org/api/v1/accounts/0191f3a2-7c1e-7b40-9d1a-3e5f0c2b8a11 \
+curl https://campus.example.org/api/v1/identity/accounts/0191f3a2-7c1e-7b40-9d1a-3e5f0c2b8a11 \
   -H "Authorization: Bearer kmp_3f9a1c2b_..."
 ```
 
 A token acts for its account, and only with the permissions it carries: anything else is refused with `403` and the code `identity.api_token_scope`, even when the account could do it. A token never manages credentials: the routes of passwords, sessions, second factors and tokens under `/me` need a person signed in.
 
-A browser signs in with `POST /api/v1/auth/sign-in` and receives the `kampus_session` cookie (HttpOnly, SameSite=Lax, and Secure over HTTPS). Every request that changes something with that cookie carries the header `X-Kampus: 1`; without it the request is refused with `identity.csrf_header_missing`, so another site cannot act for the person.
+A browser signs in with `POST /api/v1/identity/auth/sign-in` and receives the `kampus_session` cookie (HttpOnly, SameSite=Lax, and Secure over HTTPS). Every request that changes something with that cookie carries the header `X-Kampus: 1`; without it the request is refused with `identity.csrf_header_missing`, so another site cannot act for the person.
 
 ## Errors
 
@@ -52,9 +52,9 @@ Every error is a problem details document (`application/problem+json`) with a st
 Accounts and profiles answer with their version in the `ETag` header. Every update sends it back in `If-Match`; when someone changed the resource in between, the update is refused with `412` instead of overwriting their change, and you read it again.
 
 ```sh
-curl -i https://campus.example.org/api/v1/accounts/$ID/profile -H "Authorization: Bearer $TOKEN"
+curl -i https://campus.example.org/api/v1/users/accounts/$ID/profile -H "Authorization: Bearer $TOKEN"
 # ETag: "3"
-curl -X PUT https://campus.example.org/api/v1/accounts/$ID/profile \
+curl -X PUT https://campus.example.org/api/v1/users/accounts/$ID/profile \
   -H "Authorization: Bearer $TOKEN" -H 'If-Match: "3"' \
   -H "Content-Type: application/json" \
   -d '{"given_name": "Ana", "family_name": "García", "time_zone": "Europe/Madrid"}'

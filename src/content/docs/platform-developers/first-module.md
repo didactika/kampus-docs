@@ -207,7 +207,7 @@ async fn add(
 }
 ```
 
-The server serves it as `POST /api/v1/me/bookmarks`, after finding the campus and authenticating the caller; see [routes](../module-layout/#routes) for what `Caller`, `Body`, `if_match` and `with_etag` do.
+The server serves it under the name of the module, as `POST /api/v1/bookmarks/me/bookmarks`, after finding the campus and authenticating the caller; see [routes](../module-layout/#routes) for what `Caller`, `Body`, `if_match` and `with_etag` do.
 
 ## 7. The descriptor
 
