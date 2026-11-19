@@ -47,3 +47,7 @@ Los **conjuntos de grupos** reúnen grupos del curso, por ejemplo los grupos de 
 Tu campus puede llamar a los cursos, las secciones o las categorías con otros nombres, y tú también puedes renombrarlos en tu curso, por idioma: un curso puede llamar «semanas» a sus secciones. Una palabra que tu campus bloquea se queda como está. Si los grupos están desactivados donde está tu curso, no puedes crear grupos, y los que ya existen se mantienen.
 
 Tu campus también puede dar a los cursos campos personalizados, como créditos o un nivel. Rellénalos en tu curso con `customise.field.edit`, que tienen los profesores; cada valor debe encajar en su campo (un número, una fecha, una de sus opciones…), y vaciarlo deja el campo sin valor. Los campos privados solo los ve quien puede verlos.
+
+## La página de tu curso
+
+Puedes disponer la página de tu curso: qué widgets van arriba, en la columna principal y en el lateral, como el índice de sus secciones, su resumen y fechas, o un texto tuyo como tu horario de tutorías. Si tu campus o tu categoría bloquearon la disposición, se queda como la fijaron. Los colores y las fuentes vienen del tema de tu campus.

@@ -1,6 +1,6 @@
 ---
 title: Personalización
-description: Las palabras que usa tu campus, las funciones que desactivas y los campos personalizados de los cursos, por ámbito.
+description: Las palabras que usa tu campus, las funciones que desactivas, los campos personalizados de los cursos, la disposición de las páginas, los menús y el tema, por ámbito.
 sidebar:
   order: 4
 ---
@@ -47,6 +47,36 @@ Con `customise.field.manage` en un campus o una categoría añades campos que ti
 
 Un campo es **público**, lo ve quien ve el curso, o **privado**, solo con `customise.field.view`. Los profesores rellenan los campos de sus cursos con `customise.field.edit`. Cuando una categoría define un campo con el mismo código que uno del campus, a sus cursos se les aplica el suyo. Borrar un campo borra sus valores.
 
+## Disposición de las páginas
+
+Cada tipo de página tiene regiones, y con `customise.layout.manage` eliges qué widgets van en cada una y en qué orden. La página de un curso tiene las regiones superior (top), principal (main) y lateral (side):
+
+| Widget | Muestra | Ajustes |
+| --- | --- | --- |
+| `courses.outline` | Las secciones del curso que ve el lector | Plegado o no |
+| `courses.summary` | El resumen y las fechas del curso | Ninguno |
+| `customise.text` | Un título y un texto, en cualquier página | Título, texto |
+
+Un widget puede mostrarse solo a quien tenga un permiso. Se aplica entera la disposición del ámbito más cercano: dispón la página de curso para toda una categoría, y los profesores, que tienen `customise.layout.manage` en sus cursos, pueden reorganizar la suya salvo que la bloquees. Si se quita una parte de Kampus que ofrecía un widget, el widget deja de mostrarse sin más; la página sigue abriéndose.
+
+## Menús
+
+La navegación principal (`customise.main`) y los enlaces al pie de cada página (`customise.footer`) son menús que fijas con `customise.menu.manage`. Cada elemento tiene una etiqueta, una ruta del sitio (como `/courses`) o una dirección web, y opcionalmente el permiso que lo muestra; los elementos pueden contener elementos, hasta tres niveles y 100 en total. Cada persona ve solo los elementos que puede ver, y un elemento oculto oculta los de debajo.
+
+## Tema
+
+El tema fija los colores, la fuente, los tamaños y el movimiento del sitio con `customise.theme.manage`. Un ámbito fija solo los tokens que quiere cambiar; los demás vienen de arriba, y un tema bloqueado impide a los ámbitos de debajo cambiar nada.
+
+| Tokens | Qué son |
+| --- | --- |
+| `primary`, `secondary`, `surface`, `background`, `danger`, cada uno con su color `on_` | Un color (`#rrggbb`) y el color del texto sobre él |
+| `link` | El color de los enlaces |
+| `font_family` | Las fuentes, como `Inter, sans-serif` |
+| `font_size`, `spacing`, `radius` | Tamaños en píxeles |
+| `motion` | `full`, o `reduced` para menos animación |
+
+Kampus rechaza un tema cuyo texto costaría leer: cada color de texto mantiene un contraste de al menos 4,5 a 1 sobre su fondo, como pide WCAG 2.2 AA.
+
 ## Permisos de personalización
 
 | Permiso | Qué permite | Roles por defecto |
@@ -56,3 +86,6 @@ Un campo es **público**, lo ve quien ve el curso, o **privado**, solo con `cust
 | `customise.field.manage` | Añadir y borrar campos personalizados | Administradores, Gestor |
 | `customise.field.view` | Ver los campos personalizados privados | Administradores, Gestor, Profesor, Profesor sin edición |
 | `customise.field.edit` | Rellenar los campos personalizados de un curso | Administradores, Gestor, Profesor |
+| `customise.layout.manage` | Disponer los widgets de las páginas | Administradores, Gestor, Profesor |
+| `customise.menu.manage` | Fijar los menús | Administradores, Gestor |
+| `customise.theme.manage` | Fijar el tema | Administradores, Gestor |
