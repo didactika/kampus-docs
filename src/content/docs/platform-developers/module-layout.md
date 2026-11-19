@@ -27,6 +27,9 @@ pub const MODULE: Module = Module {
     commands: crate::commands::COMMANDS,
     preferences: crate::settings::PREFERENCES,
     settings: crate::settings::SETTINGS,
+    terms: &[],
+    flags: &[],
+    field_kinds: &[],
     events: crate::events::EVENTS,
     listeners: crate::observers::LISTENERS,
     jobs: crate::jobs::JOBS,
@@ -196,6 +199,37 @@ pub const SETTINGS: &[SettingDeclaration] = &[SettingDeclaration {
 Read a value with `Settings::resolve(key, scope)`, or every setting of a module at once with `Settings::resolve_prefix("<module>.", scope)`: the value of the nearest scope that sets it wins, unless a scope above set it **locked**; without any, the default. The answer says where the value came from. Every change records who made it with the value before and after, and publishes `settings.changed`.
 
 A module never reads a setting it does not declare, and never keeps its own table of options: identity, for example, reads the policy of a campus (`identity.*`) through its `Policies` port from settings.
+
+## Customisation
+
+What a campus changes without code beyond settings, a module offers in `src/settings/customise.rs` and exposes through `terms`, `flags` and `field_kinds` in its descriptor; `kampus-customise` keeps it per scope and resolves it like settings, from the nearest scope up to the platform, sections included, unless a scope above **locks** its value. Every answer says where it came from (declared, or the scope that set it), every change is recorded with before and after and publishes `customise.changed`.
+
+```rust
+pub const TERMS: &[TermDeclaration] = &[TermDeclaration {
+    code: "courses.course",
+    forms: &[
+        TermForms { language: "en", singular: "course", plural: "courses" },
+        TermForms { language: "es", singular: "curso", plural: "cursos" },
+    ],
+}];
+pub const FLAGS: &[FlagDeclaration] = &[FlagDeclaration {
+    code: "courses.groups",
+    summary: "Groups and group sets in courses",
+    default: true,
+}];
+pub const FIELD_KINDS: &[FieldKindDeclaration] = &[FieldKindDeclaration {
+    code: "courses.course",
+    summary: "Courses",
+}];
+```
+
+| Declaration | A scope | The module |
+| --- | --- | --- |
+| A **term**, with its singular and plural per language | Renames it per language (`customise.term.manage`); a language the module does not declare falls back to its first | Shows `Customise::term(code, scope, language)` instead of a fixed word |
+| A **flag**, with its default | Turns the feature on or off (`customise.flag.manage`); its data stays | Guards what the feature offers with `Customise::require_flag(code, scope)`, which answers `conflict` (`customise.feature_off`) |
+| A **kind of entity** | Defines typed custom fields for it (`customise.field.manage`): text, integer, date, boolean, choice, choices or account, public or private (`customise.field.view`) | Keeps a link table `<entity>_field` (entity, field, value, all `CASCADE`), writes values with `Customise::write_value_in` inside its own transaction and reads them with `Customise::values` |
+
+Customisation never owns an entity of another module: the values of custom fields belong to their entity through the owning module's link table, so there is no polymorphic owner, and deleting the entity, the field or the value takes the link with it.
 
 ## Background jobs
 

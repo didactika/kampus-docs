@@ -41,3 +41,9 @@ Un grupo visible solo para cada miembro, o para nadie, no puede usarse para trab
 Tú añades personas a mano. Otras partes de Kampus, como las matriculaciones, también pueden añadir personas a un grupo; quitar a alguien a mano nunca quita lo que ellas añadieron, y ellas nunca quitan a quien añadiste tú.
 
 Los **conjuntos de grupos** reúnen grupos del curso, por ejemplo los grupos de laboratorio; un grupo puede estar en varios conjuntos, y una sola vez en cada uno.
+
+## Palabras y campos personalizados
+
+Tu campus puede llamar a los cursos, las secciones o las categorías con otros nombres, y tú también puedes renombrarlos en tu curso, por idioma: un curso puede llamar «semanas» a sus secciones. Una palabra que tu campus bloquea se queda como está. Si los grupos están desactivados donde está tu curso, no puedes crear grupos, y los que ya existen se mantienen.
+
+Tu campus también puede dar a los cursos campos personalizados, como créditos o un nivel. Rellénalos en tu curso con `customise.field.edit`, que tienen los profesores; cada valor debe encajar en su campo (un número, una fecha, una de sus opciones…), y vaciarlo deja el campo sin valor. Los campos privados solo los ve quien puede verlos.
