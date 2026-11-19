@@ -23,7 +23,39 @@ Kampus 0.1.0 has no released image yet. You can already build and run it with Do
 
 Every role answers `/health/live` (the process runs) and `/health/ready` (the database answers and matches the build, and the file storage and the cache answer) on `KAMPUS_SERVER_HTTP_ADDRESS`. The scheme of each URL chooses the adapter among those of the build.
 
-Every component can add its own commands: `kampus-server <component> --help` lists them, and `kampus-server <component> <command>` runs one (for example `kampus-server identity purge`).
+Every component can add its own commands: `kampus-server <component> --help` lists them, and `kampus-server <component> <command>` runs one (for example `kampus-server identity purge` or `kampus-server tasks jobs`).
+
+## Background jobs
+
+Work that does not happen in a request runs as **jobs** in a queue kept in the database: purging expired sessions, deleting accounts and courses whose grace period ended, keeping system group enrolments in step, applying the expiry of enrolments. Nothing is lost when a process stops: a job whose worker stopped is taken again once its time runs out, a failing job is retried with a growing wait, and one that runs out of attempts stays **failed** with its error until you retry it.
+
+| Role | Background work |
+| --- | --- |
+| `server` | None |
+| `worker` | Runs jobs; run as many as you need |
+| `scheduler` | Fires the schedules; several can run, each schedule fires once |
+| `all` | Both, for small installations |
+
+| Command | What it does |
+| --- | --- |
+| `kampus-server tasks jobs [state]` | The latest jobs, optionally only `queued`, `running`, `succeeded`, `failed` or `cancelled` |
+| `kampus-server tasks job <id>` | A job with its attempts and their errors |
+| `kampus-server tasks retry <id>` | Queues a failed job again |
+| `kampus-server tasks cancel <id>` | Cancels a job; a running one stops at its next step |
+| `kampus-server tasks schedules` | Every schedule with its rule, time zone and next run |
+| `kampus-server tasks schedule <job> "<cron>" <time-zone> [on\|off]` | Changes the rule of a schedule, or turns it off |
+| `kampus-server tasks run <job>` | Runs a scheduled job now |
+
+The schedules of 0.1.0, all in UTC, which you can change:
+
+| Job | Rule | What it does |
+| --- | --- | --- |
+| `identity.purge` | `0 3 * * *` | Removes expired one-time tokens and sessions, and old sign-in attempts |
+| `identity.run_deletions` | `15 * * * *` | Deletes the accounts whose grace period ended |
+| `courses.run_deletions` | `20 * * * *` | Deletes the courses whose scheduled deletion is due |
+| `enrol.sync` | `*/15 * * * *` | Keeps the enrolments of system groups in step with their groups |
+| `enrol.run_expiry` | `5 * * * *` | Applies the expiry rule to ended enrolments |
+| `tasks.purge` | `30 3 * * *` | Removes finished jobs older than 30 days |
 
 ## Infrastructure
 
