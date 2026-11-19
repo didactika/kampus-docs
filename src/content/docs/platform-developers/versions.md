@@ -11,6 +11,20 @@ Kampus has one semantic version (`MAJOR.MINOR.PATCH`) for the server, the web cl
 
 The interfaces others depend on have their own semantic versions: the HTTP API (`/api/v1`), the plugin SDK, every event type and the schema of every module (its upgrade steps).
 
+## The version file
+
+`version.toml`, at the root of the repository, describes the release. The core reads it when it is built (`kampus_common::PLATFORM`), compares it with the release recorded in the installation, and registers the platform as the component `kampus`; the repository check keeps it equal to the workspace version.
+
+| Key | Meaning |
+| --- | --- |
+| `name` | The product, `Kampus` |
+| `version` | The release, semantic; equal to `[workspace.package] version` of `Cargo.toml` and to the branch `release/X.Y.Z` |
+| `maturity` | `alpha`, `beta`, `rc` or `stable` |
+| `date` | The date of the release, or of the start of its development, `YYYY-MM-DD` |
+| `upgrade_from` | The oldest release an installation can be upgraded from in one run; columns may be dropped only when it no longer reads them |
+
+An installation newer than the build is refused; one older than `upgrade_from` is told to upgrade to that release first.
+
 ## The changelog
 
 `CHANGELOG.md` follows Keep a Changelog. Every pull request that changes anything outside the specification adds its entry under `## [Unreleased]`, in one of these groups:

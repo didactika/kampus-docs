@@ -10,6 +10,7 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- The version file of the platform, for platform developers and operators.
 - Components with versions: names and folders, the manifest, the registry, install actions, going back and uninstalling, for platform developers; the component commands and history for operators.
 - The layout of every kind of crate (foundation, port, adapter, server, module), with the folder map of each crate, in the module layout guide.
 - Module layout guide for platform developers: the descriptor the server reads, the folders of a module crate, how to add a module (also from outside the repository) and a new kind of contribution; plugin developers are pointed to it.
