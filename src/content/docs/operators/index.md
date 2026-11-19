@@ -56,6 +56,18 @@ The schedules of 0.1.0, all in UTC, which you can change:
 | `enrol.sync` | `*/15 * * * *` | Keeps the enrolments of system groups in step with their groups |
 | `enrol.run_expiry` | `5 * * * *` | Applies the expiry rule to ended enrolments |
 | `tasks.purge` | `30 3 * * *` | Removes finished jobs older than 30 days |
+| `events.purge` | `45 3 * * *` | Removes events older than 90 days and audit entries older than two years |
+
+## Events and the audit log
+
+Parts of Kampus tell each other what changed through **events**, delivered by the `worker` and `all` roles after each change is saved. A delivery that keeps failing is retried with a growing wait and, after eight attempts, is **dead**: it waits for you, and the events about the same object after it go on. Significant changes, such as removing an enrolment or archiving a course, also write an entry in the **audit log**, which cannot be changed and is kept for two years.
+
+| Command | What it does |
+| --- | --- |
+| `kampus-server events deliveries [pending\|done\|dead]` | The latest deliveries in a state, dead ones by default, with their errors |
+| `kampus-server events replay [event]` | Runs the dead deliveries again, of one event or all |
+| `kampus-server events listener <module> <name> off\|on` | Turns a listener off, for example while you fix what it depends on; its deliveries wait and run when you turn it on |
+| `kampus-server events audit` | The latest entries of the audit log |
 
 ## Infrastructure
 
