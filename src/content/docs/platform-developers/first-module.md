@@ -226,6 +226,8 @@ pub const MODULE: Module = Module {
     plugin_types: &[],
     commands: &[],
     preferences: &[],
+    events: &[],
+    listeners: &[],
     jobs: &[],
     schedules: &[],
     routes: Some(crate::http::routes),
