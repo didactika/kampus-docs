@@ -49,4 +49,4 @@ curl localhost:8100/health/ready          # the database answers and matches the
 docker compose logs -f server
 ```
 
-The development server creates the installation on its first start (`KAMPUS_UPGRADE_ON_START=true`) and applies new upgrade steps every time you rebuild it.
+The development server creates the installation on its first start (`KAMPUS_SERVER_UPGRADE_ON_START=true`) and applies new upgrade steps every time you rebuild it.
