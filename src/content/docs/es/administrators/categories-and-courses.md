@@ -51,3 +51,15 @@ Quien tiene `courses.hidden.view` ve el contenido oculto, marcado como oculto. L
 | `courses.section.manage` | Añadir, editar, mover, ocultar y borrar secciones | Administradores, Gestor, Profesor, Líder de sección |
 | `courses.groups.manage` | Crear grupos y conjuntos de grupos y gestionar sus miembros | Administradores, Gestor, Profesor |
 | `courses.groups.access_all` | Ver y trabajar con todos los grupos | Administradores, Gestor, Profesor, Profesor sin edición |
+
+## Permisos de matriculación
+
+| Permiso | Qué permite | Roles por defecto |
+| --- | --- | --- |
+| `enrol.instance.manage` | Añadir, cambiar y borrar los métodos de matriculación de un curso | Administradores, Gestor, Profesor |
+| `enrol.enrolment.manage` | Matricular a personas, cambiar y quitar sus matrículas | Administradores, Gestor, Profesor |
+| `enrol.enrolment.read` | Ver los participantes de un curso | Administradores, Gestor, Profesor, Profesor sin edición |
+| `enrol.request.decide` | Aprobar o rechazar solicitudes de entrada | Administradores, Gestor, Profesor |
+| `enrol.self` | Matricularse uno mismo donde el curso lo permita | Administradores, Gestor, Usuario autenticado |
+
+Dos comandos mantienen las matrículas al día hasta que lleguen las tareas programadas: `kampus-server enrol sync` sincroniza las matrículas de los grupos de sistema con sus grupos, y `kampus-server enrol run-expiry` aplica la regla de expiración a las matrículas que terminaron.

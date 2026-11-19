@@ -51,3 +51,15 @@ People with `courses.hidden.view` see hidden content, marked as hidden. Administ
 | `courses.section.manage` | Add, edit, move, hide and delete sections | Administrators, Manager, Teacher, Section leader |
 | `courses.groups.manage` | Create groups and group sets and manage their members | Administrators, Manager, Teacher |
 | `courses.groups.access_all` | See and work with every group | Administrators, Manager, Teacher, Non-editing teacher |
+
+## Enrolment permissions
+
+| Permission | What it allows | Default roles |
+| --- | --- | --- |
+| `enrol.instance.manage` | Add, change and delete the enrolment methods of a course | Administrators, Manager, Teacher |
+| `enrol.enrolment.manage` | Enrol people, change and remove their enrolments | Administrators, Manager, Teacher |
+| `enrol.enrolment.read` | See the participants of a course | Administrators, Manager, Teacher, Non-editing teacher |
+| `enrol.request.decide` | Approve or reject requests to join | Administrators, Manager, Teacher |
+| `enrol.self` | Enrol oneself where a course allows it | Administrators, Manager, Authenticated user |
+
+Two commands keep enrolments up to date until scheduled tasks arrive: `kampus-server enrol sync` brings the enrolments of system groups in step with their groups, and `kampus-server enrol run-expiry` applies the expiry rule to the enrolments that ended.
