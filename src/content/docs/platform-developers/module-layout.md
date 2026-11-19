@@ -25,6 +25,7 @@ pub const MODULE: Module = Module {
     templates: crate::permissions::TEMPLATES,
     plugin_types: &[],
     commands: crate::commands::COMMANDS,
+    preferences: crate::settings::PREFERENCES,
 };
 ```
 

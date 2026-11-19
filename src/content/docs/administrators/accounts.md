@@ -55,6 +55,18 @@ A person's account at the provider is linked to their Kampus account once, by th
 
 Kampus never links to an account just because the email matches an unverified one. Signing in through a provider asks for the second factor like any other sign-in, and suspended accounts cannot sign in through a provider either.
 
+## System groups
+
+A system group gathers people of the campus or of a category, for enrolment and reports. With `users.system_group.manage` you create one with a code and a name, and its members come from three origins:
+
+| Origin | How |
+| --- | --- |
+| By hand | You add and remove people yourself |
+| By rule | The group compares a profile field (given or family name, language, time zone) with a value; applying the rule adds who matches and removes who no longer does |
+| By sync | Another part of Kampus, or an integration, keeps the list |
+
+Each origin removes only the memberships it added: removing someone you added by hand leaves them in the group if the rule also includes them, and applying the rule never removes people you added.
+
 ## Identity permissions
 
 | Permission | What it allows | Default roles |
@@ -66,6 +78,9 @@ Kampus never links to an account just because the email matches an unverified on
 | `identity.provider.manage` | Configure identity providers | Administrators |
 | `identity.token.manage_own` | Create and revoke one's own API tokens | Administrators, Manager, Authenticated user |
 | `identity.token.manage_any` | Create and revoke the tokens of any account | Administrators |
+| `users.profile.update_own` | Edit one's own profile and preferences | Everyone |
+| `users.profile.update_any` | Edit anyone's profile and preferences | Administrators, Manager |
+| `users.system_group.manage` | Create system groups and manage their members | Administrators, Manager |
 
 Every active person holds the **Authenticated user** role in their campus.
 
