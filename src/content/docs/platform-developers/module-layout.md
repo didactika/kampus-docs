@@ -24,6 +24,7 @@ pub const MODULE: Module = Module {
     permissions: crate::permissions::PERMISSIONS,
     templates: crate::permissions::TEMPLATES,
     plugin_types: &[],
+    commands: crate::commands::COMMANDS,
 };
 ```
 
@@ -37,6 +38,7 @@ crates/<module>/
   src/
     lib.rs          crate documentation, the service type, modules, re-exports
     module.rs       NAME and MODULE
+    commands/       its commands on the command line
     db/             steps.rs: the upgrade steps in the neutral schema
     permissions/    mod.rs: permissions; templates.rs: role template values
     model/          entities, identifiers and values
@@ -58,6 +60,34 @@ crates/<module>/
 `src/lib.rs` and `src/module.rs` are the only files at the top of `src/`. A folder exists only when the module has something for it. The repository check fails when anything else appears, when the descriptor or a required declaration is missing, or when the server's registry is out of date.
 
 Every crate also states what it is in `[package.metadata.kampus] kind`: `foundation`, `port`, `adapter`, `module` or `server`.
+
+## Commands of a component
+
+A module offers commands on the command line in `src/commands/mod.rs`, listed in the `commands` field of its descriptor. The server reads them from the registry, so every module, inside the repository or not, gets its commands without any change to the server:
+
+```text
+kampus-server identity --help          lists the commands of identity
+kampus-server identity purge           runs one
+kampus-server access grant <user> [until]
+```
+
+```rust
+pub const COMMANDS: &[Command] = &[Command {
+    name: "purge",
+    summary: "Remove expired one-time tokens and sessions",
+    arguments: &[],
+    run: purge,
+}];
+
+fn purge<'c>(context: &'c CommandContext, _arguments: &'c [String]) -> CommandFuture<'c> {
+    Box::pin(async move {
+        let purged = identity(context)?.purge().await?;
+        Ok(vec![format!("{} session(s) removed", purged.sessions)])
+    })
+}
+```
+
+A command receives the database of the installation and its secret key in a `CommandContext`, gets its arguments already counted against its declaration, and returns the lines it reports. Names are in kebab case; a wrong number of arguments answers with the usage line.
 
 ## Tests
 
