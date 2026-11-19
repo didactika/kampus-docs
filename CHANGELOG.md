@@ -10,6 +10,7 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- Commands of components, for platform developers and operators.
 - Installing Kampus and the configuration file, section by section, for operators.
 - The version file of each component and the organisation of tests, in the module layout guide.
 - The version file of the platform, for platform developers and operators.

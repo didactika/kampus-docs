@@ -23,6 +23,8 @@ Kampus 0.1.0 has no released image yet. You can already build and run it with Do
 
 Every role answers `/health/live` (the process runs) and `/health/ready` (the database answers and matches the build, and the file storage and the cache answer) on `KAMPUS_SERVER_HTTP_ADDRESS`. The scheme of each URL chooses the adapter among those of the build.
 
+Every component can add its own commands: `kampus-server <component> --help` lists them, and `kampus-server <component> <command>` runs one (for example `kampus-server identity purge`).
+
 ## Infrastructure
 
 | Piece | First release | Later |
