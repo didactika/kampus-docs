@@ -226,6 +226,7 @@ pub const MODULE: Module = Module {
     plugin_types: &[],
     commands: &[],
     preferences: &[],
+    settings: &[],
     events: &[],
     listeners: &[],
     jobs: &[],

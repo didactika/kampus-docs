@@ -52,6 +52,8 @@ People with `courses.hidden.view` see hidden content, marked as hidden. Administ
 | `courses.groups.manage` | Create groups and group sets and manage their members | Administrators, Manager, Teacher |
 | `courses.groups.access_all` | See and work with every group | Administrators, Manager, Teacher, Non-editing teacher |
 
+The group mode of a course, a section or an activity is the setting `courses.group_mode` (`none`, `separate` or `visible`), set by who holds `courses.groups.manage` there; a section takes the mode of its course unless it sets its own.
+
 ## Enrolment permissions
 
 | Permission | What it allows | Default roles |
