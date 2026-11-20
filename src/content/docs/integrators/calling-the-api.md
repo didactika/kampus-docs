@@ -125,3 +125,18 @@ Other systems name records in their own way: the number a student information sy
 | `PUT /enrol/enrolment-instances/{id}/enrolments/by-reference/{system}/{external_id}` | Enrol `account` through a manual instance with that identifier, with `starts_at` and `ends_at` (`201`), or change the period of the enrolment that has it (`200`); the identifier never moves to someone else (`409`, `enrol.reference_other_account`) | `enrol.enrolment.manage` |
 
 A system is lowercase letters, digits, `_`, `-` and `.`, starting with a letter; an identifier has at most 255 characters on one line. Giving an identifier another record of the kind already has in the campus answers `409` with `references.taken`. When you create a category or a course by its identifier, the identifier is set in the same step, so a sync that stops halfway never leaves the record without it.
+
+## Files
+
+Every file goes through the same three steps, whatever it is for, and then the part of Kampus that owns it attaches it:
+
+| Route | What it does | Permission |
+| --- | --- | --- |
+| `POST /files/uploads` | Open an upload: `area` (such as `users.picture`), `scope`, `name`, `size` and, as a hint, `media_type`; it is valid for an hour | The upload permission of the area in that scope |
+| `PUT /files/uploads/{id}` | Send the content as the raw body | Who opened it |
+| `POST /files/uploads/{id}` | Complete it into a file, which only you read until it is attached | Who opened it |
+| `GET /files/files/{id}` | The name, type and size of a file | Whoever may read what owns it |
+| `POST /files/files/{id}/url` | A link that reads the file for 5 minutes, without signing in | Whoever may read what owns it |
+| `PUT`, `DELETE /users/me/picture`; `GET /users/accounts/{id}/picture` | Make an uploaded file of `users.picture` your profile picture, remove it, and read whose file is someone's picture | Signed in |
+
+Kampus reads the type from the content, not from what you say it is, and refuses what the area does not accept (`files.type_not_allowed`) or what is larger than it allows (`files.too_large`). The same content is stored once however many files use it. A file nobody attaches within a day is removed. Links serve content that could run in a browser, such as HTML or SVG, only as a download.
