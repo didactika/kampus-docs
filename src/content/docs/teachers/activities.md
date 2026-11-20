@@ -28,6 +28,11 @@ You can edit a course module at any time; if someone else changed it meanwhile, 
 
 Deleting a course module sends it to the recycle bin of the course, where it stays 30 days. From there you can restore it to the place where it was, as long as its section still exists. After 30 days Kampus removes it for good, with its file; if removing fails, it stays in the bin with the reason so you can see it.
 
+## Exceptions for a person or a group
+
+Some types, such as quizzes and assignments, let you give one person or one group a different opening or closing date, due date, cut-off date, time limit or number of attempts, without changing the activity for everyone else. Each person or group has at most one exception per course module; granting another replaces it, and you can add a reason. Kampus decides what applies to someone in this order, setting by setting: their own exception, then the most generous of the exceptions of the groups they belong to (the earliest opening, the latest closing, the largest limit), then the activity itself. A type that does not support exceptions, such as a page, refuses them.
+
 | Permission | What it allows | Default roles |
 | --- | --- | --- |
 | `activities.module.manage` | Add, change, move, copy, delete and restore course modules | Administrators, Manager, Teacher, Section leader |
+| `activities.exception.manage` | Grant, change and remove exceptions of dates, time limits and attempts | Administrators, Manager, Teacher, Section leader |

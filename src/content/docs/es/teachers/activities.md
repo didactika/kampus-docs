@@ -28,6 +28,11 @@ Puedes editar un módulo de curso cuando quieras; si otra persona lo cambió mie
 
 Borrar un módulo de curso lo envía a la papelera del curso, donde está 30 días. Desde ahí puedes restaurarlo al lugar donde estaba, mientras su sección siga existiendo. Pasados los 30 días Kampus lo elimina para siempre, con su fichero; si eliminarlo falla, se queda en la papelera con el motivo para que lo veas.
 
+## Excepciones para una persona o un grupo
+
+Algunos tipos, como los cuestionarios y las tareas, permiten dar a una persona o a un grupo otra fecha de apertura o de cierre, de entrega o límite, otro tiempo máximo u otro número de intentos, sin cambiar la actividad para el resto. Cada persona o grupo tiene como mucho una excepción por módulo de curso; conceder otra la reemplaza, y puedes añadir un motivo. Kampus decide qué se aplica a alguien en este orden, ajuste por ajuste: su propia excepción, luego la más generosa de las excepciones de los grupos a los que pertenece (la apertura más temprana, el cierre más tardío, el límite mayor) y por último la propia actividad. Un tipo que no admite excepciones, como una página, las rechaza.
+
 | Permiso | Qué permite | Roles por defecto |
 | --- | --- | --- |
 | `activities.module.manage` | Añadir, cambiar, mover, copiar, borrar y restaurar módulos de curso | Administradores, Gestor, Profesor, Responsable de sección |
+| `activities.exception.manage` | Conceder, cambiar y quitar excepciones de fechas, tiempos máximos e intentos | Administradores, Gestor, Profesor, Responsable de sección |
