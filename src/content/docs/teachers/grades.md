@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Available since 0.1.0. Totals, scales and letters arrive in later releases.
+Available since 0.1.0. Scales, letters and formulas arrive in later releases.
 
 ## The records of a course
 
@@ -26,6 +26,20 @@ Choose a record and set the grades of several people at once: up to 500 in one g
 ## What people see
 
 A learner sees their own grades when they are shown, and the structure of the records. Whoever may see everyone's grades gets them in the grader report, which loads a page of people at a time; hidden grades are shown only to those who may see hidden content. The same rule applies wherever grades appear, so a hidden grade never leaks through another view.
+
+## Totals
+
+Each category and the course have a **total** that Kampus calculates from the grades of what they contain; you do not grade a total by hand, though you can override it like any grade. The calculation runs in the background a moment after a grade or a setting changes, so a total may lag a few seconds. Choose how a category adds up its contents:
+
+| Method | How it counts |
+| --- | --- |
+| Mean | Every item is worth the same, as a share of its own maximum |
+| Weighted mean | Each item counts by its weight |
+| Simple weighted mean | Each item counts by its range, so a larger item counts more |
+| Natural | The grades are added as they are; the maximum of the total is the sum of the maximums |
+| Median, lowest, highest, mode | The middle, the lowest, the highest or the most frequent share |
+
+An empty grade is left out of the total or counts as zero, as you choose for the category. **Extra credit** adds to the total without raising its maximum. **Drop lowest** and **keep highest** apply to every method except natural, lowest and highest; when two grades tie, the item with the larger maximum is dropped first. You can also leave one person's grade out of the totals without deleting it. A total that adds up something hidden is hidden too, so learners never see a number that gives a hidden grade away.
 
 | Permission | What it allows | Default roles |
 | --- | --- | --- |

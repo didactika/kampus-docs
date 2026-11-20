@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Disponible desde la 0.1.0. Los totales, las escalas y las letras llegan en versiones posteriores.
+Disponible desde la 0.1.0. Las escalas, las letras y las fórmulas llegan en versiones posteriores.
 
 ## Los registros de un curso
 
@@ -26,6 +26,20 @@ Elige un registro y pon las notas de varias personas a la vez: hasta 500 de una 
 ## Qué ve cada persona
 
 El alumnado ve sus propias notas cuando están visibles, y la estructura de los registros. Quien puede ver las notas de todos las obtiene en el informe del calificador, que carga una página de personas cada vez; las notas ocultas solo las ve quien puede ver contenido oculto. La misma regla se aplica allí donde aparecen notas, así que una nota oculta nunca se filtra por otra vista.
+
+## Totales
+
+Cada categoría y el curso tienen un **total** que Kampus calcula con las notas de lo que contienen; un total no se califica a mano, aunque puedes anularlo como cualquier nota. El cálculo se hace en segundo plano poco después de que cambie una nota o un ajuste, así que un total puede tardar unos segundos. Elige cómo suma una categoría su contenido:
+
+| Método | Cómo cuenta |
+| --- | --- |
+| Media | Cada elemento vale lo mismo, como proporción de su propio máximo |
+| Media ponderada | Cada elemento cuenta según su peso |
+| Media ponderada simple | Cada elemento cuenta según su rango, de modo que uno más grande pesa más |
+| Natural | Las notas se suman tal cual; el máximo del total es la suma de los máximos |
+| Mediana, menor, mayor, moda | La proporción central, la menor, la mayor o la más frecuente |
+
+Una nota vacía se deja fuera del total o cuenta como cero, según elijas para la categoría. La **puntuación extra** suma al total sin subir su máximo. **Descartar las más bajas** y **conservar las más altas** valen para todos los métodos salvo natural, menor y mayor; cuando dos notas empatan, se descarta primero el elemento con el máximo mayor. También puedes dejar fuera de los totales la nota de una persona sin borrarla. Un total que suma algo oculto también se oculta, de modo que el alumnado nunca ve un número que delate una nota oculta.
 
 | Permiso | Qué permite | Roles por defecto |
 | --- | --- | --- |
