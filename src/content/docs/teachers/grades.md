@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Available since 0.1.0. Scales, letters and formulas arrive in later releases.
+Available since 0.1.0. Formulas arrive in a later release.
 
 ## The records of a course
 
@@ -40,6 +40,12 @@ Each category and the course have a **total** that Kampus calculates from the gr
 | Median, lowest, highest, mode | The middle, the lowest, the highest or the most frequent share |
 
 An empty grade is left out of the total or counts as zero, as you choose for the category. **Extra credit** adds to the total without raising its maximum. **Drop lowest** and **keep highest** apply to every method except natural, lowest and highest; when two grades tie, the item with the larger maximum is dropped first. You can also leave one person's grade out of the totals without deleting it. A total that adds up something hidden is hidden too, so learners never see a number that gives a hidden grade away.
+
+## Scales and letters
+
+Instead of numbers, a record can be graded with the items of a **scale**, such as Poor, Fair, Good, Excellent. Administrators and managers define scales in a campus, a category or a course; a scale is available there and below, and the nearest definition of a code wins. Changing a scale creates a new version: records already set up keep the version they were created with, so their grades do not change meaning. A scale record takes the position of an item as its grade, from the first item to the last.
+
+A **letter set** turns a percentage into a letter, with bands that start at a percentage (A from 90, B from 75, and so on); one band starts at 0. It is defined in the same way and the nearest set applies to a course.
 
 | Permission | What it allows | Default roles |
 | --- | --- | --- |
