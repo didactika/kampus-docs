@@ -138,5 +138,6 @@ Every file goes through the same three steps, whatever it is for, and then the p
 | `GET /files/files/{id}` | The name, type and size of a file | Whoever may read what owns it |
 | `POST /files/files/{id}/url` | A link that reads the file for 5 minutes, without signing in | Whoever may read what owns it |
 | `PUT`, `DELETE /users/me/picture`; `GET /users/accounts/{id}/picture` | Make an uploaded file of `users.picture` your profile picture, remove it, and read whose file is someone's picture | Signed in |
+| `GET`, `PUT /files/scopes/{id}/quota`; `GET`, `PUT /files/people/{id}/quota` | The limit in bytes (`limit_bytes`, `null` for none) of a place or a person, and what attached files take; an upload that would not fit answers `409` with `files.quota_exceeded` | `files.quota.manage` |
 
 Kampus reads the type from the content, not from what you say it is, and refuses what the area does not accept (`files.type_not_allowed`) or what is larger than it allows (`files.too_large`). The same content is stored once however many files use it. A file nobody attaches within a day is removed. Links serve content that could run in a browser, such as HTML or SVG, only as a download.
