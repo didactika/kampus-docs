@@ -287,6 +287,17 @@ records
 
 Declaring a record again updates its title and range and leaves what a teacher set (weight, category, hiding). A grade a teacher has overridden or locked keeps counting as set; the activity grade is still kept as the raw grade, and every change leaves an entry. The module has already checked who may submit; `records.grade` is for people.
 
+### Reporting what a person did
+
+An activity tells progress what people do with it, after it has checked that they may; both calls are idempotent:
+
+```rust
+progress.notify_view(module, account).await?;
+progress.notify_submission(module, account).await?;
+```
+
+Grades need no call: progress listens to `records.grade_changed` and `records.overridden`, and finds the course module of the grade record. A module that shows progress reads it through `Progress::state_of` and `Progress::states_for`, which apply the visibility of grades, and never from the tables.
+
 ## File areas
 
 A module that keeps files declares its **areas** in `src/settings/files.rs` and exposes them through `file_areas` in its descriptor; `kampus-files` stores the content once and runs the one upload pipeline, and the module owns its files through a link table of its own:
