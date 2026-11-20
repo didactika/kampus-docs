@@ -272,6 +272,21 @@ pub const TYPES: &[ActivityTypeDeclaration] = &[ActivityTypeDeclaration {
 
 A course module is created, updated, copied and moved in one transaction with the settings its type declares, each checked against its kind with the defaults filled in. A type that keeps data of its own references `activities.course_module` with a foreign key and `CASCADE`, in its own table, and an activity that owns files declares a file area whose `readable` asks `Activities::visible_to`.
 
+### Giving grades
+
+An activity that grades declares one **record** for each grade it gives, when its course module is created or changed, and sends the grades as they arrive; both are idempotent, so repeating them changes nothing:
+
+```rust
+let record = records
+    .declare_activity_record(module, 0, RecordFields::new("Lab report", Decimal::from(10)))
+    .await?;
+records
+    .submit_activity_grade(record.id, GradeWrite { account, raw: Some(Decimal::from(7)), text: None, feedback: None })
+    .await?;
+```
+
+Declaring a record again updates its title and range and leaves what a teacher set (weight, category, hiding). A grade a teacher has overridden or locked keeps counting as set; the activity grade is still kept as the raw grade, and every change leaves an entry. The module has already checked who may submit; `records.grade` is for people.
+
 ## File areas
 
 A module that keeps files declares its **areas** in `src/settings/files.rs` and exposes them through `file_areas` in its descriptor; `kampus-files` stores the content once and runs the one upload pipeline, and the module owns its files through a link table of its own:
