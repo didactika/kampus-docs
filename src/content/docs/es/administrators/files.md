@@ -11,7 +11,7 @@ Disponible desde 0.1.0.
 
 Cada fichero pertenece a algo: una foto de perfil a una persona, y más adelante el material de una actividad o una entrega a las suyas. Quien puede ver ese algo puede leer su fichero, y nadie más; un fichero que nadie adjuntó a nada en un día se elimina. El mismo contenido se guarda una sola vez, lo usen cuantos ficheros lo usen, y el contenido que ya no usa ningún fichero se borra a los siete días.
 
-Los enlaces a los ficheros duran cinco minutos. El contenido que podría ejecutarse en un navegador, como HTML o SVG, solo se descarga, nunca se abre dentro de Kampus.
+Cuando el operador configura un antivirus, cada subida se escanea antes de guardarse, y el contenido infectado se rechaza con `files.infected`; nunca se guarda. Los enlaces a los ficheros duran cinco minutos. El contenido que podría ejecutarse en un navegador, como HTML o SVG, solo se descarga, nunca se abre dentro de Kampus.
 
 ## Cuotas
 

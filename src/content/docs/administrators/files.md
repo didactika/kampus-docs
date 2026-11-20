@@ -11,7 +11,7 @@ Available since 0.1.0.
 
 Every file belongs to something: a profile picture to a person, and later the material of an activity or a submission to theirs. Whoever may see that something may read its file, and nobody else; a file nobody attached to anything within a day is removed. The same content is stored once, however many files use it, and content no file uses any more is deleted after seven days.
 
-Links to files last five minutes. Content that could run in a browser, such as HTML or SVG, is only ever downloaded, never opened inside Kampus.
+When the operator configures a malware scanner, every upload is scanned before it is kept, and infected content is refused with `files.infected`; it is never stored. Links to files last five minutes. Content that could run in a browser, such as HTML or SVG, is only ever downloaded, never opened inside Kampus.
 
 ## Quotas
 
