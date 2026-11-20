@@ -20,6 +20,7 @@ Kampus 0.1.0 has no released image yet. You can already build and run it with Do
 | `kampus-server upgrade` | Applies every pending upgrade step, from whichever release the installation is on, and creates the installation if it does not exist |
 | `kampus-server upgrade --new-installation` | The same, when the database already holds other Kampus installations with other prefixes |
 | `kampus-server check` | Reports whether the database matches the build, without changing anything; exits with an error when it does not |
+| `kampus-server copy-storage <url>` | Copies every stored file to another store (`file:///path` or `s3://bucket/prefix`, with the options of the current one), verifying each by its hash; running it again copies only what is missing. Switch `KAMPUS_STORAGE_URL` to the new store once no process writes, then delete the old one |
 
 Every role answers `/health/live` (the process runs) and `/health/ready` (the database answers and matches the build, and the file storage, the cache and, when configured, the malware scanner answer) on `KAMPUS_SERVER_HTTP_ADDRESS`. The scheme of each URL chooses the adapter among those of the build.
 
