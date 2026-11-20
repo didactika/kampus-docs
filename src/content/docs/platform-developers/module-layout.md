@@ -34,6 +34,7 @@ pub const MODULE: Module = Module {
     widgets: &[],
     menu_kinds: &[],
     rule_actions: &[],
+    file_areas: &[],
     events: crate::events::EVENTS,
     listeners: crate::observers::LISTENERS,
     jobs: crate::jobs::JOBS,
@@ -243,6 +244,39 @@ pub const FIELD_KINDS: &[FieldKindDeclaration] = &[FieldKindDeclaration {
 Customisation never owns an entity of another module: the values of custom fields belong to their entity through the owning module's link table, so there is no polymorphic owner, and deleting the entity, the field or the value takes the link with it.
 
 The theme of a scope is not declared by modules: it is a fixed set of design tokens (colours, font, sizes, motion) that each scope may set over those above it, checked for WCAG 2.2 AA contrast (`customise.theme.manage`). Modules style their pages with the `--kampus-*` custom properties of `GET /scopes/{scope}/theme.css`, never with colours of their own.
+
+## External references
+
+Every record an integration touches carries the identifiers other systems give it, as external references (system, identifier), never as a column of the record and never in its human `code`. A module adds one table per kind of record in a step, with `kampus_db::reference_table!("course_reference", "course")`, and reaches it through `kampus_db::references::References::new(&db, module::NAME, "course_reference")`: `set`/`set_in`, `remove`, `find` and `of`. `ExternalReference::new(system, external_id)` checks and trims what a caller sends.
+
+| A module | Does |
+| --- | --- |
+| Sets and removes references | With the permission that manages the record, which also decides who reads them |
+| Finds a record by one | `GET /api/v1/<module>/campuses/{campus}/<records>/by-reference/{system}/{external_id}` |
+| Creates or updates by one, when integrations create the record | Sets the reference in the transaction that creates the record, so it never exists without it; `PUT …/by-reference/{system}/{external_id}` answers 201 or 200 |
+
+## File areas
+
+A module that keeps files declares its **areas** in `src/settings/files.rs` and exposes them through `file_areas` in its descriptor; `kampus-files` stores the content once and runs the one upload pipeline, and the module owns its files through a link table of its own:
+
+```rust
+pub const FILE_AREAS: &[FileAreaDeclaration] = &[FileAreaDeclaration {
+    code: "users.picture",
+    summary: "The profile picture of a person",
+    max_size: 5 * 1024 * 1024,
+    allowed_types: &["image/png", "image/jpeg", "image/gif", "image/webp"],
+    upload_permission: PROFILE_UPDATE_OWN,
+    readable: picture_readable,
+}];
+```
+
+| Field | Meaning |
+| --- | --- |
+| `max_size`, `allowed_types` | The largest file and the media types it accepts, exact or as a family (`image/*`); the type is read from the content, never taken from the sender |
+| `upload_permission` | The permission an uploader holds in the scope the upload is for |
+| `readable` | Whether a principal may read one of its files, given the file: when they may read the record that owns it. Files asks it, and has no other way to grant reading |
+
+The owning module keeps a table `<entity>_file` (or a column in a table of its own) with foreign keys to its record and to `files.file`, both `CASCADE`, and calls `Files::attach_in` and `Files::detach_in` inside the transaction that links or unlinks them: the count of the uses of the content moves with them, and a file nobody attaches is removed after a day. A file is read through `POST /api/v1/files/files/{id}/url`, a link of a few minutes that never runs content in the platform's origin.
 
 ## Background jobs
 
