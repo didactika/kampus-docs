@@ -35,6 +35,7 @@ pub const MODULE: Module = Module {
     menu_kinds: &[],
     rule_actions: &[],
     file_areas: &[],
+    activity_types: &[],
     events: crate::events::EVENTS,
     listeners: crate::observers::LISTENERS,
     jobs: crate::jobs::JOBS,
@@ -254,6 +255,22 @@ Every record an integration touches carries the identifiers other systems give i
 | Sets and removes references | With the permission that manages the record, which also decides who reads them |
 | Finds a record by one | `GET /api/v1/<module>/campuses/{campus}/<records>/by-reference/{system}/{external_id}` |
 | Creates or updates by one, when integrations create the record | Sets the reference in the transaction that creates the record, so it never exists without it; `PUT …/by-reference/{system}/{external_id}` answers 201 or 200 |
+
+## Activity types
+
+A module that provides activities or materials declares their **types** in `src/settings/` and exposes them through `activity_types` in its descriptor; `kampus-activities` registers them, places course modules of them in sections, and never reads what a type keeps of its own:
+
+```rust
+pub const TYPES: &[ActivityTypeDeclaration] = &[ActivityTypeDeclaration {
+    code: "activities.page",
+    kind: ActivityKind::Material,
+    summary: "A page of text",
+    features: &["copy"],
+    settings: &[ActivitySetting { key: "content", kind: ValueKind::Text { max: 20_000, default: "" } }],
+}];
+```
+
+A course module is created, updated, copied and moved in one transaction with the settings its type declares, each checked against its kind with the defaults filled in. A type that keeps data of its own references `activities.course_module` with a foreign key and `CASCADE`, in its own table, and an activity that owns files declares a file area whose `readable` asks `Activities::visible_to`.
 
 ## File areas
 

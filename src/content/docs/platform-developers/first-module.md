@@ -235,6 +235,7 @@ pub const MODULE: Module = Module {
     menu_kinds: &[],
     rule_actions: &[],
     file_areas: &[],
+    activity_types: &[],
     events: &[],
     listeners: &[],
     jobs: &[],

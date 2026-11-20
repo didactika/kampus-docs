@@ -142,3 +142,16 @@ Every file goes through the same three steps, whatever it is for, and then the p
 | `GET`, `PUT /files/scopes/{id}/quota`; `GET`, `PUT /files/people/{id}/quota` | The limit in bytes (`limit_bytes`, `null` for none) of a place or a person, and what attached files take; an upload that would not fit answers `409` with `files.quota_exceeded` | `files.quota.manage` |
 
 Kampus reads the type from the content, not from what you say it is, and refuses what the area does not accept (`files.type_not_allowed`) or what is larger than it allows (`files.too_large`). The same content is stored once however many files use it. A file nobody attaches within a day is removed. Links serve content that could run in a browser, such as HTML or SVG, only as a download.
+
+## Activities
+
+| Route | What it does | Permission |
+| --- | --- | --- |
+| `GET /activities/types` | The types of activity and material: `activities.page`, `activities.file`, and those other parts add | Signed in |
+| `GET`, `POST /activities/sections/{id}/course-modules` | The course modules of a section the caller sees, in order, and adding one: `type`, `title`, `visibility`, `on_course_page`, `settings` and `place` | `activities.module.manage` to add |
+| `GET`, `PUT`, `DELETE /activities/course-modules/{id}` | A course module (`PUT` needs `If-Match`), and deleting it to the recycle bin | `activities.module.manage` to change |
+| `POST /activities/course-modules/{id}/move`, `/copy` | Move or copy to `section` at a `place` | `activities.module.manage` |
+| `POST /activities/course-modules/{id}/restore`; `GET /activities/courses/{id}/bin` | Bring back from the bin; list the bin with the reason of any failed removal | `activities.module.manage` |
+| `GET`, `PUT /activities/course-modules/{id}/file` | The file of a file material, and setting it from an upload into `activities.material` | Whoever sees it; `activities.module.manage` to set |
+| `GET /activities/course-modules/{id}/references`; `PUT`, `DELETE …/references/{system}` | The identifiers of a course module | `activities.module.manage` |
+| `GET /activities/campuses/{id}/course-modules/by-reference/{system}/{external_id}`; `PUT /activities/sections/{id}/course-modules/by-reference/{system}/{external_id}` | Find a course module by an identifier, or update it, or add it to the section with it (`201` or `200`) | `activities.module.manage` |
