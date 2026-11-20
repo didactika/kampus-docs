@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Disponible desde la 0.1.0. Las escalas, las letras y las fórmulas llegan en versiones posteriores.
+Disponible desde la 0.1.0. Las fórmulas llegan en una versión posterior.
 
 ## Los registros de un curso
 
@@ -40,6 +40,12 @@ Cada categoría y el curso tienen un **total** que Kampus calcula con las notas 
 | Mediana, menor, mayor, moda | La proporción central, la menor, la mayor o la más frecuente |
 
 Una nota vacía se deja fuera del total o cuenta como cero, según elijas para la categoría. La **puntuación extra** suma al total sin subir su máximo. **Descartar las más bajas** y **conservar las más altas** valen para todos los métodos salvo natural, menor y mayor; cuando dos notas empatan, se descarta primero el elemento con el máximo mayor. También puedes dejar fuera de los totales la nota de una persona sin borrarla. Un total que suma algo oculto también se oculta, de modo que el alumnado nunca ve un número que delate una nota oculta.
+
+## Escalas y letras
+
+En lugar de números, un registro puede calificarse con los elementos de una **escala**, como Insuficiente, Regular, Bueno, Excelente. La administración y los gestores definen escalas en un campus, una categoría o un curso; una escala está disponible allí y por debajo, y gana la definición más cercana de un código. Cambiar una escala crea una versión nueva: los registros ya configurados conservan la versión con la que se crearon, así que sus notas no cambian de significado. Un registro con escala toma la posición de un elemento como nota, del primero al último.
+
+Un **conjunto de letras** convierte un porcentaje en una letra, con tramos que empiezan en un porcentaje (A desde 90, B desde 75, etc.); un tramo empieza en 0. Se define del mismo modo y a un curso le aplica el conjunto más cercano.
 
 | Permiso | Qué permite | Roles por defecto |
 | --- | --- | --- |
