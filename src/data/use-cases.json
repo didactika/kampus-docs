@@ -216,7 +216,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-022",
@@ -246,7 +246,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-025",
