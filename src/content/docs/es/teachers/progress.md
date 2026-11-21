@@ -48,6 +48,10 @@ Kampus sigue a quienes participan activamente y tienen `progress.tracked`, que t
 
 Para aprobar a alguien tienes que tener en el curso el rol que nombra el criterio. Un curso no puede exigirse a sí mismo, ni siquiera a través de otros cursos. Cambiar los criterios conserva las aprobaciones de los que no cambian, y se vuelve a comprobar a todo el mundo. Ves el progreso de todos en el curso, cada criterio con si se cumple; cada estudiante ve el suyo.
 
+## Cursos exigidos antes
+
+Un curso puede exigir que se hayan completado otros antes de que alguien se matricule en él por su cuenta. A quien no los ha completado se le dice al intentarlo; un profesor que matricula a alguien a mano no queda bloqueado. Ves qué exige un curso y qué cursos lo exigen a él. Un curso no puede exigirse a sí mismo, ni a través de otros cursos ni a través de sus criterios de finalización.
+
 | Permiso | Qué permite | Roles por defecto |
 | --- | --- | --- |
 | `progress.view_own` | Ver el propio progreso | Todas las personas del curso |

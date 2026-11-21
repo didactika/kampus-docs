@@ -48,6 +48,10 @@ Kampus follows the active participants who hold `progress.tracked`, which learne
 
 To approve someone, you must hold the role the criterion names in the course. A course cannot require itself, not even through other courses. Changing the criteria keeps the approvals of the criteria that stay the same, and everyone is checked again. You see everyone's progress in the course, each criterion with whether it is met; each learner sees their own.
 
+## Courses required first
+
+A course can require other courses to be completed before someone enrols in it by themselves. A learner who has not completed them is told so when they try; a teacher who enrols someone by hand is not stopped. You see what a course requires and which courses require it. A course cannot require itself, not even through other courses or through its completion criteria.
+
 | Permission | What it allows | Default roles |
 | --- | --- | --- |
 | `progress.view_own` | See the own progress | Everyone in the course |

@@ -17,7 +17,7 @@ An enrolment can have a start and an end. Before it starts and after it ends you
 
 When a course lets you enrol yourself, it may ask for an **enrolment key** your teacher gave you. Some keys also put you in a group of the course. If the key is wrong, Kampus only says so, without hints; after five wrong keys in an hour you have to wait before trying again.
 
-Some courses ask a teacher to **approve** you first: you send a request, optionally with a message, and you take part once it is approved. You can withdraw your request while it waits.
+A course may require you to complete other courses before you enrol yourself; Kampus tells you which ones are missing. Some courses ask a teacher to **approve** you first: you send a request, optionally with a message, and you take part once it is approved. You can withdraw your request while it waits.
 
 ## What you may open
 

@@ -17,7 +17,7 @@ Una matrícula puede tener inicio y fin. Antes de que empiece y después de que 
 
 Si un curso te deja matricularte, puede pedirte una **clave de matriculación** que te dio tu profesor. Algunas claves también te ponen en un grupo del curso. Si la clave es incorrecta, Kampus solo lo dice, sin pistas; tras cinco claves incorrectas en una hora tienes que esperar antes de volver a intentarlo.
 
-Algunos cursos piden que un profesor te **apruebe** antes: envías una solicitud, con un mensaje si quieres, y participas en cuanto la aprueban. Puedes retirar tu solicitud mientras espera.
+Un curso puede exigir que completes otros cursos antes de matricularte; Kampus te dice cuáles te faltan. Algunos cursos piden que un profesor te **apruebe** antes: envías una solicitud, con un mensaje si quieres, y participas en cuanto la aprueban. Puedes retirar tu solicitud mientras espera.
 
 ## Qué puedes abrir
 
