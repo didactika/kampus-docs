@@ -567,3 +567,18 @@ source = 'git = "https://example.org/kampus-attendance", tag = "v1.0.0"'
 ## Adding a kind of contribution
 
 A new kind of contribution is introduced by the core module that owns it, in one pull request: a field in `kampus_module::Module`, its folder in the layout and in the repository check, what the server does with it, and its section in this guide. From then on, every module, inside the repository or not, uses it the same way.
+
+## Notification types
+
+A module that tells people things declares the **types** in `src/settings/notifications.rs` and exposes them through `notification_types` in its descriptor; `kampus-notify` registers them, creates the notifications from events after the change commits, and delivers them according to each person's preferences:
+
+```rust
+pub const TYPES: &[NotificationTypeDeclaration] = &[NotificationTypeDeclaration {
+    code: "records.grade_posted",
+    summary: "You have a new grade",
+    channels: &["inbox"],
+    required: false,
+}];
+```
+
+A module never sends anything inside the request that causes it. Notify listens to the events, asks the owner of the data whether the person may see what the notification is about (a grade, through `Records::grades_for`), and calls `Notify::notify(type, person, payload, dedupe)`, where `dedupe` is the id of the event so a repeated delivery notifies once.
