@@ -22,3 +22,7 @@ Rechazar una petición no cambia nada, y la persona puede volver a pedirlo.
 ## Retenciones legales
 
 Con `privacy.hold.manage` pones una retención sobre una persona, o sobre todo el campus, con el motivo y, si quieres, una fecha en la que termina sola. Mientras una retención está activa, un borrado aprobado espera y aparece como retenido; sigue solo cuando liberas la retención o pasa su fecha. Las retenciones no impiden pedir ni aprobar: solo impiden el borrado.
+
+## Cuánto tiempo se conservan los datos
+
+Las notas, el progreso y la prueba de aceptación se conservan después de borrar una cuenta. Con `privacy.retention.manage` decides durante cuántos días, para cada tipo de dato que declaran los módulos; sin número, el dato se conserva para siempre. Cuando pasan esos días desde el borrado, un trabajo diario purga esos datos definitivamente, salvo que una retención legal cubra la cuenta: entonces espera a que esta termine. Cada purga queda auditada y no se repite.

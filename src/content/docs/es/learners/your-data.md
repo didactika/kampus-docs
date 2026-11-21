@@ -23,6 +23,6 @@ Tu campus puede publicar políticas, como sus términos de uso, y pedirte que la
 
 También puedes pedir a Kampus que borre tus datos personales, y tienes que decir por qué. Un administrador lee la petición y la aprueba o la rechaza; si eres administrador, tu propia petición sigue adelante al momento. Solo puedes tener un borrado abierto a la vez, y uno rechazado no te impide pedirlo de nuevo.
 
-Cuando se aprueba, cada parte de Kampus borra lo que solo te afecta a ti, como tus notificaciones y tus entradas personales del calendario. Lo que pertenece al expediente académico, tus notas y tu progreso, se conserva y apunta a tu cuenta, que queda como una cáscara vacía con un nombre inventado en lugar del tuyo. Se borran tu usuario, tu correo, tu contraseña y tus sesiones, y no podrás volver a entrar.
+Cuando se aprueba, cada parte de Kampus borra lo que solo te afecta a ti, como tus notificaciones y tus entradas personales del calendario. Lo que pertenece al expediente académico, tus notas y tu progreso, se conserva el tiempo que decida tu campus y después se borra para siempre. Apunta a tu cuenta, que queda como una cáscara vacía con un nombre inventado en lugar del tuyo. Se borran tu usuario, tu correo, tu contraseña y tus sesiones, y no podrás volver a entrar.
 
 Si tu campus tiene un motivo legal para conservar tus datos, como una investigación abierta, la petición espera hasta que ese motivo termine. Puedes verla esperando.
