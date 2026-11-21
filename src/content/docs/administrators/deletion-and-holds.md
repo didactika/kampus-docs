@@ -22,3 +22,7 @@ Rejecting a request changes nothing, and the person may ask again.
 ## Legal holds
 
 With `privacy.hold.manage` you place a hold on one person, or on the whole campus, with the reason and, if you want, a date when it ends by itself. While a hold is active, a deletion that was approved waits and shows as held; it goes on by itself when you release the hold or its date passes. Holds do not stop people from asking, nor you from approving: they only stop the erasure.
+
+## How long kept data stays
+
+Grades, progress and the proof of acceptance are kept after an account is deleted. With `privacy.retention.manage` you decide for how many days, for each kind of data the modules declare; without a number the data is kept for ever. When the days after the deletion have passed, a daily job purges that data for good, unless a legal hold covers the account, in which case it waits for the hold to end. Each purge is audited and never repeats.
