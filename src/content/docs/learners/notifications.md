@@ -15,4 +15,4 @@ A grade that is hidden from you is not announced; you are told when you may see 
 
 ## Choosing what you receive
 
-For each kind of notification you can turn it off. Some kinds are required by your campus and cannot be turned off.
+Each kind of notification can reach you in your inbox, by email and as a push notification on the browsers and phones you allow; choose it channel by channel. Some kinds are required and always reach your inbox, and your campus may fix a channel for a kind, which you then cannot change. Email goes to the address of your account; a browser or phone you allow receives push notifications until you remove it.
