@@ -18,6 +18,7 @@ Para cada módulo de curso eliges qué debe hacer el alumnado para que cuente co
 | Calificar | recibe una nota |
 | Aprobar | alcanza la nota de aprobado de su registro de calificación |
 | Marcar | lo marca como hecho ella misma |
+| Una regla de su tipo | la actividad lo indica, para reglas que ofrece un tipo como un cuestionario, por ejemplo usar todos los intentos |
 
 Una persona está **sin empezar** hasta que hace algo, **en curso** mientras falte algo de lo pedido, y **hecha** cuando cumple todas las reglas. Con una regla de aprobar acaba **aprobada** o **suspensa** según la nota: una nota por debajo del aprobado la termina aunque queden otras reglas pendientes.
 

@@ -614,3 +614,17 @@ pub const KINDS: &[ConditionKindDeclaration] = &[ConditionKindDeclaration {
 ```
 
 `store` checks the parameters and writes the leaf with the connection it receives, which is the transaction of the whole tree: a validation error refuses the tree and nothing is kept. What a leaf depends on must be in the course it gets. `params` gives the parameters back for the editor, or `None` when the leaf lost what it depended on, which marks it as broken. `met` answers for one person, reading your own tables; it must never be true by mistake, so a missing row answers false. `depending_on` lists the leaves that ask about a course module, so its deletion can be refused or remove them; kinds that never point to a course module use `nothing_depends`.
+
+## Rules of progress of a type
+
+A module that provides an activity type can offer rules of progress of its own in `src/settings/activities.rs`, through `progress_rules` in its descriptor:
+
+```rust
+pub const PROGRESS_RULES: &[ProgressRuleDeclaration] = &[ProgressRuleDeclaration {
+    code: "quiz.every_attempt",
+    activity_type: "quiz.quiz",
+    summary: "Use every attempt",
+}];
+```
+
+A teacher can then require the rule of a course module of that type. Progress does not call you: whenever what the rule depends on changes for a person, the module reports it with `Progress::report_type_rule(module, account, code, met)`, and progress evaluates the state with the other rules. A rule reported for a course module of another type is refused.
