@@ -45,7 +45,7 @@ You decide what completing the course means with **criteria**, and whether a per
 | Approval | Someone who holds a role in the course, such as a teacher, approves the person |
 | Other course | The person completed another course |
 
-Kampus follows the active participants who hold `progress.tracked`, which learners have. Each time something a criterion depends on changes, it checks them again within a few minutes, and it looks at dates and durations once a day. When a person meets the criteria the course is completed for them, with the date, and they are told. If a criterion stops being met, a grade lowered for instance, the completion is revoked and recorded, unless you say a completion is final.
+Kampus follows the active participants who hold `progress.tracked`, which learners have. Each time something a criterion depends on changes, it checks them again within a few minutes, and it looks at dates and durations once a day. When a person meets the criteria the course is completed for them, with the date, and they are told, unless the course turns off the setting `progress.notify`, which also silences the notices about your decisions. If a criterion stops being met, a grade lowered for instance, the completion is revoked and recorded, unless you say a completion is final.
 
 To approve someone, you must hold the role the criterion names in the course. A course cannot require itself, not even through other courses. Changing the criteria keeps the approvals of the criteria that stay the same, and everyone is checked again. You see everyone's progress in the course, each criterion with whether it is met; each learner sees their own.
 

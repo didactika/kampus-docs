@@ -45,7 +45,7 @@ Decides qué significa completar el curso con **criterios**, y si una persona ne
 | Aprobación | Alguien con un rol en el curso, como un profesor, aprueba a la persona |
 | Otro curso | La persona completó otro curso |
 
-Kampus sigue a quienes participan activamente y tienen `progress.tracked`, que tiene el alumnado. Cada vez que cambia algo de lo que depende un criterio, vuelve a comprobarlo en unos minutos, y revisa fechas y duraciones una vez al día. Cuando una persona cumple los criterios, el curso queda completado para ella, con la fecha, y se le avisa. Si un criterio deja de cumplirse, por ejemplo porque baja una nota, la finalización se revoca y queda registrada, salvo que digas que una finalización es definitiva.
+Kampus sigue a quienes participan activamente y tienen `progress.tracked`, que tiene el alumnado. Cada vez que cambia algo de lo que depende un criterio, vuelve a comprobarlo en unos minutos, y revisa fechas y duraciones una vez al día. Cuando una persona cumple los criterios, el curso queda completado para ella, con la fecha, y se le avisa, salvo que el curso desactive el ajuste `progress.notify`, que también calla los avisos de tus decisiones. Si un criterio deja de cumplirse, por ejemplo porque baja una nota, la finalización se revoca y queda registrada, salvo que digas que una finalización es definitiva.
 
 Para aprobar a alguien tienes que tener en el curso el rol que nombra el criterio. Un curso no puede exigirse a sí mismo, ni siquiera a través de otros cursos. Cambiar los criterios conserva las aprobaciones de los que no cambian, y se vuelve a comprobar a todo el mundo. Ves el progreso de todos en el curso, cada criterio con si se cumple; cada estudiante ve el suyo.
 
