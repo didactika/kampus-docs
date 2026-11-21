@@ -592,7 +592,8 @@ pub const HANDLERS: &[PrivacyHandlerDeclaration] = &[PrivacyHandlerDeclaration {
     code: "records.grades",
     purpose: "Grades and the history of the changes to them",
     export,
+    erase,
 }];
 ```
 
-The handler returns JSON by table; it reads only its own schema and never copies the data anywhere else.
+The `export` handler returns JSON by table; it reads only its own schema and never copies the data anywhere else. The `erase` handler runs when a deletion was approved and returns a report of what it did: it deletes what only concerns the person (notifications, personal calendar entries), or keeps what belongs to the academic record (grades, progress) and says so, since those rows keep pointing to the tombstone the account becomes.

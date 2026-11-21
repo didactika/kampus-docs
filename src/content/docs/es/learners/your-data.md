@@ -5,7 +5,7 @@ sidebar:
   order: 5
 ---
 
-Disponible desde la 0.1.0. El borrado de tus datos llega en una versión posterior.
+Disponible desde la 0.1.0.
 
 ## Pedir una copia
 
@@ -18,3 +18,11 @@ La exportación está lista a los pocos minutos y puedes leerla durante siete d�
 ## Políticas que aceptas
 
 Tu campus puede publicar políticas, como sus términos de uso, y pedirte que las aceptes. Ves la última versión de cada una y cuáles te esperan. Cuando el campus publica una versión nueva la aceptas de nuevo; aceptar dos veces no cambia nada. Qué versión aceptaste, y cuándo, forma parte de la exportación que puedes pedir.
+
+## Pedir que borren tus datos
+
+También puedes pedir a Kampus que borre tus datos personales, y tienes que decir por qué. Un administrador lee la petición y la aprueba o la rechaza; si eres administrador, tu propia petición sigue adelante al momento. Solo puedes tener un borrado abierto a la vez, y uno rechazado no te impide pedirlo de nuevo.
+
+Cuando se aprueba, cada parte de Kampus borra lo que solo te afecta a ti, como tus notificaciones y tus entradas personales del calendario. Lo que pertenece al expediente académico, tus notas y tu progreso, se conserva y apunta a tu cuenta, que queda como una cáscara vacía con un nombre inventado en lugar del tuyo. Se borran tu usuario, tu correo, tu contraseña y tus sesiones, y no podrás volver a entrar.
+
+Si tu campus tiene un motivo legal para conservar tus datos, como una investigación abierta, la petición espera hasta que ese motivo termine. Puedes verla esperando.
