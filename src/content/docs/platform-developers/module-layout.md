@@ -582,3 +582,17 @@ pub const TYPES: &[NotificationTypeDeclaration] = &[NotificationTypeDeclaration 
 ```
 
 A module never sends anything inside the request that causes it. Notify listens to the events, asks the owner of the data whether the person may see what the notification is about (a grade, through `Records::grades_for`), and calls `Notify::notify(type, person, payload, dedupe)`, where `dedupe` is the id of the event so a repeated delivery notifies once.
+
+## Privacy handlers
+
+A module that keeps personal data declares a **handler** in `src/privacy/mod.rs` and exposes it through `privacy_handlers` in its descriptor. Privacy asks each handler for the data of one account in a job, so it never depends on the module it serves:
+
+```rust
+pub const HANDLERS: &[PrivacyHandlerDeclaration] = &[PrivacyHandlerDeclaration {
+    code: "records.grades",
+    purpose: "Grades and the history of the changes to them",
+    export,
+}];
+```
+
+The handler returns JSON by table; it reads only its own schema and never copies the data anywhere else.
