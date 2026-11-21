@@ -22,3 +22,11 @@ Quienes gestionan el calendario de un curso, una categoría o el campus añaden 
 ## Entradas que se repiten, días completos y grupos
 
 Una entrada puede repetirse, como una clase cada lunes a las nueve, cada dos semanas o el día 15 de cada mes, hasta una fecha o un número de veces. Mantiene su hora en la zona horaria en que se creó, también cuando cambia la hora. El profesorado puede cancelar o mover una sola vez, por ejemplo pasar la clase al martes solo esta semana, sin tocar las demás. Una entrada también puede durar días completos, como un festivo, y el profesorado puede añadir entradas que solo ven los miembros de un grupo del curso. Tus propias entradas también pueden repetirse.
+
+## Tu calendario en el móvil
+
+Crea un **feed** y Kampus te da una dirección secreta una sola vez. Añádela a la aplicación de calendario de tu móvil o tu ordenador y mostrará lo que ves en tus cursos y tus propias entradas, desde hace un mes hasta casi un año por delante, actualizado cada vez que la aplicación lo lee. Quien tenga la dirección podría leerlo, así que guárdala para ti; revócala cuando ya no la uses, o si otra persona la consiguió, y crea una nueva.
+
+## Calendarios de otros sistemas
+
+Quien gestiona el calendario de un curso o del campus puede suscribirlo a un calendario de otro sistema, como los festivos de tu centro. Sus eventos aparecen con los demás y Kampus lo vuelve a leer cada pocas horas, siguiendo lo que se añadió, movió o quitó.
