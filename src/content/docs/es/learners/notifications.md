@@ -15,4 +15,4 @@ Una nota que se te oculta no se anuncia; la verás cuando puedas, en las vistas 
 
 ## Elegir qué recibes
 
-De cada tipo de notificación puedes desactivarlo. Algunos tipos los exige tu campus y no se pueden desactivar.
+Cada tipo de notificación puede llegarte a tu bandeja, por correo y como notificación push en los navegadores y móviles que permitas; elígelo canal por canal. Algunos tipos son obligatorios y siempre llegan a tu bandeja, y tu campus puede fijar un canal para un tipo, que entonces no puedes cambiar. El correo va a la dirección de tu cuenta; un navegador o móvil que permitas recibe notificaciones push hasta que lo quites.
