@@ -19,6 +19,10 @@ Si un curso te deja matricularte, puede pedirte una **clave de matriculación** 
 
 Algunos cursos piden que un profesor te **apruebe** antes: envías una solicitud, con un mensaje si quieres, y participas en cuanto la aprueban. Puedes retirar tu solicitud mientras espera.
 
+## Qué puedes abrir
+
+Algunas actividades y materiales solo se abren cuando cumples sus condiciones: a partir de una fecha, cuando has hecho o aprobado otra actividad, con una nota mínima o si perteneces a un grupo. Puede que los veas en la lista pero cerrados, sin su contenido, hasta que las cumplas; otros no se ven hasta entonces. En cuanto cumples las condiciones, se abren solos.
+
 ## Cuando una matrícula termina
 
 Cuando tu matrícula termina, el curso decide qué pasa: se suspende, se quita, o sigues participando sin tu rol. Tus calificaciones y tu progreso nunca se borran cuando termina una matrícula: se quedan contigo en el curso y vuelven si te matriculan de nuevo.

@@ -19,6 +19,10 @@ When a course lets you enrol yourself, it may ask for an **enrolment key** your 
 
 Some courses ask a teacher to **approve** you first: you send a request, optionally with a message, and you take part once it is approved. You can withdraw your request while it waits.
 
+## What you may open
+
+Some activities and materials open only when you meet their conditions: after a date, once you have done or passed another activity, with a minimum grade, or if you belong to a group. You may see them listed but closed, without their content, until you meet them; others stay out of sight until then. As soon as you meet the conditions, they open by themselves.
+
 ## When an enrolment ends
 
 When your enrolment ends, the course decides what happens: it is suspended, removed, or you keep taking part without your role. Your grades and progress are never deleted when an enrolment ends: they stay with you in the course and come back if you are enrolled again.
