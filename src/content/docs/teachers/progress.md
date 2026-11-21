@@ -18,6 +18,7 @@ For each course module you choose what a learner must do for it to count as done
 | Grade | they receive a grade |
 | Pass | they reach the passing grade of its grade record |
 | Mark | they mark it done themselves |
+| A rule of its type | the activity says so, for rules a type such as a quiz offers, like using every attempt |
 
 A learner is **not started** until they do something, **in progress** while some of what is asked is missing, and **done** when every rule is met. With a pass rule it ends **passed** or **failed** by the grade: a failing grade ends it even if other rules are still pending.
 
