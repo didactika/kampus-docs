@@ -14,3 +14,7 @@ Puedes pedir una exportación de los datos personales que Kampus guarda sobre ti
 ## Recibirla
 
 La exportación está lista a los pocos minutos y puedes leerla durante siete días; después Kampus la olvida y puedes volver a pedirla. Solo tú puedes leer la exportación que pediste. Si una persona administradora pide tus datos en tu nombre, es ella quien lee esa exportación, no tú.
+
+## Políticas que aceptas
+
+Tu campus puede publicar políticas, como sus términos de uso, y pedirte que las aceptes. Ves la última versión de cada una y cuáles te esperan. Cuando el campus publica una versión nueva la aceptas de nuevo; aceptar dos veces no cambia nada. Qué versión aceptaste, y cuándo, forma parte de la exportación que puedes pedir.
