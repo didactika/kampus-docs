@@ -9,7 +9,7 @@ Available since 0.1.0. Email and push delivery arrive in later releases.
 
 ## Your inbox
 
-Kampus tells you about what concerns you, such as a new grade or a decision your teacher took about your progress on an activity. Everything arrives in your inbox, newest first, with a count of what you have not read. Mark one notification read, or all of them together.
+Kampus tells you about what concerns you, such as a new grade, a decision your teacher took about your progress on an activity, or a course you completed. Everything arrives in your inbox, newest first, with a count of what you have not read. Mark one notification read, or all of them together.
 
 A grade that is hidden from you is not announced; you are told when you may see it, through the normal grade views.
 
