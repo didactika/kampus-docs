@@ -31,10 +31,28 @@ If the rules do not capture what happened (a paper submission, a retake), set a 
 
 A learner sees their own states. While the grade a pass rule depends on is hidden, they see that the activity is done, but not whether they passed. You see the outcome.
 
+## Completing the course
+
+You decide what completing the course means with **criteria**, and whether a person needs all of them or any one:
+
+| Criterion | It is met when |
+| --- | --- |
+| Activity | A course module of the course is done, or passed |
+| Grade | A grade of the course reaches a percentage of its range |
+| Date | A moment has arrived |
+| Duration | The person has taken part in the course for some days without a break |
+| Approval | Someone who holds a role in the course, such as a teacher, approves the person |
+| Other course | The person completed another course |
+
+Kampus follows the active participants who hold `progress.tracked`, which learners have. Each time something a criterion depends on changes, it checks them again within a few minutes, and it looks at dates and durations once a day. When a person meets the criteria the course is completed for them, with the date, and they are told. If a criterion stops being met, a grade lowered for instance, the completion is revoked and recorded, unless you say a completion is final.
+
+To approve someone, you must hold the role the criterion names in the course. A course cannot require itself, not even through other courses. Changing the criteria keeps the approvals of the criteria that stay the same, and everyone is checked again. You see everyone's progress in the course, each criterion with whether it is met; each learner sees their own.
+
 | Permission | What it allows | Default roles |
 | --- | --- | --- |
 | `progress.view_own` | See the own progress | Everyone in the course |
 | `progress.view_all` | See the progress of everyone | Teachers, non-editing teachers, managers, administrators |
 | `progress.mark_own` | Mark an activity done | Learners |
 | `progress.exception` | Decide a state with a reason | Teachers, managers, administrators |
-| `progress.manage` | Choose what each activity asks | Teachers, managers, administrators |
+| `progress.manage` | Choose what each activity and the course ask | Teachers, managers, administrators |
+| `progress.tracked` | Be followed by the progress of the course | Learners |
