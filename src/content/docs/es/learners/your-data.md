@@ -13,7 +13,7 @@ Puedes pedir una exportación de los datos personales que Kampus guarda sobre ti
 
 ## Recibirla
 
-La exportación está lista a los pocos minutos y puedes leerla durante siete días; después Kampus la olvida y puedes volver a pedirla. Solo tú puedes leer la exportación que pediste. Si una persona administradora pide tus datos en tu nombre, es ella quien lee esa exportación, no tú.
+La exportación está lista a los pocos minutos y puedes leerla durante siete días, como un único fichero que puedes descargar; después Kampus la olvida y puedes volver a pedirla. Solo tú puedes leer la exportación que pediste. Si una persona administradora pide tus datos en tu nombre, es ella quien lee esa exportación, no tú.
 
 ## Políticas que aceptas
 
