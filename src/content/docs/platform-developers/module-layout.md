@@ -597,3 +597,20 @@ pub const HANDLERS: &[PrivacyHandlerDeclaration] = &[PrivacyHandlerDeclaration {
 ```
 
 The `export` handler returns JSON by table; it reads only its own schema and never copies the data anywhere else. The `erase` handler runs when a deletion was approved and returns a report of what it did: it deletes what only concerns the person (notifications, personal calendar entries), or keeps what belongs to the academic record (grades, progress) and says so, since those rows keep pointing to the tombstone the account becomes.
+
+## Condition kinds
+
+A module can offer a kind of access condition in `src/settings/conditions.rs` and expose it through `condition_kinds` in its descriptor. Activities keeps the tree of `all`, `any` and `not`; each leaf of your kind lives in a table of your own schema, keyed by `condition_id` with a foreign key to `activities.condition` (`CASCADE`) and foreign keys to what it depends on:
+
+```rust
+pub const KINDS: &[ConditionKindDeclaration] = &[ConditionKindDeclaration {
+    code: "records.grade",
+    summary: "A grade of the course is at least a percentage of its range",
+    store,
+    params,
+    met,
+    depending_on: nothing_depends,
+}];
+```
+
+`store` checks the parameters and writes the leaf with the connection it receives, which is the transaction of the whole tree: a validation error refuses the tree and nothing is kept. What a leaf depends on must be in the course it gets. `params` gives the parameters back for the editor, or `None` when the leaf lost what it depended on, which marks it as broken. `met` answers for one person, reading your own tables; it must never be true by mistake, so a missing row answers false. `depending_on` lists the leaves that ask about a course module, so its deletion can be refused or remove them; kinds that never point to a course module use `nothing_depends`.

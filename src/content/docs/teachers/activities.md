@@ -32,7 +32,27 @@ Deleting a course module sends it to the recycle bin of the course, where it sta
 
 Some types, such as quizzes and assignments, let you give one person or one group a different opening or closing date, due date, cut-off date, time limit or number of attempts, without changing the activity for everyone else. Each person or group has at most one exception per course module; granting another replaces it, and you can add a reason. Kampus decides what applies to someone in this order, setting by setting: their own exception, then the most generous of the exceptions of the groups they belong to (the earliest opening, the latest closing, the largest limit), then the activity itself. A type that does not support exceptions, such as a page, refuses them.
 
+## Restricting access
+
+You can say who may open a course module, or everything in a section, with **access conditions**. Each condition is one of these:
+
+| Condition | It holds when |
+| --- | --- |
+| Date | Now is after a moment, before a moment, or between both |
+| Group | The person belongs to a group you choose, to one of the groups of a set, or to any group of the course |
+| Profile | A field of their profile (name, display name, language, time zone) is, is not, contains, starts or ends with a value, or is empty |
+| Progress | Another course module of the course is done, not done, passed or failed |
+| Grade | A grade of the course is at least a percentage of its range, below one, or between both |
+
+You combine them in a tree: **all** of them, **any** of them, or **not** one of them, and you can nest these as deep as ten levels. Conditions on a section apply to every course module in it and in its subsections, together with their own.
+
+When someone does not meet the conditions, you choose whether they still see the course module listed, without its content, so they know what they have to do, or they do not see it at all. Grades and progress are read as Kampus keeps them, even when the person cannot see their grade yet. Teachers and whoever holds `activities.conditions.ignore` open everything.
+
+Deleting a course module that a progress condition depends on is refused, so you never break a path by accident; you can instead choose to remove those conditions while deleting it. If a group, a set or a grade record that a condition depends on is deleted, that condition can no longer hold: the tree shows it as broken, and the course module stays closed until you fix it.
+
 | Permission | What it allows | Default roles |
 | --- | --- | --- |
 | `activities.module.manage` | Add, change, move, copy, delete and restore course modules | Administrators, Manager, Teacher, Section leader |
 | `activities.exception.manage` | Grant, change and remove exceptions of dates, time limits and attempts | Administrators, Manager, Teacher, Section leader |
+| `activities.conditions.manage` | Set and remove the access conditions of course modules and sections | Administrators, Manager, Teacher, Section leader |
+| `activities.conditions.ignore` | Open course modules whatever their conditions say | Administrators, Manager, Teacher, Section leader |
