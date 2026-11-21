@@ -47,6 +47,20 @@ Instead of numbers, a record can be graded with the items of a **scale**, such a
 
 A **letter set** turns a percentage into a letter, with bands that start at a percentage (A from 90, B from 75, and so on); one band starts at 0. It is defined in the same way and the nearest set applies to a course.
 
+## Formulas
+
+A record you add by hand, or the total of a category or of the course, can compute its grades with a **formula** instead. You write the other records it reads as `[[` plus the id of the record plus `]]`, and combine them with numbers, `+`, `-`, `*`, `/`, parentheses and the functions `min`, `max`, `sum`, `average`, `round` (with the decimals you want), `floor`, `ceil` and `abs`. For example, a final mark that counts the exam twice: `round(([[exam]] * 2 + [[essay]]) / 3, 1)`, with the ids of both records in place of the names.
+
+Kampus computes formulas with the totals, after the records they read, and always within the range of the record. If one of the records it reads has no grade, the formula gives no grade rather than a wrong one. A formula that would read itself, directly or through a total, is refused when you save it, and so is one that reads a record of another course. While a record has a formula you cannot type its grades by hand, though you can still override one. A record a formula reads cannot be deleted until you change that formula.
+
+## Exporting grades
+
+With `records.export` you ask for an export of the grades of a course. A few minutes later you get a CSV file with one line per person, their name, and one column per record, with what you may see at that moment. Only you can download it, for a week; then it goes, and you can ask again.
+
+## When someone leaves the course
+
+Grades are never deleted when an enrolment ends. The grader report and exports show the people who take part now; you can ask to include those who left, and each line says whether the person is still active. If they enrol again, their grades are there as they were.
+
 | Permission | What it allows | Default roles |
 | --- | --- | --- |
 | `records.view_own` | See the own grades and the structure of the records | Everyone in the course |

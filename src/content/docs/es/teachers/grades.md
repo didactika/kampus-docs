@@ -47,6 +47,20 @@ En lugar de números, un registro puede calificarse con los elementos de una **e
 
 Un **conjunto de letras** convierte un porcentaje en una letra, con tramos que empiezan en un porcentaje (A desde 90, B desde 75, etc.); un tramo empieza en 0. Se define del mismo modo y a un curso le aplica el conjunto más cercano.
 
+## Fórmulas
+
+Un registro que añades a mano, o el total de una categoría o del curso, puede calcular sus notas con una **fórmula**. Escribes los otros registros que lee como `[[` más el id del registro más `]]`, y los combinas con números, `+`, `-`, `*`, `/`, paréntesis y las funciones `min`, `max`, `sum`, `average`, `round` (con los decimales que quieras), `floor`, `ceil` y `abs`. Por ejemplo, una nota final en la que el examen cuenta doble: `round(([[examen]] * 2 + [[ensayo]]) / 3, 1)`, con los ids de ambos registros en lugar de los nombres.
+
+Kampus calcula las fórmulas junto con los totales, después de los registros que leen, y siempre dentro del rango del registro. Si alguno de los registros que lee no tiene nota, la fórmula no da nota en lugar de dar una equivocada. Se rechaza al guardarla una fórmula que se leería a sí misma, directamente o a través de un total, y también una que lea un registro de otro curso. Mientras un registro tiene fórmula no puedes escribir sus notas a mano, aunque sí anular una. No se puede borrar un registro que lee una fórmula hasta que cambies esa fórmula.
+
+## Exportar notas
+
+Con `records.export` pides una exportación de las notas de un curso. A los pocos minutos tienes un fichero CSV con una línea por persona, su nombre y una columna por registro, con lo que puedes ver en ese momento. Solo tú puedes descargarlo, durante una semana; después desaparece y puedes pedirlo otra vez.
+
+## Cuando alguien deja el curso
+
+Las notas nunca se borran cuando termina una matrícula. El informe del calificador y las exportaciones muestran a quien participa ahora; puedes pedir que incluyan a quien se fue, y cada línea dice si la persona sigue activa. Si se vuelve a matricular, sus notas están como estaban.
+
 | Permiso | Qué permite | Roles por defecto |
 | --- | --- | --- |
 | `records.view_own` | Ver las propias notas y la estructura de los registros | Todas las personas del curso |
