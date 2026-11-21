@@ -22,3 +22,11 @@ People who manage the calendar of a course, a category or the campus add entries
 ## Entries that repeat, whole days and groups
 
 An entry can repeat, such as a class every Monday at nine, every other week or on the 15th of each month, until a date or a number of times. It keeps its time of day in the time zone it was set in, also when the clocks change. A teacher can cancel or move a single occurrence, a lecture moved to Tuesday this week only, without touching the others. An entry can also last whole days, such as a holiday, and a teacher can add entries only the members of a group of the course see. Your own entries can repeat too.
+
+## Your calendar on your phone
+
+Make a **feed** and Kampus gives you a secret address once. Add it to the calendar application of your phone or computer and it shows what you see in your courses and your own entries, from a month ago to almost a year ahead, updated each time the application reads it. Anyone with the address could read it, so keep it to yourself; revoke it when you no longer use it, or if someone else got it, and make a new one.
+
+## Calendars of other systems
+
+Whoever manages the calendar of a course or the campus can subscribe it to a calendar of another system, such as the holidays of your school. Its events show up with the others and Kampus reads it again every few hours, following what was added, moved or removed.
