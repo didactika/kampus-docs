@@ -2,7 +2,7 @@
 title: Your data
 description: Asking Kampus for a copy of the personal data it keeps about you.
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Available since 0.1.0.

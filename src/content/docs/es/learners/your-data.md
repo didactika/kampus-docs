@@ -2,7 +2,7 @@
 title: Tus datos
 description: Pedir a Kampus una copia de los datos personales que guarda sobre ti.
 sidebar:
-  order: 5
+  order: 6
 ---
 
 Disponible desde la 0.1.0.
