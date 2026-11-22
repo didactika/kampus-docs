@@ -13,7 +13,9 @@
     "dev": "node tools/sync-spec.mjs && astro dev --host 0.0.0.0",
     "build": "node tools/sync-spec.mjs && astro build",
     "preview": "astro preview --host 0.0.0.0",
-    "headers": "node tools/check-headers.mjs"
+    "headers": "node tools/check-headers.mjs",
+    "coverage": "node tools/check-coverage.mjs",
+    "links": "node tools/check-links.mjs"
   },
   "dependencies": {
     "@astrojs/starlight": "0.42.10",

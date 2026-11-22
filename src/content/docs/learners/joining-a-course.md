@@ -5,6 +5,8 @@ sidebar:
   order: 2
 ---
 
+<!-- covers: selfEnrol -->
+
 Available since 0.1.0.
 
 ## Taking part

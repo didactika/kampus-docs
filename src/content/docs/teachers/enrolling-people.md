@@ -5,6 +5,8 @@ sidebar:
   order: 2
 ---
 
+<!-- covers: enrolPeople, manageEnrolment -->
+
 Available since 0.1.0.
 
 ## Enrolment methods

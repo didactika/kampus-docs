@@ -10,6 +10,10 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- A reference section generated from the declarations of every module: permissions with the roles that grant them, settings, features and terms, events, notifications and jobs.
+- Guides of grades and progress and of files for learners; people, settings and rules of a course for teachers; settings, background tasks, deliveries and the audit log for administrators; the language of the interface and the help of each screen.
+- Checks in CI: headers, the coverage of every available use case by the guides of its roles, the build and the internal links.
+
 - Database connections for operators: the pool of each process, sizing `max_connections`, and which PgBouncer modes Kampus works with.
 - Profiles, preferences and changing the email for learners; system groups and the users permissions for administrators.
 - Commands of components, for platform developers and operators.

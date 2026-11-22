@@ -5,6 +5,8 @@ sidebar:
   order: 7
 ---
 
+<!-- covers: processDeletionRequest -->
+
 Available since 0.1.0.
 
 ## Who decides

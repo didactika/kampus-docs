@@ -15,4 +15,4 @@ Available since 0.1.0.
 
 Every path and method, grouped by module (the first segment of the path, with the module summary as the tag description), the path parameters, the two ways of authenticating (the session cookie and the bearer token), the header `x-kampus` that a request that changes something with a session cookie must carry, and the problem document every error uses. Operation names are stable: the method and the path, such as `get_privacy_requests`.
 
-It does not describe the bodies of requests and answers yet; those are in the guides of each role.
+It also describes the bodies of requests and answers: every schema is named in `components.schemas`, with the description of each field, so a generated client gets real types. The web client of Kampus is built on types generated from this same document.
