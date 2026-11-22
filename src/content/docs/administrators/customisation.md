@@ -65,17 +65,22 @@ The main navigation (`customise.main`) and the links at the foot of every page (
 
 ## Theme
 
-The theme sets the colours, the font, the sizes and the motion of the site with `customise.theme.manage`. A scope sets only the tokens it wants to change; the others come from above, and a locked theme keeps the scopes below from changing anything.
+The theme sets the look of the site, with `customise.theme.manage`. It covers the colours, the fonts, the size of text, the corners, the density, the motion and whether the site is light or dark. It follows Material Design, and its defaults are Didactika's colours. A scope sets only the tokens it wants to change; the others come from above. A locked theme keeps the scopes below from changing anything.
 
 | Tokens | What they are |
 | --- | --- |
-| `primary`, `secondary`, `surface`, `background`, `danger`, each with its `on_` colour | A colour (`#rrggbb`) and the colour of text on it |
-| `link` | The colour of links |
-| `font_family` | The fonts, such as `Inter, sans-serif` |
-| `font_size`, `spacing`, `radius` | Sizes in pixels |
-| `motion` | `full`, or `reduced` for less animation |
+| `brand` | The colour of your logo, used in the header and the gradient of the brand |
+| `primary`, `secondary`, `accent` | The colour of what is chosen, active or the main action; a quieter colour; a colour to highlight |
+| `neutral` | The colour the backgrounds, surfaces and text are made from |
+| `danger`, `success`, `warning`, `info` | What removes or fails, what is done, what needs attention, what informs |
+| `font_family`, `font_family_brand` | The fonts of the text and of the headings, such as `"IBM Plex Sans", sans-serif` |
+| `font_size` | The size of normal text, in pixels (12 to 24); every other size follows it |
+| `radius` | How round the corners are, in pixels (0 to 28); 0 makes every shape square |
+| `density` | `comfortable`, or `compact` for smaller controls that fit more on a screen |
+| `motion` | `full`, or `reduced` for no animation |
+| `scheme` | `system` to follow each device, or `light` or `dark` |
 
-Kampus refuses a theme whose text would be hard to read: every text colour keeps a contrast of at least 4.5 to 1 on its background, as WCAG 2.2 AA asks.
+Colours are written as `#rrggbb`. From each one Kampus makes a whole range of tones and picks, for the light and the dark scheme, the tone of each use: buttons, the text on them, softer backgrounds, borders and surfaces. If the colour you give is too light or too dark to read, Kampus uses the nearest tone of the same colour that is readable. So every text keeps a contrast of at least 4.5 to 1 on its background, as WCAG 2.2 AA asks, whatever colours you choose.
 
 ## Rules
 
