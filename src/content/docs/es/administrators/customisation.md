@@ -65,17 +65,22 @@ La navegación principal (`customise.main`) y los enlaces al pie de cada página
 
 ## Tema
 
-El tema fija los colores, la fuente, los tamaños y el movimiento del sitio con `customise.theme.manage`. Un ámbito fija solo los tokens que quiere cambiar; los demás vienen de arriba, y un tema bloqueado impide a los ámbitos de debajo cambiar nada.
+El tema fija el aspecto del sitio, con `customise.theme.manage`. Abarca los colores, las fuentes, el tamaño del texto, las esquinas, la densidad, el movimiento y si el sitio es claro u oscuro. Sigue Material Design, y sus valores por defecto son los colores de Didactika. Un ámbito fija solo los tokens que quiere cambiar; los demás vienen de arriba. Un tema bloqueado impide a los ámbitos de debajo cambiar nada.
 
 | Tokens | Qué son |
 | --- | --- |
-| `primary`, `secondary`, `surface`, `background`, `danger`, cada uno con su color `on_` | Un color (`#rrggbb`) y el color del texto sobre él |
-| `link` | El color de los enlaces |
-| `font_family` | Las fuentes, como `Inter, sans-serif` |
-| `font_size`, `spacing`, `radius` | Tamaños en píxeles |
-| `motion` | `full`, o `reduced` para menos animación |
+| `brand` | El color de tu logo, que se usa en la cabecera y en el degradado de la marca |
+| `primary`, `secondary`, `accent` | El color de lo elegido, lo activo o la acción principal; un color más discreto; un color para destacar |
+| `neutral` | El color del que salen los fondos, las superficies y el texto |
+| `danger`, `success`, `warning`, `info` | Lo que borra o falla, lo que está hecho, lo que pide atención, lo que informa |
+| `font_family`, `font_family_brand` | Las fuentes del texto y de los títulos, como `"IBM Plex Sans", sans-serif` |
+| `font_size` | El tamaño del texto normal, en píxeles (de 12 a 24); los demás tamaños lo siguen |
+| `radius` | Lo redondeadas que son las esquinas, en píxeles (de 0 a 28); con 0 todas las formas son cuadradas |
+| `density` | `comfortable`, o `compact` para controles más pequeños que dejan ver más en pantalla |
+| `motion` | `full`, o `reduced` para no tener animaciones |
+| `scheme` | `system` para seguir a cada dispositivo, o `light` u `dark` |
 
-Kampus rechaza un tema cuyo texto costaría leer: cada color de texto mantiene un contraste de al menos 4,5 a 1 sobre su fondo, como pide WCAG 2.2 AA.
+Los colores se escriben como `#rrggbb`. De cada uno Kampus saca una gama completa de tonos y elige, para el esquema claro y el oscuro, el tono de cada uso: botones, el texto sobre ellos, fondos suaves, bordes y superficies. Si el color que das es demasiado claro u oscuro para leerse, Kampus usa el tono más cercano del mismo color que sí se lee. Así, cada texto mantiene un contraste de al menos 4,5 a 1 sobre su fondo, como pide WCAG 2.2 AA, elijas los colores que elijas.
 
 ## Reglas
 

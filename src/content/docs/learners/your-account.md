@@ -15,7 +15,7 @@ If you sign up with an email that already has an account, you receive a message 
 
 ## Your password
 
-Your campus sets the rules; by default a password has at least 12 characters and may not contain your username or your email. A long sentence you remember is a good password. Nobody at your campus can see it, and Kampus never sends it to you.
+Your campus sets the rules; by default a password has at least 12 characters and may not contain your username or your email. A password never contains spaces. Several words you remember, joined by hyphens or other signs, make a good password. The form tells you as you type when the password has a space or the two copies differ. Nobody at your campus can see it, and Kampus never sends it to you.
 
 ## Signing in
 

@@ -15,7 +15,7 @@ Si te registras con un correo que ya tiene cuenta, recibes un mensaje que te lo 
 
 ## Tu contraseña
 
-Tu campus fija las reglas; por defecto una contraseña tiene al menos 12 caracteres y no puede contener tu nombre de usuario ni tu correo. Una frase larga que recuerdes es una buena contraseña. Nadie en tu campus puede verla, y Kampus nunca te la envía.
+Tu campus fija las reglas; por defecto una contraseña tiene al menos 12 caracteres y no puede contener tu nombre de usuario ni tu correo. Una contraseña nunca contiene espacios. Varias palabras que recuerdes, unidas por guiones u otros signos, forman una buena contraseña. El formulario te avisa mientras escribes si la contraseña tiene un espacio o si las dos copias no coinciden. Nadie en tu campus puede verla, y Kampus nunca te la envía.
 
 ## Iniciar sesión
 
