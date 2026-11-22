@@ -10,6 +10,7 @@ All notable changes to the Kampus documentation are recorded here, following [Ke
 
 ### Added
 
+- Database connections for operators: the pool of each process, sizing `max_connections`, and which PgBouncer modes Kampus works with.
 - Profiles, preferences and changing the email for learners; system groups and the users permissions for administrators.
 - Commands of components, for platform developers and operators.
 - Installing Kampus and the configuration file, section by section, for operators.

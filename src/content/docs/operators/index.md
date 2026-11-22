@@ -101,6 +101,10 @@ kampus-server settings set identity.password_min_length <campus> 16
 | Mail | SMTP | Provider APIs |
 | Push notifications | Web Push (VAPID) | Native apps |
 
+## Database connections
+
+Each process keeps at most `KAMPUS_DATABASE_POOL_SIZE` connections, opened as they are needed and closed after 2 minutes idle; it waits up to 30 seconds for one, retrying while PostgreSQL has no free slot. Keep the pool size times the number of processes below the `max_connections` of PostgreSQL. A connection pooler in front of it must keep sessions: **PgBouncer in `session` mode** works, `transaction` and `statement` modes do not, since upgrades hold a session lock so that instances started together upgrade one after the other.
+
 ## Sending mail
 
 Workers send email through an SMTP server: notifications on the email channel go out from the job `notify.deliver`, never while a request waits. Set `KAMPUS_MAIL_URL` and `KAMPUS_MAIL_FROM`, and `KAMPUS_MAIL_USERNAME` and `KAMPUS_MAIL_PASSWORD` when the server asks to sign in; outside a private network prefer `smtps://` or `?tls=required`.
