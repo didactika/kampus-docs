@@ -23,7 +23,9 @@ Your campus decides who can write to whom. Usually you can write to people who t
 
 ## Writing
 
-Messages can have paragraphs, bold, italics, lists, quotes, code and links to web pages or email addresses. Anything else, such as scripts, images or embedded pages, is removed before your message is kept.
+Messages can have paragraphs, bold, italics, lists, quotes, code and links to web pages or email addresses. Anything else, such as scripts or embedded pages, is removed before your message is kept.
+
+You can attach up to 10 files to a message, of up to 10 MB each: images, PDFs, text, office documents and zip archives. A message can be only files. The people in the conversation can open them, and they go away with the message.
 
 Each new message reaches the other people in your inbox and, if you allow it, as a push notification on your browsers and phones. **Mute** a conversation to stop being notified about it. You still see its messages.
 
