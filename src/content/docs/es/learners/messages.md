@@ -23,7 +23,9 @@ Tu campus decide quién puede escribir a quién. Normalmente puedes escribir a q
 
 ## Escribir
 
-Los mensajes pueden tener párrafos, negrita, cursiva, listas, citas, código y enlaces a páginas web o a direcciones de correo. Todo lo demás, como scripts, imágenes o páginas incrustadas, se quita antes de guardar el mensaje.
+Los mensajes pueden tener párrafos, negrita, cursiva, listas, citas, código y enlaces a páginas web o a direcciones de correo. Todo lo demás, como scripts o páginas incrustadas, se quita antes de guardar el mensaje.
+
+Puedes adjuntar a un mensaje hasta 10 ficheros de hasta 10 MB cada uno: imágenes, PDF, texto, documentos de oficina y archivos zip. Un mensaje puede ser solo ficheros. Las personas de la conversación pueden abrirlos, y se van con el mensaje.
 
 Cada mensaje nuevo llega a las demás personas a su bandeja y, si lo permiten, como notificación push en sus navegadores y móviles. **Silencia** una conversación para dejar de recibir avisos de ella. Seguirás viendo sus mensajes.
 
