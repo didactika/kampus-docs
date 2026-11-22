@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Disponible desde la 0.1.0. El envío por correo y push llega en versiones posteriores.
+Disponible desde la 0.1.0.
 
 ## Tu bandeja
 

@@ -19,6 +19,17 @@ With `notify.defaults.manage` you set what the campus gives for a kind on a chan
 
 With `notify.template.manage` you write the subject and the text of email and push for each kind and language. Write `{{summary}}` for the description of the kind and the name of a field of the notification, such as `{{course}}`, for its value. A person receives the text in their language, or in English when there is none in theirs, and the description of the kind when there is no text at all.
 
+## Messages
+
+Two settings of the campus decide how people write to each other. Both need `notify.defaults.manage`.
+
+| Setting | Values | Default |
+| --- | --- | --- |
+| `notify.messaging` | `course`: people who take part in a course together; `campus`: anyone of the campus; `nobody` | `course` |
+| `notify.message_retention_days` | Days a message is kept before it is removed, from 0 to 3650; 0 keeps messages until everyone in the conversation has deleted them | `0` |
+
+Whoever holds `notify.message.anyone` writes to anyone of the campus, whatever `notify.messaging` says. The administrator roles have it. Each night Kampus removes the messages everyone deleted and those older than the campus keeps.
+
 ## Delivery
 
 Email and push go out a few moments after what caused them, never while the person who caused it waits. If sending fails, Kampus tries again later, waiting longer each time, and gives up after five attempts. Someone without an email address, or without a browser or phone allowed, is skipped on that channel. Until the operator configures how mail and push are sent, the server writes them to its log instead.

@@ -5,7 +5,7 @@ sidebar:
   order: 4
 ---
 
-Available since 0.1.0. Email and push delivery arrive in later releases.
+Available since 0.1.0.
 
 ## Your inbox
 
