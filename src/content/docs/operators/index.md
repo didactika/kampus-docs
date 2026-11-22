@@ -125,6 +125,20 @@ KAMPUS_PUSH_SUBJECT=mailto:admin@example.org
 
 The subject tells push services whom to contact about these messages. Devices their push service says are gone are forgotten, and endpoints are only reached at public network addresses.
 
+## Serving files from the store
+
+Files are read through links that last five minutes, issued after the check that the person may read the file. By default the API serves them at `/api/v1/files/content/{id}`, with `nosniff`, a sandboxing content security policy and an attachment for content that could run, so nothing uploaded ever runs in the campus.
+
+With an S3-compatible store, set `KAMPUS_STORAGE_PUBLIC_URL` to the address browsers reach the store at, and links to content that cannot run (raster images, PDF, audio, video and plain text, and their thumbnails) are signed by the store at that address instead. Browsers then read those bytes from the store directly, answered with the media type, an inline disposition with the name of the file and private caching for the life of the link. HTML, SVG, scripts and other content that could run are always served by the API, since a store cannot add those headers.
+
+```sh
+KAMPUS_STORAGE_URL=s3://kampus/files
+KAMPUS_STORAGE_S3_ENDPOINT=http://s3.internal:8333
+KAMPUS_STORAGE_PUBLIC_URL=https://files.example.org
+```
+
+The public address must reach the same bucket, with the same region and credentials, and pass the query of the link unchanged; a proxy in front of it must not rewrite the host. The store must apply the `response-content-type`, `response-content-disposition` and `response-cache-control` parameters of a signed read, as AWS S3 and MinIO do; the headers are part of the signature, so nobody can change them. Without the variable, or with a store on the local disk, every file is served by the API, as before. In the compose file of the repository the store answers browsers at `http://localhost:58333`; SeaweedFS applies only the type, so pictures there show with the name of their blob when saved.
+
 ## Installing
 
 `kampus-server install` sets an installation up in one go:
@@ -153,6 +167,7 @@ docker compose run --rm -it server install
 | `database.pool_size` | `KAMPUS_DATABASE_POOL_SIZE` | all | `10` | Connections per process |
 | `storage.url` | `KAMPUS_STORAGE_URL` | server, worker | required | `file:///path` or `s3://bucket/prefix` |
 | `storage.s3_endpoint`, `s3_region`, `s3_access_key_id`, `s3_secret_access_key` | `KAMPUS_STORAGE_S3_…` | server, worker | with `s3://` | The S3-compatible store: endpoint (omit for AWS), region and credentials |
+| `storage.public_url` | `KAMPUS_STORAGE_PUBLIC_URL` | server, worker | none | The address browsers reach the S3 store at; with it, files that cannot run are read from the store through links it signs (see [serving files from the store](#serving-files-from-the-store)) |
 | `cache.url` | `KAMPUS_CACHE_URL` | server, worker | in-process | `redis://`, `rediss://` or `valkey://`; without it only one instance may run |
 | `scan.url` | `KAMPUS_SCAN_URL` | server, worker | none | `clamd://host:port` (port 3310 when absent); every upload is scanned and infected content refused; without it uploads are kept unscanned |
 | `mail.url` | `KAMPUS_MAIL_URL` | worker | none | `smtp://host:port` in the clear, `smtp://host:port?tls=required` with STARTTLS, `smtps://host:port` over TLS; without it the email channel writes to the log what it would send |
