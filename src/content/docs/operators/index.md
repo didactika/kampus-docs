@@ -7,8 +7,8 @@ sidebar:
 
 Kampus ships as **one container image** that runs in three roles: `server` (HTTP), `worker` (background jobs) and `scheduler` (scheduled tasks), or all of them in one process (`all`). State lives only in the database, the file storage and the cache, so every role scales horizontally.
 
-:::caution[In development]
-Kampus 0.1.0 has no released image yet. You can already build and run it with Docker Compose from the repository (see [getting started](/platform-developers/getting-started/#run-kampus)); the installation guide arrives with the first release.
+:::tip[Installing]
+Install Kampus on one server with [Docker Compose](/operators/installation-compose/), or on a cluster with [its Helm chart](/operators/installation-kubernetes/). Then plan its [backups](/operators/backup/) and its [monitoring](/operators/monitoring/). The images are built from the repository at the release tag.
 :::
 
 ## Commands
@@ -166,6 +166,7 @@ docker compose run --rm -it server install
 | `server.role` | `KAMPUS_SERVER_ROLE` | all | `all` | `server`, `worker`, `scheduler` or `all` |
 | `server.http_address` | `KAMPUS_SERVER_HTTP_ADDRESS` | all | `0.0.0.0:8080` | The address of the HTTP listener |
 | `server.upgrade_on_start` | `KAMPUS_SERVER_UPGRADE_ON_START` | all | `false` | Apply pending upgrades when the process starts |
+| `server.trusted_proxies` | `KAMPUS_SERVER_TRUSTED_PROXIES` | server | none | The proxies in front of Kampus (the web client, a load balancer), as addresses or networks separated by commas (`10.0.0.0/8, 172.16.0.0/12`). Only a request from one of them may tell the address of the person with `X-Forwarded-For`, read from the right; that address is the one sign-in failures are counted by and sessions record. Without it, the address of the connection is used, which behind a proxy is the proxy's |
 | `database.url` | `KAMPUS_DATABASE_URL` | all | required | The PostgreSQL connection |
 | `database.prefix` | `KAMPUS_DATABASE_PREFIX` | all | `kmp_` | The prefix of every schema, set once at installation |
 | `database.pool_size` | `KAMPUS_DATABASE_POOL_SIZE` | all | `10` | Connections per process |
@@ -183,6 +184,15 @@ docker compose run --rm -it server install
 | `tenancy.base_domain` | `KAMPUS_TENANCY_BASE_DOMAIN` | all | with `multi` | The domain under which each campus has its own (`a.campuses.example.org`) |
 | `log.level` | `KAMPUS_LOG_LEVEL` | all | `info` | `error`, `warn`, `info`, `debug` or `trace` |
 | `log.format` | `KAMPUS_LOG_FORMAT` | all | `json` | `json` lines for collectors, or `text` |
+
+A variable set to an empty value counts as unset, so a Compose file can pass optional variables through.
+
+The web client (`kampus-web` image) reads two variables of its own:
+
+| Variable | Default | Description |
+| --- | --- | --- |
+| `KAMPUS_API_URL` | `http://localhost:8100` | The address of the `server` role, inside your network; the browser reaches the API through `/api` of the web client |
+| `KAMPUS_HELP_URL` | none | The address of the handbook; the help icon of each screen opens its guide there, in the language of the reader |
 
 `KAMPUS_CONFIG_FILE` names another file; the container image reads `/etc/kampus/config.toml`. Mail, sessions, the task queue and search get their sections with the modules that use them.
 
