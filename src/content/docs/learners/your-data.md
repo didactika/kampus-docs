@@ -5,6 +5,8 @@ sidebar:
   order: 6
 ---
 
+<!-- covers: exportMyData -->
+
 Available since 0.1.0.
 
 ## Asking for a copy

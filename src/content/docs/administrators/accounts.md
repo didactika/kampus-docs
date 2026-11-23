@@ -5,6 +5,8 @@ sidebar:
   order: 2
 ---
 
+<!-- covers: manageAccountLifecycle, editProfile, registerApiClient -->
+
 Available since 0.1.0.
 
 An account belongs to one campus. Its username and its email are unique in the campus, and capital letters do not count: `Ana@Example.org` and `ana@example.org` are the same account.
@@ -36,6 +38,10 @@ With `identity.account.suspend` you suspend an account with a reason, and reacti
 With `identity.account.delete` you schedule a deletion. The account is suspended at once and deleted when the grace period ends (14 days by default). Until then you can cancel the deletion, and reactivating the account cancels it too.
 
 When the deletion runs, the account's personal data is erased: email, username, password, second factors, sessions, API tokens and the sign-in log. The account stays as a tombstone with a pseudonym such as `deleted-3f9a1c2b7e0d`, so grades and contributions keep a valid reference. The email can then be used for a new account.
+
+## Profiles of people
+
+With `users.profile.update_any` you change the profile of anyone in your campus: names, how they are shown, language and time zone. The change is checked against the version you read, so it never overwrites a change made meanwhile, and the person sees the new values at once.
 
 ## Service accounts
 

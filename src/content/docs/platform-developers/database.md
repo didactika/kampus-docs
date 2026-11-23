@@ -51,6 +51,20 @@ pub const STEPS: ModuleSteps = ModuleSteps {
 | Later steps | `AddColumn` (a required column needs a default), `AddForeignKey`, `AddCheck`, `AddIndex`, and `DropColumn` once no supported release reads the column |
 | Escape hatch | `Change::Postgres { sql, reason }`, only for what the neutral schema cannot express, always with its reason |
 
+## Connections
+
+A service never holds a connection of the pool, or a transaction, while it calls another service. The other service takes a connection of its own, and under load every connection ends up held by a request that waits for a second one, until the pool gives up after 30 seconds and every request fails at once. While you hold one, pass it on, or give it back first:
+
+| Instead of | Write |
+| --- | --- |
+| `self.access.require(actor, permission, scope)` inside a transaction | `self.access.require_in(&mut tx, actor, permission, scope)`, which also sees what the transaction locked |
+| `self.access.check(…)`, `second_factor_required(…)` | `check_in(&mut tx, …)`, `second_factor_required_in(&mut tx, …)` |
+| `self.courses.course(id)`, `section(id)` | `course_in(&mut tx, id)`, `section_in(&mut tx, id)` |
+| `self.policies.policy(campus)` | `policy_in(&mut tx, campus)` |
+| A check after reading with a connection | Read what you need, `drop(conn)`, then check |
+
+When your service offers a read that others call inside their transactions, add its `_in` variant taking `&mut PgConnection`, and make the plain one acquire a connection and call it. `tools/repo-check` refuses a call to another service made while a connection is held, and a server test serves the pages of the web client with a pool of one connection, where any request that waits for a second one hangs.
+
 ## The linter
 
 `kampus_db::lint` replays every module's steps and fails the build when a convention breaks: references without foreign keys, tables without a natural key or a reason, instants that are not `Timestamptz`, flags that are not `Boolean`, JSON without a schema, references to later modules, names that are not lower-case snake case, unsafe drops, required columns added without a default, and SQL without a reason.

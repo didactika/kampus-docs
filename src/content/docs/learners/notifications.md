@@ -5,6 +5,8 @@ sidebar:
   order: 4
 ---
 
+<!-- covers: setNotificationPreferences -->
+
 Available since 0.1.0.
 
 ## Your inbox

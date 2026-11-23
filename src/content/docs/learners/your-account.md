@@ -5,6 +5,8 @@ sidebar:
   order: 1
 ---
 
+<!-- covers: signUp, signIn, setUpSecondFactor, editProfile, chooseLanguage, openHelp -->
+
 Available since 0.1.0.
 
 ## Getting an account
@@ -30,6 +32,10 @@ When your campus connects a provider, such as your organisation's single sign-on
 Your profile holds your given and family names, how you are shown, your language and your time zone. You change it yourself; administrators of your campus can change it too. If someone changed it while you were editing, Kampus asks you to reload instead of overwriting their change.
 
 Your preferences, such as how often you receive summaries, belong to the parts of Kampus that offer them; each one has a default until you choose.
+
+## Language and help
+
+Kampus speaks the language of your profile; until you choose one, it uses the language of your browser when the campus offers it. Dates and numbers follow your language and your time zone. On every screen, the help icon of the bar opens the guide that explains it, when your campus links its handbook.
 
 ## Changing your email
 

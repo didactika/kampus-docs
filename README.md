@@ -24,11 +24,14 @@ Pages reload when you edit them; the server polls for changes (`KAMPUS_DOCS_POLL
 | `src/content/docs/es/<audience>/` | The same guides in Spanish; a missing page falls back to English |
 | `src/components/` | The site title and the use-case list |
 | `src/styles/kampus-docs.css` | The look of Didactika's documentation: palette, typography, components |
-| `tools/sync-spec.mjs` | Synchronisation with the Kampus repository |
+| `tools/sync-spec.mjs` | Synchronisation with the Kampus repository: use cases, changelog and the reference pages (`tools/reference-pages.mjs`, from `docs/03-design/reference.json`) |
+| `src/content/docs/reference/` | Permissions, settings, features and terms, events, notifications and jobs, generated; do not edit them |
+| `tools/check-coverage.mjs` | Every available use case is documented for its roles: a guide of each role declares it with `<!-- covers: name -->` |
+| `tools/check-links.mjs` | Every internal link of the built site leads to a page and an anchor that exist |
 
 ## Contributing
 
-Every source file starts with the Kampus file header (`node tools/check-headers.mjs --fix --author "Your Name <you@example.org>"` writes it); pages are Markdown or MDX with front matter. Each change adds its entry to `CHANGELOG.md`.
+Every source file starts with the Kampus file header (`node tools/check-headers.mjs --fix --author "Your Name <you@example.org>"` writes it); pages are Markdown or MDX with front matter. Each change adds its entry to `CHANGELOG.md`. CI (`.github/workflows/docs.yml`) checks the headers, the coverage of the use cases, the build and the links: `npm run headers`, `npm run coverage`, `npm run build`, `npm run links`.
 
 ## Licence
 

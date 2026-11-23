@@ -5,6 +5,8 @@ sidebar:
   order: 5
 ---
 
+<!-- covers: sendMessage -->
+
 Available since 0.1.0.
 
 ## Conversations

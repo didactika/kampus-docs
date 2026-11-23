@@ -43,6 +43,8 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
+import { writeReference } from './reference-pages.mjs';
+
 const repo = path.resolve(process.argv[2] ?? process.env.KAMPUS_REPO ?? '../kampus');
 const dataFile = path.resolve('src/data/use-cases.json');
 const changelogPage = path.resolve('src/content/docs/releases/changelog.md');
@@ -106,4 +108,5 @@ write(
   changelogPage,
   `---\ntitle: Changelog\ndescription: What changes in each version of Kampus, with the upgrade steps.\nsidebar:\n  order: 1\n---\n\n${body}`,
 );
-console.log(`sync-spec: ${useCases.length} use cases and the changelog of Kampus ${version}`);
+const referenced = writeReference(repo, write);
+console.log(`sync-spec: ${useCases.length} use cases, the changelog and the reference of ${referenced} modules of Kampus ${version}`);

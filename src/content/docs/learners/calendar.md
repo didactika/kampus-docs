@@ -5,6 +5,8 @@ sidebar:
   order: 3
 ---
 
+<!-- covers: viewCalendar, subscribeCalendar -->
+
 Available since 0.1.0.
 
 ## What the calendar of a course shows

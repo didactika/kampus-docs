@@ -86,6 +86,7 @@ export default defineConfig({
         audience('Integrators', 'Integradores', 'integrators'),
         audience('Plugin developers', 'Desarrolladores de plugins', 'plugin-developers'),
         audience('Platform developers', 'Desarrolladores de la plataforma', 'platform-developers'),
+        audience('Reference', 'Referencia', 'reference'),
         audience('Releases', 'Versiones', 'releases'),
       ],
     }),

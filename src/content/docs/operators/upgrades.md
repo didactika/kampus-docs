@@ -2,7 +2,7 @@
 title: Upgrades
 description: Upgrade from any supported release to the latest one in one run.
 sidebar:
-  order: 1
+  order: 5
 ---
 
 ## One run, from any supported release

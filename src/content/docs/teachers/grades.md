@@ -5,6 +5,8 @@ sidebar:
   order: 4
 ---
 
+<!-- covers: configureRecords, overrideGrade, viewGrades -->
+
 Available since 0.1.0. Formulas arrive in a later release.
 
 ## The records of a course

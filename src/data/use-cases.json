@@ -113,7 +113,7 @@
       "actors": [
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-012",
@@ -124,7 +124,7 @@
         "Course creator",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-013",
@@ -134,7 +134,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-014",
@@ -144,7 +144,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-015",
@@ -154,7 +154,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-016",
@@ -165,7 +165,7 @@
         "Teacher",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-017",
@@ -175,7 +175,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-018",
@@ -186,7 +186,7 @@
         "Teacher",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-019",
@@ -196,7 +196,7 @@
       "actors": [
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-020",
@@ -206,7 +206,7 @@
       "actors": [
         "System"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-021",
@@ -226,7 +226,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-023",
@@ -236,7 +236,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-024",
@@ -256,7 +256,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-026",
@@ -266,7 +266,7 @@
       "actors": [
         "System"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-027",
@@ -276,7 +276,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-028",
@@ -286,7 +286,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-029",
@@ -297,7 +297,7 @@
         "Student",
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-030",
@@ -307,7 +307,7 @@
       "actors": [
         "System"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-031",
@@ -317,7 +317,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-032",
@@ -327,7 +327,7 @@
       "actors": [
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-033",
@@ -337,7 +337,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-034",
@@ -347,7 +347,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-035",
@@ -357,7 +357,7 @@
       "actors": [
         "Campus administrator"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-036",
@@ -368,7 +368,7 @@
         "Teacher",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-037",
@@ -378,7 +378,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-038",
@@ -388,7 +388,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-039",
@@ -398,7 +398,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-040",
@@ -408,7 +408,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-041",
@@ -420,7 +420,7 @@
         "Manager",
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-042",
@@ -430,7 +430,7 @@
       "actors": [
         "Campus administrator"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-043",
@@ -440,7 +440,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-044",
@@ -450,7 +450,7 @@
       "actors": [
         "Campus administrator"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-045",
@@ -460,7 +460,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-046",
@@ -481,7 +481,7 @@
         "Integrator",
         "Campus administrator"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-048",
@@ -532,7 +532,7 @@
         "Campus administrator",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-053",
@@ -543,7 +543,7 @@
         "Campus administrator",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-054",
@@ -554,7 +554,7 @@
         "Campus administrator",
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-055",
@@ -564,7 +564,7 @@
       "actors": [
         "Campus administrator"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-056",
@@ -575,7 +575,7 @@
         "Campus administrator",
         "Teacher"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-057",
@@ -586,7 +586,7 @@
         "Campus administrator",
         "Manager"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-058",
@@ -596,7 +596,7 @@
       "actors": [
         "Campus administrator"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-059",
@@ -606,7 +606,7 @@
       "actors": [
         "Authenticated user"
       ],
-      "availableSince": null
+      "availableSince": "0.1.0"
     },
     {
       "id": "UC-060",

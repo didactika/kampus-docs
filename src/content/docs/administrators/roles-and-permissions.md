@@ -5,6 +5,8 @@ sidebar:
   order: 1
 ---
 
+<!-- covers: grantRole, overridePermission, defineRole, viewAsRole -->
+
 Available since 0.1.0.
 
 Everything a person may do in Kampus is decided by the roles they hold and where they hold them. A role is held in a **scope**: the platform, a campus, a category, a course, a section or an activity. A role held in a scope applies there and in everything below it.

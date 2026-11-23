@@ -5,6 +5,8 @@ sidebar:
   order: 4
 ---
 
+<!-- covers: renameTerms, defineCustomField, arrangeLayout, editTheme, createRule, switchFeature, shareCustomisation -->
+
 Available since 0.1.0.
 
 Customisation changes Kampus without code. Everything here is set in a scope (the platform, a campus, a category, a course or a section) and applies there and below: the nearest scope that sets something wins, unless a scope above **locks** it. Every answer says where its value came from, and every change is recorded with who made it, before and after.

@@ -5,6 +5,8 @@ sidebar:
   order: 5
 ---
 
+<!-- covers: configureCourseProgress, setProgressException -->
+
 Available since 0.1.0. Course completion and prerequisites arrive in a later release.
 
 ## What an activity asks

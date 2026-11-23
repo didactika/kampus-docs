@@ -5,6 +5,8 @@ sidebar:
   order: 2
 ---
 
+<!-- covers: registerApiClient -->
+
 Available since 0.1.0.
 
 An API token lets an integration act for an account. It looks like `kmp_<prefix>_<secret>`: the prefix names the token in lists and logs, and the whole token is shown once, when it is created. Kampus keeps only a hash of it, so a lost token cannot be shown again; create a new one and revoke the old.

@@ -5,6 +5,8 @@ sidebar:
   order: 3
 ---
 
+<!-- covers: addActivity, restrictAccess, grantException, copyActivity, deleteActivity -->
+
 Available since 0.1.0.
 
 ## Adding content

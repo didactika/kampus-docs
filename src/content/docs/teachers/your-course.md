@@ -5,6 +5,8 @@ sidebar:
   order: 1
 ---
 
+<!-- covers: organiseSections, manageGroups, chooseCourseLayout, arrangeLayout -->
+
 Available since 0.1.0.
 
 ## Preparing it

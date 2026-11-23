@@ -5,6 +5,8 @@ sidebar:
   order: 3
 ---
 
+<!-- covers: manageCategories, createCourse, enrolPeople, manageEnrolment, linkEnrolmentSource -->
+
 Available since 0.1.0.
 
 ## Categories
@@ -64,4 +66,4 @@ The group mode of a course, a section or an activity is the setting `courses.gro
 | `enrol.request.decide` | Approve or reject requests to join | Administrators, Manager, Teacher |
 | `enrol.self` | Enrol oneself where a course allows it | Administrators, Manager, Authenticated user |
 
-Two commands keep enrolments up to date until scheduled tasks arrive: `kampus-server enrol sync` brings the enrolments of system groups in step with their groups, and `kampus-server enrol run-expiry` applies the expiry rule to the enrolments that ended.
+Scheduled jobs keep enrolments up to date: `enrol.sync` brings the enrolments of system groups in step with their groups every 15 minutes, and `enrol.run_expiry` applies the expiry rule to the enrolments that ended every hour. `kampus-server enrol sync` and `kampus-server enrol run-expiry` run them at once, for example after linking a course to a new system group.
